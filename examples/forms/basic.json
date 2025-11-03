@@ -1,0 +1,86 @@
+{
+  "form": [
+    {
+      "title": "Payment Method",
+      "description": "All transactions are secure and encrypted",
+      "fields": [
+        {
+          "label": "Name on Card",
+          "name": "name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "label": "Card Number",
+          "name": "number",
+          "type": "text",
+          "description": "Enter your 16-digit card number",
+          "required": true
+        },
+        {
+          "type": "column",
+          "fields": [
+            {
+              "label": "Month",
+              "name": "month",
+              "type": "select",
+              "placeholder": "MM",
+              "required": true
+            },
+            {
+              "label": "Year",
+              "name": "year",
+              "type": "select/year",
+              "placeholder": "YYYY",
+              "required": true
+            },
+            {
+              "label": "CVV",
+              "name": "cvv",
+              "type": "number",
+              "placeholder": "123",
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Billing Address",
+      "description": "The billing address associated with your payment method",
+      "fields": [
+        {
+          "label": "Same as shipping address",
+          "name": "same_as_shipping",
+          "type": "checkbox"
+        },
+        {
+          "advanced": {
+            "max": 4000
+          },
+          "label": "Comments",
+          "name": "comments",
+          "type": "textarea",
+          "placeholder": "Add any additional comments"
+        }
+      ]
+    },
+    {
+      "fields": [
+        {
+          "type": "column",
+          "fields": [
+            {
+              "label": "Submit",
+              "type": "button"
+            },
+            {
+              "label": "Cancel",
+              "type": "button"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

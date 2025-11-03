@@ -1,0 +1,7 @@
+# dependencies
+node_modules
+package-lock.json
+
+# test output
+.DS_Store
+test-results

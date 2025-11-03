@@ -1,0 +1,27 @@
+{
+  "name": "luna-project",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "prepare": "husky",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "test:unit": "npx playwright test --grep '@unit'"
+  },
+  "devDependencies": {
+    "@playwright/test": "~1.56.1",
+    "esbuild": "~0.25.12",
+    "husky": "9.1.7",
+    "lint-staged": "16.2.6",
+    "playwright": "~1.56.1",
+    "prettier": "3.6.2"
+  },
+  "engines": {
+    "node": ">=22.x",
+    "pnpm": "10.20.0"
+  },
+  "packageManager": "pnpm@10.20.0"
+}

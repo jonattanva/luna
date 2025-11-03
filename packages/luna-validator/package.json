@@ -1,0 +1,8 @@
+{
+  "name": "@luna/validator",
+  "version": "0.0.1",
+  "private": true,
+  "peerDependencies": {
+    "zod": "^4.0.0"
+  }
+}
