@@ -5,3 +5,6 @@ package-lock.json
 # test output
 .DS_Store
 test-results
+
+# build output
+dist

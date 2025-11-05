@@ -7,13 +7,13 @@
         {
           "label": "Name on Card",
           "name": "name",
-          "type": "text",
+          "type": "string",
           "required": true
         },
         {
           "label": "Card Number",
           "name": "number",
-          "type": "text",
+          "type": "string",
           "description": "Enter your 16-digit card number",
           "required": true
         },
@@ -60,7 +60,7 @@
           },
           "label": "Comments",
           "name": "comments",
-          "type": "textarea",
+          "type": "stringarea",
           "placeholder": "Add any additional comments"
         }
       ]

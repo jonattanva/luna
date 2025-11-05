@@ -6,6 +6,7 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "node esbuild.mjs",
     "prepare": "husky",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
