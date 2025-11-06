@@ -5,22 +5,40 @@
       "description": "All transactions are secure and encrypted",
       "fields": [
         {
+          "advanced": {
+            "data": {
+              "testid": "name"
+            }
+          },
           "label": "Name on Card",
           "name": "name",
-          "type": "string",
+          "type": "text",
           "required": true
         },
         {
+          "advanced": {
+            "data": {
+              "testid": "card-number"
+            }
+          },
           "label": "Card Number",
-          "name": "number",
-          "type": "string",
+          "name": "card-number",
+          "type": "text",
           "description": "Enter your 16-digit card number",
           "required": true
         },
         {
+          "advanced": {
+            "columns": 3
+          },
           "type": "column",
           "fields": [
             {
+              "advanced": {
+                "data": {
+                  "testid": "month"
+                }
+              },
               "label": "Month",
               "name": "month",
               "type": "select",
@@ -28,6 +46,11 @@
               "required": true
             },
             {
+              "advanced": {
+                "data": {
+                  "testid": "year"
+                }
+              },
               "label": "Year",
               "name": "year",
               "type": "select/year",
@@ -35,6 +58,11 @@
               "required": true
             },
             {
+              "advanced": {
+                "data": {
+                  "testid": "cvv"
+                }
+              },
               "label": "CVV",
               "name": "cvv",
               "type": "number",
@@ -43,27 +71,38 @@
             }
           ]
         }
-      ]
+      ],
+      "separator": true,
+      "order": 1
     },
     {
       "title": "Billing Address",
       "description": "The billing address associated with your payment method",
       "fields": [
         {
+          "advanced": {
+            "data": {
+              "testid": "same-as-shipping"
+            }
+          },
           "label": "Same as shipping address",
-          "name": "same_as_shipping",
+          "name": "same-as-shipping",
           "type": "checkbox"
         },
         {
           "advanced": {
-            "max": 4000
+            "max": 4000,
+            "data": {
+              "testid": "comments"
+            }
           },
           "label": "Comments",
           "name": "comments",
-          "type": "stringarea",
+          "type": "textarea",
           "placeholder": "Add any additional comments"
         }
-      ]
+      ],
+      "order": 2
     },
     {
       "fields": [
@@ -71,16 +110,27 @@
           "type": "column",
           "fields": [
             {
+              "advanced": {
+                "data": {
+                  "testid": "submit"
+                }
+              },
               "label": "Submit",
               "type": "button"
             },
             {
+              "advanced": {
+                "data": {
+                  "testid": "cancel"
+                }
+              },
               "label": "Cancel",
               "type": "button"
             }
           ]
         }
-      ]
+      ],
+      "order": 3
     }
   ]
 }
