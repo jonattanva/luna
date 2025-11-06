@@ -17,6 +17,7 @@
     "@types/eslint-plugin-jsx-a11y": "6.10.1",
     "@typescript-eslint/eslint-plugin": "8.46.3",
     "@typescript-eslint/parser": "8.46.3",
+    "esbuild": "0.25.12",
     "eslint": "9.39.1",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-playwright": "2.3.0",
