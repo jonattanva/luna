@@ -1,5 +1,7 @@
 import { FieldSet } from '../../../common/fieldset'
+import { Fragment } from 'react'
 import { Group } from '../../../common/group'
+import { Separator } from '../../../common/separator'
 import type { Forms } from '../../type'
 
 export function Form(
@@ -15,11 +17,10 @@ export function Form(
     <form>
       <Group>
         {forms.map((form, index) => (
-          <FieldSet
-            description={form.description}
-            key={index}
-            title={form.title}
-          />
+          <Fragment key={index}>
+            <FieldSet description={form.description} title={form.title} />
+            {form.separator && <Separator />}
+          </Fragment>
         ))}
       </Group>
     </form>

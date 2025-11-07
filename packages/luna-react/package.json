@@ -13,5 +13,17 @@
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "typescript": "5.9.3"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./server": {
+      "module": "./dist/server/esm/index.js",
+      "import": "./dist/server/cjs/index.js",
+      "types": "./dist/types/server/index.d.ts",
+      "default": "./dist/server/cjs/index.js"
+    }
   }
 }
