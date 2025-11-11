@@ -1,4 +1,4 @@
-import basic from './form/basic.json'
+import basic from '@/form/basic.json'
 import { Form } from '@luna/react/server'
 
 export default function Page() {

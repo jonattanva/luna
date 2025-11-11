@@ -13,7 +13,7 @@ export function FieldSet(
   }
 
   return (
-    <fieldset className="flex flex-col gap-6">
+    <fieldset data-slot="set" className="flex flex-col gap-6">
       <Legend title={props.title} description={props.description} />
       <Group>{props.children}</Group>
     </fieldset>

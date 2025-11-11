@@ -6,6 +6,11 @@
     "jsx": "react-jsx",
     "module": "ESNext",
     "target": "es2020",
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "paths": {
+      "@/*": ["./*"]
+    }
   }
 }

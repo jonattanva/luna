@@ -4,7 +4,10 @@ export function Group(
   }>
 ) {
   return (
-    <div className="@container/form-group flex w-full flex-col gap-8">
+    <div
+      data-slot="group"
+      className="@container/form-group flex w-full flex-col gap-8"
+    >
       {props.children}
     </div>
   )

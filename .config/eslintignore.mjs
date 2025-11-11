@@ -1,3 +1,7 @@
 import { globalIgnores } from 'eslint/config'
 
-export default globalIgnores(['examples/', 'node_modules/'])
+export default globalIgnores([
+  'examples/',
+  'node_modules/',
+  'packages/**/dist/',
+])

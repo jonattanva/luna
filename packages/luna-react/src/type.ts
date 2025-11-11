@@ -8,6 +8,16 @@ export type Hiddenable = {
 
 export type Base = Orderable & Hiddenable
 
+export type Control = {
+  advanced?: {
+    data?: Record<string, string>
+  }
+  label?: string
+  type: 'button' | 'button/submit'
+} & Base
+
+export type Controls = readonly Control[]
+
 export type Column = {
   advanced?: {
     cols?: number
@@ -24,7 +34,7 @@ export type Field = {
   type: string
 } & Base
 
-export type Fields = readonly (Field | Column)[]
+export type Fields = readonly (Column | Control | Field)[]
 
 export type Form = {
   description?: string

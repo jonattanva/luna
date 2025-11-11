@@ -1,9 +1,9 @@
-import { COLUMN, FIELDS } from '../../../util/constant'
-import { Column } from '../../../common/column'
+import { COLUMN, FIELDS } from '@/src/util/constant'
+import { Column } from '@/src/common/column'
 import { Fragment } from 'react'
-import { Input } from '../input'
-import { prepare } from '../../../util/prepare'
-import type { Fields } from '../../../type'
+import { Input } from '@/src/server/component/input'
+import { prepare } from '@/src/util/prepare'
+import type { Fields } from '@/src/type'
 
 export function Slot(
   props: Readonly<{
