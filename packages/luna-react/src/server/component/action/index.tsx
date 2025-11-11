@@ -1,3 +1,4 @@
+import { parse } from '@/src/adapter'
 import { getComponent } from '@/src/adapter/registry'
 import type { Field as FieldType } from '@/src/type'
 
@@ -6,5 +7,5 @@ export function Action(props: Readonly<{ field: FieldType }>) {
   if (!Component) {
     return null
   }
-  return <Component {...props.field} />
+  return <Component {...parse(props)} />
 }

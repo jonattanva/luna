@@ -1,5 +1,5 @@
-import { isNumber, isText, isTextArea } from '../util/constant'
-import { toNumber, toText, toTextArea } from './parse'
+import { isButton, isNumber, isText, isTextArea } from '../util/constant'
+import { toButton, toNumber, toText, toTextArea } from './parse'
 import type { Field as FieldType } from '@/src/type'
 
 export function parse(props: Readonly<{ field: FieldType }>) {
@@ -13,6 +13,10 @@ export function parse(props: Readonly<{ field: FieldType }>) {
 
   if (isNumber(props.field.type)) {
     return toNumber(props.field)
+  }
+
+  if (isButton(props.field.type)) {
+    return toButton(props.field)
   }
 
   return props.field

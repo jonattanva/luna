@@ -135,6 +135,7 @@
     },
     {
       "advanced": {
+        "variant": "outline",
         "data": {
           "testid": "cancel"
         }

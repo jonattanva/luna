@@ -1,25 +1,29 @@
 import type {
   InputBase,
+  InputButton,
   InputElement,
   InputNumber,
   InputText,
   InputTextArea,
 } from '@/src/type'
 
-function toBase(props: Readonly<InputBase>) {
-  const attrs: InputElement = {
-    id: props.name,
-    name: props.name,
-    required: props.required,
-  }
-
+function getData(props: Readonly<InputBase>) {
+  const attrs: InputElement = {}
   if (props.advanced?.data) {
     for (const [key, value] of Object.entries(props.advanced.data)) {
       attrs[`data-${key}`] = value
     }
   }
-
   return attrs
+}
+
+function toBase(props: Readonly<InputBase>): InputElement {
+  return {
+    id: props.name,
+    name: props.name,
+    required: props.required,
+    ...getData(props),
+  }
 }
 
 export function toText(props: Readonly<InputText>) {
@@ -46,5 +50,14 @@ export function toNumber(props: Readonly<InputNumber>) {
     max: props.advanced?.length?.max,
     min: props.advanced?.length?.min,
     type: 'number',
+  }
+}
+
+export function toButton(props: Readonly<InputButton>) {
+  return {
+    ...getData(props),
+    children: props.label,
+    type: 'button',
+    variant: props.advanced?.variant ?? 'default',
   }
 }

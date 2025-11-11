@@ -73,3 +73,12 @@ export type InputText = InputBase & {
 export type InputNumber = InputBase
 
 export type InputTextArea = InputBase
+
+export type InputButton = {
+  advanced?: {
+    data?: Record<string, unknown>
+    variant?: 'default' | 'outline'
+  }
+  label?: string
+  type: string
+}
