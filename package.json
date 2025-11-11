@@ -15,8 +15,8 @@
   "devDependencies": {
     "@playwright/test": "1.56.1",
     "@types/eslint-plugin-jsx-a11y": "6.10.1",
-    "@typescript-eslint/eslint-plugin": "8.46.3",
-    "@typescript-eslint/parser": "8.46.3",
+    "@typescript-eslint/eslint-plugin": "8.46.4",
+    "@typescript-eslint/parser": "8.46.4",
     "esbuild": "0.25.12",
     "eslint": "9.39.1",
     "eslint-plugin-jsx-a11y": "6.10.2",
@@ -27,7 +27,7 @@
     "playwright": "1.56.1",
     "prettier": "3.6.2",
     "prettier-plugin-tailwindcss": "0.7.1",
-    "typescript-eslint": "8.46.3"
+    "typescript-eslint": "8.46.4"
   },
   "engines": {
     "node": ">=22.x",

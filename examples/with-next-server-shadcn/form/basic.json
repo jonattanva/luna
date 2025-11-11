@@ -16,7 +16,7 @@
           "type": "text",
           "required": true,
           "validation": {
-            "message": "Please enter the name as it appears on your card"
+            "required": "Please enter the name as it appears on your card"
           },
           "order": 1
         },
@@ -71,7 +71,7 @@
             {
               "advanced": {
                 "length": {
-                  "max": 3
+                  "max": 999
                 },
                 "data": {
                   "testid": "cvv"

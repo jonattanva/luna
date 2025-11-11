@@ -17,7 +17,7 @@ export function Form(
   const forms = prepare(props.form)
 
   return (
-    <div className="w-full max-w-md">
+    <div className="h-full w-full">
       <form action={props.action}>
         <Group>
           {forms.map((form, index) => (
