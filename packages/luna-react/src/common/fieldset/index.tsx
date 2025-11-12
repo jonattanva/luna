@@ -1,5 +1,5 @@
 import { Group } from '../group'
-import { Legend } from './legend'
+import { Legend } from '../legend'
 
 export function FieldSet(
   props: Readonly<{

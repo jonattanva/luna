@@ -11,7 +11,6 @@ test.describe('Prepare Utility', { tag: ['@unit'] }, () => {
     ]
 
     const result = prepare(input)
-
     expect(result).toEqual([
       { id: '4', order: 0 },
       { id: '1', order: 2 },
@@ -21,7 +20,6 @@ test.describe('Prepare Utility', { tag: ['@unit'] }, () => {
 
   test('should return an empty array when given no input', () => {
     const result = prepare()
-
     expect(result).toEqual([])
   })
 })

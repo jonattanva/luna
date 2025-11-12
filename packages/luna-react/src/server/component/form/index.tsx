@@ -1,16 +1,16 @@
-import { Control } from '../control'
+import { Field } from '@/src/common/field'
 import { FieldSet } from '@/src/common/fieldset'
 import { Fragment } from 'react'
 import { Group } from '@/src/common/group'
 import { Separator } from '@/src/common/separator'
 import { Slot } from '@/src/server/component/slot'
 import { prepare } from '@/src/util/prepare'
-import type { Controls, Forms } from '@/src/type'
+import type { Forms } from '@/src/type'
 
 export function Form(
   props: Readonly<{
     action: (formData: FormData) => void
-    control?: Controls
+    children?: React.ReactNode
     form: Forms
   }>
 ) {
@@ -28,7 +28,7 @@ export function Form(
               {form.separator && <Separator />}
             </Fragment>
           ))}
-          <Control control={props.control} />
+          <Field orientation="horizontal">{props.children}</Field>
         </Group>
       </form>
     </div>

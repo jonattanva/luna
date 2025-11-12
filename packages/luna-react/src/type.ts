@@ -8,16 +8,6 @@ export type Hiddenable = {
 
 export type Base = Orderable & Hiddenable
 
-export type Control = {
-  advanced?: {
-    data?: Record<string, string>
-  }
-  label?: string
-  type: 'button' | 'button/submit'
-} & Base
-
-export type Controls = readonly Control[]
-
 export type Column = {
   advanced?: {
     cols?: number
@@ -34,7 +24,7 @@ export type Field = {
   type: string
 } & Base
 
-export type Fields = readonly (Column | Control | Field)[]
+export type Fields = readonly (Column | Field)[]
 
 export type Form = {
   description?: string
@@ -45,40 +35,6 @@ export type Form = {
 
 export type Forms = readonly Form[]
 
-export type InputElement = React.InputHTMLAttributes<HTMLInputElement> & {
-  [key: `data-${string}`]: unknown
-}
-
-export type InputBase = {
-  advanced?: {
-    data?: Record<string, unknown>
-    length?: {
-      max?: number
-      min?: number
-    }
-  }
-  name?: string
-  required?: boolean
-  validation?: {
-    required?: string
-  }
-}
-
-export type InputText = InputBase & {
-  advanced?: {
-    autocomplete?: string
-  }
-}
-
-export type InputNumber = InputBase
-
-export type InputTextArea = InputBase
-
-export type InputButton = {
-  advanced?: {
-    data?: Record<string, unknown>
-    variant?: 'default' | 'outline'
-  }
-  label?: string
-  type: string
+export type DataAttributes = {
+  [key: `data-${string}`]: string | number | boolean
 }

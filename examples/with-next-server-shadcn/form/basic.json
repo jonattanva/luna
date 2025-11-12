@@ -122,26 +122,5 @@
       ],
       "order": 2
     }
-  ],
-  "control": [
-    {
-      "advanced": {
-        "data": {
-          "testid": "submit"
-        }
-      },
-      "label": "Submit",
-      "type": "button/submit"
-    },
-    {
-      "advanced": {
-        "variant": "outline",
-        "data": {
-          "testid": "cancel"
-        }
-      },
-      "label": "Cancel",
-      "type": "button"
-    }
   ]
 }
