@@ -1,13 +1,13 @@
 import { NativeSelect, NativeSelectOption } from "./native-select";
 
-export function Select() {
+export function Select({ className, ...props }: React.ComponentProps<"select"> & { options: Array<{ value: string; label: string }> }) {
     return (
-    <NativeSelect>
-      <NativeSelectOption value="">Select status</NativeSelectOption>
-      <NativeSelectOption value="todo">Todo</NativeSelectOption>
-      <NativeSelectOption value="in-progress">In Progress</NativeSelectOption>
-      <NativeSelectOption value="done">Done</NativeSelectOption>
-      <NativeSelectOption value="cancelled">Cancelled</NativeSelectOption>
+    <NativeSelect className={className} disabled={props.disabled} id={props.id} name={props.name} required={props.required} value={props.value} onChange={props.onChange}>
+      {props.options.map((option) => (
+        <NativeSelectOption key={option.value} value={option.value}>
+          {option.label}
+        </NativeSelectOption>
+      ))}
     </NativeSelect>
   )
 }

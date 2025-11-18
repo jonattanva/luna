@@ -1,26 +1,27 @@
 import { Description } from '@/src/common/description'
-import { Field } from '@/src/common/field'
+import { Field as FieldComponent } from '@/src/common/field'
+import { Input } from './input'
 import { Label } from '@/src/common/label'
 import { getComponent } from '@/src/adapter/registry'
 import type { Field as FieldType } from '@/src/type'
 
-export function Input(props: Readonly<{ field: FieldType }>) {
+export function Field(props: Readonly<{ field: FieldType }>) {
   const Component = getComponent(props.field.type)
   if (!Component) {
     return null
   }
 
   return (
-    <Field>
+    <FieldComponent>
       {props.field.name && (
         <Label name={props.field.name} required={props.field.required}>
           {props.field.label}
         </Label>
       )}
-      <Component input={props.field} />
+      <Input component={Component} field={props.field} />
       {props.field.description && (
         <Description>{props.field.description}</Description>
       )}
-    </Field>
+    </FieldComponent>
   )
 }

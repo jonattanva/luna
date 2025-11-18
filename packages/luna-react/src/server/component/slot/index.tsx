@@ -1,7 +1,7 @@
 import { COLUMN, FIELDS } from '@/src/util/constant'
 import { Column } from '@/src/common/column'
 import { Fragment } from 'react'
-import { Input } from '@/src/server/component/input'
+import { Field } from '@/src/server/component/field'
 import { prepare } from '@/src/util/prepare'
 import type { Fields } from '@/src/type'
 
@@ -21,7 +21,7 @@ export function Slot(
               <Slot fields={field.fields} />
             </Column>
           )}
-          {field.type !== COLUMN && <Input field={field} />}
+          {field.type !== COLUMN && <Field field={field} />}
         </Fragment>
       ))}
     </>
