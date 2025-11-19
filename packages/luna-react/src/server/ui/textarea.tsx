@@ -1,4 +1,4 @@
-import { getDataAttributes } from '@/src/util/data-attribute'
+import { BaseInputComponent } from './common/base-input'
 import type { BaseInput } from './type'
 
 export function TextArea(
@@ -9,23 +9,16 @@ export function TextArea(
     >
   }>
 ) {
-  const Component = props.component
-  if (!Component) {
-    return null
-  }
-
-  const data = getDataAttributes(props.input)
-
   return (
-    <Component
-      {...data}
-      disabled={props.input.readonly}
-      id={props.input.name}
-      maxLength={props.input.advanced?.length?.max}
-      minLength={props.input.advanced?.length?.min}
-      name={props.input.name}
-      placeholder={props.input.placeholder}
-      required={props.input.required}
-    />
+    <BaseInputComponent input={props.input} component={props.component}>
+      {({ Component, dataAttributes, commonProps }) => (
+        <Component
+          {...dataAttributes}
+          {...commonProps}
+          maxLength={props.input.advanced?.length?.max}
+          minLength={props.input.advanced?.length?.min}
+        />
+      )}
+    </BaseInputComponent>
   )
 }

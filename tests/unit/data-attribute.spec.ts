@@ -1,9 +1,9 @@
 import { expect, test } from '@playwright/test'
-import { getData } from '@/packages/luna-react/src/util/attr/data'
+import { getDataAttributes } from '@/packages/luna-react/src/util/data-attribute'
 
 test.describe('Get data attributes', { tag: ['@unit'] }, () => {
   test('should return empty object when no data attributes are provided', () => {
-    expect(getData({})).toEqual({})
+    expect(getDataAttributes({})).toEqual({})
   })
 
   test('should convert data attributes correctly', () => {
@@ -16,7 +16,7 @@ test.describe('Get data attributes', { tag: ['@unit'] }, () => {
       },
     }
 
-    expect(getData(props)).toEqual({
+    expect(getDataAttributes(props)).toEqual({
       'data-testId': 'button-1',
       'data-role': 'admin',
     })

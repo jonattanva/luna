@@ -1,8 +1,7 @@
-import { Field } from '@/src/common/field'
+import { Action } from '@/src/common/action'
 import { FieldSet } from '@/src/common/fieldset'
 import { Fragment } from 'react'
 import { Group } from '@/src/common/group'
-import { HORIZONTAL } from '@/src/util/constant'
 import { Separator } from '@/src/common/separator'
 import { Slot } from '@/src/server/component/slot'
 import { prepare } from '@/src/util/prepare'
@@ -29,7 +28,7 @@ export function Form(
               {form.separator && <Separator />}
             </Fragment>
           ))}
-          <Field orientation={HORIZONTAL}>{props.children}</Field>
+          <Action>{props.children}</Action>
         </Group>
       </form>
     </div>
