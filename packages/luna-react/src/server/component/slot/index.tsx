@@ -3,11 +3,12 @@ import { Column } from '@/src/common/column'
 import { Fragment } from 'react'
 import { Field } from '@/src/server/component/field'
 import { prepare } from '@/src/util/prepare'
-import type { Fields } from '@/src/type'
+import type { Fields, Mount } from '@/src/type'
 
 export function Slot(
   props: Readonly<{
     fields: Fields
+    onMount: Mount
   }>
 ) {
   const fields = prepare(props.fields)
@@ -18,10 +19,12 @@ export function Slot(
         <Fragment key={index}>
           {field.type === COLUMN && FIELDS in field && (
             <Column cols={field.advanced?.cols}>
-              <Slot fields={field.fields} />
+              <Slot fields={field.fields} onMount={props.onMount} />
             </Column>
           )}
-          {field.type !== COLUMN && <Field field={field} />}
+          {field.type !== COLUMN && (
+            <Field field={field} onMount={props.onMount} />
+          )}
         </Fragment>
       ))}
     </>

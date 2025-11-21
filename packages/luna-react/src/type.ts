@@ -1,3 +1,7 @@
+import type { z } from 'zod'
+
+export type Mount = (name: string, schema: z.ZodTypeAny) => void
+
 export type Orderable = {
   order?: number
 }
@@ -37,4 +41,15 @@ export type Forms = readonly Form[]
 
 export type DataAttributes = {
   [key: `data-${string}`]: string | number | boolean
+}
+
+export type InputField = Field & {
+  advanced?: {
+    autocomplete?: string
+    length?: {
+      max?: number
+      min?: number
+    }
+  }
+  value?: string
 }

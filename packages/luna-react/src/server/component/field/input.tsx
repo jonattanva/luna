@@ -1,7 +1,7 @@
 import { InputMonth } from '../../ui/select/month'
-import { InputNumber } from '../../ui/input/number'
-import { InputText } from '../../ui/input/text'
-import { TextArea } from '../../ui/textarea'
+import { InputNumber } from '../../ui/number'
+import { InputText } from '../../ui/text'
+import { InputTextArea } from '../../ui/textarea'
 import { InputYear } from '../../ui/select/year'
 
 import {
@@ -12,12 +12,13 @@ import {
   TEXTAREA,
 } from '@/src/util/constant'
 
-import type { Field as FieldType } from '@/src/type'
+import type { Field as FieldType, Mount } from '@/src/type'
 
 export function Input(
   props: Readonly<{
     component: React.ComponentType
     field: FieldType
+    onMount: Mount
   }>
 ) {
   return (
@@ -25,22 +26,24 @@ export function Input(
       {{
         [TEXT]: (
           <InputText
-            input={props.field}
             component={
               props.component as React.ComponentType<
                 React.InputHTMLAttributes<HTMLInputElement>
               >
             }
+            input={props.field}
+            onMount={props.onMount}
           />
         ),
         [TEXTAREA]: (
-          <TextArea
-            input={props.field}
+          <InputTextArea
             component={
               props.component as React.ComponentType<
                 React.TextareaHTMLAttributes<HTMLTextAreaElement>
               >
             }
+            input={props.field}
+            onMount={props.onMount}
           />
         ),
         [SELECT_MONTH]: (
@@ -75,12 +78,13 @@ export function Input(
         ),
         [NUMBER]: (
           <InputNumber
-            input={props.field}
             component={
               props.component as React.ComponentType<
                 React.InputHTMLAttributes<HTMLInputElement>
               >
             }
+            input={props.field}
+            onMount={props.onMount}
           />
         ),
       }[props.field.type] ?? null}

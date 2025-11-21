@@ -2,11 +2,9 @@ import { BaseInputComponent } from './common/base-input'
 import { getText } from '@/src/util/validation'
 import type { Mount, InputField } from '@/src/type'
 
-export function InputTextArea(
+export function InputText(
   props: Readonly<{
-    component?: React.ComponentType<
-      React.TextareaHTMLAttributes<HTMLTextAreaElement>
-    >
+    component?: React.ComponentType<React.InputHTMLAttributes<HTMLInputElement>>
     input: InputField
     onMount: Mount
   }>
@@ -25,6 +23,7 @@ export function InputTextArea(
           autoComplete={props.input.advanced?.autocomplete}
           maxLength={props.input.advanced?.length?.max}
           minLength={props.input.advanced?.length?.min}
+          type="text"
         />
       )}
     </BaseInputComponent>

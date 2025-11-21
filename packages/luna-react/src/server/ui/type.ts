@@ -12,12 +12,6 @@ export type BaseInput = {
   required?: boolean
 }
 
-export type TextInput = BaseInput & {
-  advanced?: {
-    autocomplete?: string
-  }
-}
-
 export type MonthInput = BaseInput & {
   advanced?: {
     length?: never
