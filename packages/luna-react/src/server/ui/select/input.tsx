@@ -1,13 +1,8 @@
 import { BaseInputComponent } from '../common/base-input'
-import type { BaseInput } from '../type'
+import type { InputField } from '@/src/type'
 
 export function Input(
   props: Readonly<{
-    input: BaseInput
-    options: Array<{
-      value: string
-      label: string
-    }>
     component?: React.ComponentType<
       React.InputHTMLAttributes<HTMLSelectElement> & {
         options: Array<{
@@ -16,6 +11,11 @@ export function Input(
         }>
       }
     >
+    input: InputField
+    options: Array<{
+      value: string
+      label: string
+    }>
   }>
 ) {
   return (

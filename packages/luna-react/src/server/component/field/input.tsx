@@ -48,7 +48,6 @@ export function Input(
         ),
         [SELECT_MONTH]: (
           <InputMonth
-            input={props.field}
             component={
               props.component as React.ComponentType<
                 React.InputHTMLAttributes<HTMLSelectElement> & {
@@ -59,11 +58,12 @@ export function Input(
                 }
               >
             }
+            input={props.field}
+            onMount={props.onMount}
           />
         ),
         [SELECT_YEAR]: (
           <InputYear
-            input={props.field}
             component={
               props.component as React.ComponentType<
                 React.InputHTMLAttributes<HTMLSelectElement> & {
@@ -74,6 +74,8 @@ export function Input(
                 }
               >
             }
+            input={props.field}
+            onMount={props.onMount}
           />
         ),
         [NUMBER]: (

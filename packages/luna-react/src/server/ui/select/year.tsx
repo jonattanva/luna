@@ -1,12 +1,12 @@
-import { getConvert, getYear, getCurrentYear } from '@/src/util/year'
 import { Input } from './input'
-import type { BaseInput } from '../type'
+import { getConvert, getYear, getCurrentYear } from '@/src/util/year'
+import { getText } from '@/src/util/validation'
+import type { Mount, InputField } from '@/src/type'
 
 const now = getCurrentYear()
 
 export function InputYear(
   props: Readonly<{
-    input: BaseInput
     component?: React.ComponentType<
       React.InputHTMLAttributes<HTMLSelectElement> & {
         options: Array<{
@@ -15,6 +15,8 @@ export function InputYear(
         }>
       }
     >
+    input: InputField
+    onMount: Mount
   }>
 ) {
   const { advanced = {} } = props.input
@@ -27,6 +29,11 @@ export function InputYear(
     { value: '', label: placeholder },
     ...getYear(getConvert(min, now), getConvert(max, now)),
   ]
+
+  const schema = getText(props.input)
+  if (props.input.name) {
+    props.onMount(props.input.name, schema)
+  }
 
   return (
     <Input input={props.input} component={props.component} options={options} />

@@ -24,6 +24,7 @@ export type Field = {
   description?: string
   label?: string
   name?: string
+  placeholder?: string
   required?: boolean
   type: string
 } & Base
