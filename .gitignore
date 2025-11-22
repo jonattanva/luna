@@ -5,6 +5,7 @@ package-lock.json
 # test output
 .DS_Store
 test-results
+.eslintcache
 
 # build output
 dist

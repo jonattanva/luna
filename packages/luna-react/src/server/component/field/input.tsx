@@ -22,74 +22,72 @@ export function Input(
   }>
 ) {
   return (
-    <>
-      {{
-        [TEXT]: (
-          <InputText
-            component={
-              props.component as React.ComponentType<
-                React.InputHTMLAttributes<HTMLInputElement>
-              >
-            }
-            input={props.field}
-            onMount={props.onMount}
-          />
-        ),
-        [TEXTAREA]: (
-          <InputTextArea
-            component={
-              props.component as React.ComponentType<
-                React.TextareaHTMLAttributes<HTMLTextAreaElement>
-              >
-            }
-            input={props.field}
-            onMount={props.onMount}
-          />
-        ),
-        [SELECT_MONTH]: (
-          <InputMonth
-            component={
-              props.component as React.ComponentType<
-                React.InputHTMLAttributes<HTMLSelectElement> & {
-                  options: Array<{
-                    value: string
-                    label: string
-                  }>
-                }
-              >
-            }
-            input={props.field}
-            onMount={props.onMount}
-          />
-        ),
-        [SELECT_YEAR]: (
-          <InputYear
-            component={
-              props.component as React.ComponentType<
-                React.InputHTMLAttributes<HTMLSelectElement> & {
-                  options: Array<{
-                    value: string
-                    label: string
-                  }>
-                }
-              >
-            }
-            input={props.field}
-            onMount={props.onMount}
-          />
-        ),
-        [NUMBER]: (
-          <InputNumber
-            component={
-              props.component as React.ComponentType<
-                React.InputHTMLAttributes<HTMLInputElement>
-              >
-            }
-            input={props.field}
-            onMount={props.onMount}
-          />
-        ),
-      }[props.field.type] ?? null}
-    </>
+    {
+      [TEXT]: (
+        <InputText
+          component={
+            props.component as React.ComponentType<
+              React.InputHTMLAttributes<HTMLInputElement>
+            >
+          }
+          input={props.field}
+          onMount={props.onMount}
+        />
+      ),
+      [TEXTAREA]: (
+        <InputTextArea
+          component={
+            props.component as React.ComponentType<
+              React.TextareaHTMLAttributes<HTMLTextAreaElement>
+            >
+          }
+          input={props.field}
+          onMount={props.onMount}
+        />
+      ),
+      [SELECT_MONTH]: (
+        <InputMonth
+          component={
+            props.component as React.ComponentType<
+              React.InputHTMLAttributes<HTMLSelectElement> & {
+                options: Array<{
+                  value: string
+                  label: string
+                }>
+              }
+            >
+          }
+          input={props.field}
+          onMount={props.onMount}
+        />
+      ),
+      [SELECT_YEAR]: (
+        <InputYear
+          component={
+            props.component as React.ComponentType<
+              React.InputHTMLAttributes<HTMLSelectElement> & {
+                options: Array<{
+                  value: string
+                  label: string
+                }>
+              }
+            >
+          }
+          input={props.field}
+          onMount={props.onMount}
+        />
+      ),
+      [NUMBER]: (
+        <InputNumber
+          component={
+            props.component as React.ComponentType<
+              React.InputHTMLAttributes<HTMLInputElement>
+            >
+          }
+          input={props.field}
+          onMount={props.onMount}
+        />
+      ),
+    }[props.field.type] ?? null
   )
 }

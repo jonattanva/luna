@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "node esbuild.mjs",
-    "build:tsc": "tsc --emitDeclarationOnly"
+    "build:tsc": "tsc --emitDeclarationOnly",
+    "lint": "eslint . --cache"
   },
   "peerDependencies": {
     "react": "^18.2.0 || ^19.0.0",
@@ -14,7 +15,9 @@
   "devDependencies": {
     "@types/react": "19.2.6",
     "@types/react-dom": "19.2.3",
-    "typescript": "5.9.3"
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.0.1",
+    "eslint-plugin-react-refresh": "0.4.24"
   },
   "exports": {
     ".": {
