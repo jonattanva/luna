@@ -17,6 +17,8 @@ import type { Field as FieldType, Mount } from '@/src/type'
 export function Input(
   props: Readonly<{
     component: React.ComponentType
+    defaultValue?: unknown
+    error?: boolean
     field: FieldType
     onMount: Mount
   }>
@@ -25,65 +27,45 @@ export function Input(
     {
       [TEXT]: (
         <InputText
-          component={
-            props.component as React.ComponentType<
-              React.InputHTMLAttributes<HTMLInputElement>
-            >
-          }
+          component={props.component}
+          defaultValue={props.defaultValue}
+          error={props.error}
           input={props.field}
           onMount={props.onMount}
         />
       ),
       [TEXTAREA]: (
         <InputTextArea
-          component={
-            props.component as React.ComponentType<
-              React.TextareaHTMLAttributes<HTMLTextAreaElement>
-            >
-          }
-          input={props.field}
-          onMount={props.onMount}
-        />
-      ),
-      [SELECT_MONTH]: (
-        <InputMonth
-          component={
-            props.component as React.ComponentType<
-              React.InputHTMLAttributes<HTMLSelectElement> & {
-                options: Array<{
-                  value: string
-                  label: string
-                }>
-              }
-            >
-          }
-          input={props.field}
-          onMount={props.onMount}
-        />
-      ),
-      [SELECT_YEAR]: (
-        <InputYear
-          component={
-            props.component as React.ComponentType<
-              React.InputHTMLAttributes<HTMLSelectElement> & {
-                options: Array<{
-                  value: string
-                  label: string
-                }>
-              }
-            >
-          }
+          component={props.component}
+          defaultValue={props.defaultValue}
+          error={props.error}
           input={props.field}
           onMount={props.onMount}
         />
       ),
       [NUMBER]: (
         <InputNumber
-          component={
-            props.component as React.ComponentType<
-              React.InputHTMLAttributes<HTMLInputElement>
-            >
-          }
+          component={props.component}
+          defaultValue={props.defaultValue}
+          error={props.error}
+          input={props.field}
+          onMount={props.onMount}
+        />
+      ),
+      [SELECT_MONTH]: (
+        <InputMonth
+          component={props.component}
+          defaultValue={props.defaultValue}
+          error={props.error}
+          input={props.field}
+          onMount={props.onMount}
+        />
+      ),
+      [SELECT_YEAR]: (
+        <InputYear
+          component={props.component}
+          defaultValue={props.defaultValue}
+          error={props.error}
           input={props.field}
           onMount={props.onMount}
         />

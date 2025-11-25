@@ -11,15 +11,18 @@ import type { Forms } from '@/src/type'
 
 export function Form(
   props: Readonly<{
-    action: (formData: FormData) => void
     children?: React.ReactNode
     form: Forms
+    formAction?: (data: Record<string, unknown>) => void
+    value?: Record<string, unknown>
   }>
 ) {
   const forms = prepare(props.form)
 
   const [schema, onMount] = useSchema()
-  const [, formAction] = useFormAction(schema)
+  const [state, formAction] = useFormAction(schema, props.formAction)
+
+  const value = state?.data ?? props.value
 
   return (
     <div className="h-full w-full">
@@ -28,7 +31,12 @@ export function Form(
           {forms.map((form, index) => (
             <Fragment key={index}>
               <FieldSet description={form.description} title={form.title}>
-                <Slot fields={form.fields} onMount={onMount} />
+                <Slot
+                  errors={state?.errors}
+                  fields={form.fields}
+                  onMount={onMount}
+                  value={value}
+                />
               </FieldSet>
               {form.separator && <Separator />}
             </Fragment>

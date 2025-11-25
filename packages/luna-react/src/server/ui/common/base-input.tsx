@@ -1,8 +1,7 @@
 import { getDataAttributes } from '@/src/util/data-attribute'
-import type { BaseInput } from '../type'
+import type { InputField } from '@/src/type'
 
 type BaseInputProps<TProps = Record<string, unknown>> = {
-  input: BaseInput
   component?: React.ComponentType<TProps>
   children: (props: {
     Component: React.ComponentType<TProps>
@@ -15,6 +14,7 @@ type BaseInputProps<TProps = Record<string, unknown>> = {
       required?: boolean
     }
   }) => React.ReactNode
+  input: InputField
 }
 
 export function BaseInputComponent<TProps = Record<string, unknown>>(

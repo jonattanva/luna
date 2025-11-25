@@ -1,14 +1,17 @@
-import { COLUMN, FIELDS } from '@/src/util/constant'
 import { Column } from '@/src/common/column'
-import { Fragment } from 'react'
 import { Field } from '@/src/server/component/field'
+import { Fragment } from 'react'
+import { isColumn, isField } from '@/src/util/constant'
 import { prepare } from '@/src/util/prepare'
-import type { Fields, Mount } from '@/src/type'
+import type { Fields, Mount, FormError } from '@/src/type'
 
 export function Slot(
   props: Readonly<{
+    errors?: FormError
     fields: Fields
+    hideErrorDetails?: boolean
     onMount: Mount
+    value?: Record<string, unknown>
   }>
 ) {
   const fields = prepare(props.fields)
@@ -17,13 +20,25 @@ export function Slot(
     <>
       {fields.map((field, index) => (
         <Fragment key={index}>
-          {field.type === COLUMN && FIELDS in field && (
-            <Column cols={field.advanced?.cols}>
-              <Slot fields={field.fields} onMount={props.onMount} />
+          {isColumn(field) && (
+            <Column column={field} errors={props.errors}>
+              <Slot
+                errors={props.errors}
+                fields={field.fields}
+                hideErrorDetails={true}
+                onMount={props.onMount}
+                value={props.value}
+              />
             </Column>
           )}
-          {field.type !== COLUMN && (
-            <Field field={field} onMount={props.onMount} />
+          {isField(field) && (
+            <Field
+              errors={props.errors}
+              field={field}
+              hideErrorDetails={props.hideErrorDetails}
+              onMount={props.onMount}
+              value={props.value}
+            />
           )}
         </Fragment>
       ))}

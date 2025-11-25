@@ -3,33 +3,38 @@ import { z } from 'zod'
 
 export type Schema = () => Record<string, z.ZodTypeAny>
 
-export function useFormAction(getSchema: Schema) {
+export function useFormAction(
+  getSchema: Schema,
+  callback?: (data: Record<string, unknown>) => void
+) {
   function dispatch(_: unknown, formData: FormData) {
-    const formEntries = getEntries(formData)
-    const validated = getValidated(getSchema, formEntries)
+    const data = getEntries(formData)
+    const validated = getValidated(getSchema, data)
 
     if (!validated.success) {
       return {
-        data: formEntries,
-        errors: z.treeifyError(validated.error),
+        data,
+        errors: z.treeifyError(validated.error).properties,
       }
     }
-    return validated.data
+
+    if (callback) {
+      callback(validated.data)
+    }
+
+    return {
+      data: validated.data,
+    }
   }
 
-  const [state, formAction] = useActionState(dispatch, null)
-
-  console.log('Form Action State:', state)
-
-  return [state, formAction] as const
+  return useActionState(dispatch, null)
 }
 
 function getValidated(
   getSchema: Schema,
   formData: { [k: string]: FormDataEntryValue }
 ) {
-  const schema = getSchema()
-  return z.object(schema).safeParse(formData)
+  return z.object(getSchema()).safeParse(formData)
 }
 
 function getEntries(formData: FormData) {

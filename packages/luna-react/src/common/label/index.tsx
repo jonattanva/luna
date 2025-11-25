@@ -7,7 +7,8 @@ export function Label(
 ) {
   return (
     <label
-      className="flex w-fit items-center gap-2 text-sm leading-snug font-medium text-slate-900 select-none dark:text-slate-300"
+      className="flex w-fit items-center gap-2 text-sm leading-snug font-medium select-none"
+      data-slot="label"
       htmlFor={props.name}
     >
       {props.children}

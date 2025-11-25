@@ -5,6 +5,8 @@ import type { Mount, InputField } from '@/src/type'
 export function InputNumber(
   props: Readonly<{
     component?: React.ComponentType<React.InputHTMLAttributes<HTMLInputElement>>
+    defaultValue?: number
+    error?: boolean
     input: InputField
     onMount: Mount
   }>
@@ -19,8 +21,10 @@ export function InputNumber(
       {({ Component, dataAttributes, commonProps }) => (
         <Component
           {...dataAttributes}
+          {...(props.error && { 'data-invalid': true })}
           {...commonProps}
           autoComplete={props.input.advanced?.autocomplete}
+          defaultValue={props.defaultValue}
           max={props.input.advanced?.length?.max}
           min={props.input.advanced?.length?.min}
           type="number"

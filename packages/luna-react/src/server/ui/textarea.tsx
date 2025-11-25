@@ -7,6 +7,8 @@ export function InputTextArea(
     component?: React.ComponentType<
       React.TextareaHTMLAttributes<HTMLTextAreaElement>
     >
+    defaultValue?: string
+    error?: boolean
     input: InputField
     onMount: Mount
   }>
@@ -21,8 +23,10 @@ export function InputTextArea(
       {({ Component, dataAttributes, commonProps }) => (
         <Component
           {...dataAttributes}
+          {...(props.error && { 'data-invalid': true })}
           {...commonProps}
           autoComplete={props.input.advanced?.autocomplete}
+          defaultValue={props.defaultValue}
           maxLength={props.input.advanced?.length?.max}
           minLength={props.input.advanced?.length?.min}
         />

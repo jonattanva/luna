@@ -1,20 +1,17 @@
 import { Input } from './input'
 import { getConvert, getYear, getCurrentYear } from '@/src/util/year'
 import { getText } from '@/src/util/validation'
-import type { Mount, InputField } from '@/src/type'
+import type { Mount, InputField, Option } from '@/src/type'
 
 const now = getCurrentYear()
 
 export function InputYear(
   props: Readonly<{
     component?: React.ComponentType<
-      React.InputHTMLAttributes<HTMLSelectElement> & {
-        options: Array<{
-          value: string
-          label: string
-        }>
-      }
+      React.InputHTMLAttributes<HTMLSelectElement> & Option<string>
     >
+    defaultValue?: string
+    error?: boolean
     input: InputField
     onMount: Mount
   }>
@@ -30,12 +27,25 @@ export function InputYear(
     ...getYear(getConvert(min, now), getConvert(max, now)),
   ]
 
-  const schema = getText(props.input)
+  const schema = getText({
+    ...props.input,
+    advanced: {
+      ...props.input.advanced,
+      length: undefined,
+    },
+  })
+
   if (props.input.name) {
     props.onMount(props.input.name, schema)
   }
 
   return (
-    <Input input={props.input} component={props.component} options={options} />
+    <Input
+      component={props.component}
+      defaultValue={props.defaultValue}
+      error={props.error}
+      input={props.input}
+      options={options}
+    />
   )
 }

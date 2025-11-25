@@ -2,6 +2,14 @@ import type { z } from 'zod'
 
 export type Mount = (name: string, schema: z.ZodTypeAny) => void
 
+export type FormError = Record<
+  string,
+  | {
+      errors: string[]
+    }
+  | undefined
+>
+
 export type Orderable = {
   order?: number
 }
@@ -17,16 +25,20 @@ export type Column = {
     cols?: number
   }
   type: 'column'
-  fields: Fields
+  fields: Array<Field>
 } & Base
 
 export type Field = {
+  advanced?: {
+    data?: DataAttributes
+  }
   description?: string
   label?: string
   name?: string
   placeholder?: string
   required?: boolean
   type: string
+  readonly?: boolean
 } & Base
 
 export type Fields = readonly (Column | Field)[]
@@ -53,4 +65,9 @@ export type InputField = Field & {
     }
   }
   value?: string
+}
+
+export type Option<T> = {
+  value: T
+  label: string
 }

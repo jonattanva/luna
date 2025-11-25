@@ -11,6 +11,9 @@ export function Input(
         }>
       }
     >
+    className?: string
+    defaultValue?: string
+    error?: boolean
     input: InputField
     options: Array<{
       value: string
@@ -23,7 +26,10 @@ export function Input(
       {({ Component, dataAttributes, commonProps }) => (
         <Component
           {...dataAttributes}
+          {...(props.error && { 'data-invalid': true })}
           {...commonProps}
+          className={props.className}
+          defaultValue={props.defaultValue}
           options={props.options}
         />
       )}

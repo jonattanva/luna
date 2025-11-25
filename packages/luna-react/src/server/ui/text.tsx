@@ -5,6 +5,8 @@ import type { Mount, InputField } from '@/src/type'
 export function InputText(
   props: Readonly<{
     component?: React.ComponentType<React.InputHTMLAttributes<HTMLInputElement>>
+    defaultValue?: string
+    error?: boolean
     input: InputField
     onMount: Mount
   }>
@@ -15,12 +17,14 @@ export function InputText(
   }
 
   return (
-    <BaseInputComponent input={props.input} component={props.component}>
+    <BaseInputComponent component={props.component} input={props.input}>
       {({ Component, dataAttributes, commonProps }) => (
         <Component
           {...dataAttributes}
+          {...(props.error && { 'data-invalid': true })}
           {...commonProps}
           autoComplete={props.input.advanced?.autocomplete}
+          defaultValue={props.defaultValue}
           maxLength={props.input.advanced?.length?.max}
           minLength={props.input.advanced?.length?.min}
           type="text"
