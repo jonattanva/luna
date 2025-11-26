@@ -10,7 +10,7 @@ export function Slot(
     errors?: FormError
     fields: Fields
     hideErrorDetails?: boolean
-    onMount: Mount
+    onMount?: Mount
     value?: Record<string, unknown>
   }>
 ) {

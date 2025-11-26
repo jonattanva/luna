@@ -13,7 +13,7 @@ export function InputYear(
     defaultValue?: string
     error?: boolean
     input: InputField
-    onMount: Mount
+    onMount?: Mount
   }>
 ) {
   const { advanced = {} } = props.input
@@ -35,7 +35,7 @@ export function InputYear(
     },
   })
 
-  if (props.input.name) {
+  if (props.input.name && props.onMount) {
     props.onMount(props.input.name, schema)
   }
 

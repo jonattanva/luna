@@ -11,7 +11,7 @@ export function InputMonth(
     defaultValue?: string
     error?: boolean
     input: InputField
-    onMount: Mount
+    onMount?: Mount
   }>
 ) {
   const placeholder = props.input.placeholder ?? 'Select month'
@@ -25,7 +25,7 @@ export function InputMonth(
     },
   })
 
-  if (props.input.name) {
+  if (props.input.name && props.onMount) {
     props.onMount(props.input.name, schema)
   }
 

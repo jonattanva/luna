@@ -1,0 +1,100 @@
+{
+  "form": [
+    {
+      "title": "Event Registration",
+      "description": "Please fill out the form below to register for the event.",
+      "fields": [
+        {
+          "advanced": {
+            "cols": 2
+          },
+          "type": "column",
+          "fields": [
+            {
+              "label": "First Name",
+              "name": "firstName",
+              "type": "text",
+              "required": true
+            },
+            {
+              "type": "text",
+              "name": "lastName",
+              "label": "Last Name",
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Address",
+      "description": "Please provide your current mailing address for event correspondence.",
+      "fields": [
+        {
+          "label": "Address",
+          "name": "address",
+          "type": "text",
+          "required": true
+        },
+        {
+          "advanced": {
+            "cols": 2
+          },
+          "type": "column",
+          "fields": [
+            {
+              "name": "country",
+              "label": "Country",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "city",
+              "label": "City",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "state",
+              "label": "State / Province",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "zip",
+              "label": "Zip / Postal Code",
+              "type": "text",
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Contact",
+      "description": "Please provide your contact information for event correspondence.",
+      "fields": [
+        {
+          "advanced": {
+            "col": 2
+          },
+          "type": "column",
+          "fields": [
+            {
+              "label": "Email",
+              "name": "email",
+              "type": "text",
+              "required": true
+            },
+            {
+              "label": "Phone",
+              "name": "phone",
+              "type": "text",
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

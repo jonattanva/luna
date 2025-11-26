@@ -20,7 +20,7 @@ export function Input(
     defaultValue?: unknown
     error?: boolean
     field: FieldType
-    onMount: Mount
+    onMount?: Mount
   }>
 ) {
   return (

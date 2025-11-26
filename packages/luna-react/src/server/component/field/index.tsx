@@ -10,7 +10,7 @@ export function Field(
   props: Readonly<{
     errors?: FormError
     field: FieldType
-    onMount: Mount
+    onMount?: Mount
     hideErrorDetails?: boolean
     value?: Record<string, unknown>
   }>

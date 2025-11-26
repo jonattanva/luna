@@ -10,11 +10,11 @@ export function InputTextArea(
     defaultValue?: string
     error?: boolean
     input: InputField
-    onMount: Mount
+    onMount?: Mount
   }>
 ) {
   const schema = getText(props.input)
-  if (props.input.name) {
+  if (props.input.name && props.onMount) {
     props.onMount(props.input.name, schema)
   }
 
