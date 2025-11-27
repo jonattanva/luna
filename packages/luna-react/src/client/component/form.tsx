@@ -2,6 +2,7 @@ import { Control } from '@/src/component/control'
 import { FieldSet } from '@/src/component/field-set'
 import { Fragment } from 'react'
 import { Group } from '@/src/component/group'
+import { Input } from './input'
 import { Separator } from '@/src/component/separator'
 import { Slot } from '@/src/component/slot'
 import { prepare } from '@/src/util/prepare'
@@ -23,7 +24,9 @@ export function Form(
           {forms.map((form, index) => (
             <Fragment key={index}>
               <FieldSet description={form.description} title={form.title}>
-                <Slot fields={form.fields} value={props.value} />
+                <Slot fields={form.fields}>
+                  {(props) => <Input {...props} />}
+                </Slot>
               </FieldSet>
               {form.separator && <Separator />}
             </Fragment>

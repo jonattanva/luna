@@ -1,3 +1,5 @@
+import type { z } from 'zod'
+
 export type Orderable = {
   order?: number
 }
@@ -38,11 +40,42 @@ export type Field = {
     aria?: AriaAttributes
     data?: DataAttributes
   }
+  description?: string
   label?: string
+  name: string
+  placeholder?: string
+  readonly?: boolean
+  required?: boolean
   type: string
+  validation?: {
+    required?: string
+  }
 } & Base
 
 export type Slot = Field | Column<Field>
 export type Fields = readonly Slot[]
 
 export type FormError = Record<string, { errors: string[] } | undefined>
+
+export function isColumn(slot: Slot): slot is Column<Field> {
+  return slot.type === 'column' && 'fields' in slot
+}
+
+export function isField(slot: Slot): slot is Field {
+  return slot.type !== 'column'
+}
+
+export type Children = (props: {
+  ariaAttributes?: AriaAttributes
+  commonProps: CommonProps
+  dataAttributes?: DataAttributes
+  field: Field
+}) => React.ReactNode
+
+export type CommonProps = {
+  disabled?: boolean
+  id?: string
+  name?: string
+}
+
+export type Schema = z.ZodTypeAny

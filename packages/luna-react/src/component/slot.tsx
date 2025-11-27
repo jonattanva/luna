@@ -1,14 +1,47 @@
+import { Column } from './column'
+import { Field } from './field'
 import { Fragment } from 'react'
 import { prepare } from '../util/prepare'
-import type { Fields } from '../type'
+import {
+  isColumn,
+  isField,
+  type Children,
+  type Fields,
+  type FormError,
+} from '../type'
 
 export function Slot(
   props: Readonly<{
+    children: Children
+    errors?: FormError
     fields?: Fields
-    value?: Record<string, unknown>
+    hideErrorDetails?: boolean
   }>
 ) {
   const fields = prepare(props.fields)
 
-  return fields.map((field, index) => <Fragment key={index}>{index}</Fragment>)
+  return fields.map((field, index) => (
+    <Fragment key={index}>
+      {isColumn(field) && (
+        <Column column={field} errors={props.errors}>
+          <Slot
+            errors={props.errors}
+            fields={field.fields}
+            hideErrorDetails={true}
+          >
+            {props.children}
+          </Slot>
+        </Column>
+      )}
+      {isField(field) && (
+        <Field
+          errors={props.errors}
+          field={field}
+          hideErrorDetails={props.hideErrorDetails}
+        >
+          {props.children}
+        </Field>
+      )}
+    </Fragment>
+  ))
 }
