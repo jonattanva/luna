@@ -1,0 +1,15 @@
+{
+  "form": [
+    {
+      "title": "Payment Method",
+      "description": "All transactions are secure and encrypted",
+      "separator": true,
+      "order": 1
+    },
+    {
+      "title": "Billing Address",
+      "description": "The billing address associated with your payment method",
+      "order": 2
+    }
+  ]
+}

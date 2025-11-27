@@ -1,0 +1,43 @@
+{
+  "name": "@luna/react",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "build:tsc": "tsc --emitDeclarationOnly",
+    "lint": "eslint . --cache",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write ."
+  },
+  "peerDependencies": {
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0",
+    "tailwind-merge": "^3.4.0",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.0.1",
+    "eslint-plugin-react-refresh": "0.4.24"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./server": {
+      "module": "./dist/server/esm/index.js",
+      "import": "./dist/server/cjs/index.js",
+      "types": "./dist/types/server/index.d.ts",
+      "default": "./dist/server/cjs/index.js"
+    },
+    "./client": {
+      "module": "./dist/client/esm/index.js",
+      "import": "./dist/client/cjs/index.js",
+      "types": "./dist/types/client/index.d.ts",
+      "default": "./dist/client/cjs/index.js"
+    }
+  }
+}

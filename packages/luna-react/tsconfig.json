@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "target": "es2020",
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
