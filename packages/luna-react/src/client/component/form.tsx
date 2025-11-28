@@ -6,11 +6,12 @@ import { Input } from './input'
 import { Separator } from '@/src/component/separator'
 import { Slot } from '@/src/component/slot'
 import { prepare } from '@/src/util/prepare'
-import type { Forms } from '@/src/type'
+import type { Forms, LunaConfig } from '@/src/type'
 
 export function Form(
   props: Readonly<{
     children?: React.ReactNode
+    config: LunaConfig
     form: Forms
     value?: Record<string, unknown>
   }>
@@ -25,7 +26,7 @@ export function Form(
             <Fragment key={index}>
               <FieldSet description={form.description} title={form.title}>
                 <Slot fields={form.fields}>
-                  {(props) => <Input {...props} />}
+                  {(internal) => <Input {...internal} config={props.config} />}
                 </Slot>
               </FieldSet>
               {form.separator && <Separator />}

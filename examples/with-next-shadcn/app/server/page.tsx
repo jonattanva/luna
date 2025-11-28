@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { Content } from './content'
-import { ModeToggle } from './theme'
+import { ModeToggle } from '../theme'
 
 export const metadata: Metadata = {
   title: 'Server - Luna React',

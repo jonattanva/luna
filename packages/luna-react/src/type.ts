@@ -1,3 +1,12 @@
+import {
+  COLUMN,
+  INPUT,
+  INPUT_EMAIL,
+  INPUT_NUMBER,
+  INPUT_PASSWORD,
+  INPUT_TEXT,
+  INPUT_TEXTAREA,
+} from './constant'
 import type { z } from 'zod'
 
 export type Orderable = {
@@ -35,22 +44,37 @@ export type AriaAttributes = {
   [key: `aria-${string}`]: string | number | boolean
 }
 
-export type Field = {
+export type CommonProps = {
+  disabled?: boolean
+  id?: string
+  name: string
+  placeholder?: string
+  required?: boolean
+}
+
+export type Field = CommonProps & {
   advanced?: {
     aria?: AriaAttributes
     data?: DataAttributes
   }
   description?: string
   label?: string
-  name: string
-  placeholder?: string
   readonly?: boolean
-  required?: boolean
   type: string
   validation?: {
     required?: string
   }
 } & Base
+
+export type Input = Field & {
+  advanced?: {
+    autocomplete?: string
+    length?: {
+      max?: number
+      min?: number
+    }
+  }
+}
 
 export type Slot = Field | Column<Field>
 export type Fields = readonly Slot[]
@@ -58,11 +82,31 @@ export type Fields = readonly Slot[]
 export type FormError = Record<string, { errors: string[] } | undefined>
 
 export function isColumn(slot: Slot): slot is Column<Field> {
-  return slot.type === 'column' && 'fields' in slot
+  return slot.type === COLUMN && 'fields' in slot
 }
 
 export function isField(slot: Slot): slot is Field {
-  return slot.type !== 'column'
+  return slot.type !== COLUMN
+}
+
+export function isInput(field: Field): field is Input {
+  return field.type === INPUT || field.type.startsWith(`${INPUT}/`)
+}
+
+export function isTextArea(field: Field): field is Input {
+  return field.type === INPUT_TEXTAREA
+}
+
+export function isText(field: Field): field is Input {
+  return (
+    field.type === INPUT_TEXT ||
+    field.type === INPUT_EMAIL ||
+    field.type === INPUT_PASSWORD
+  )
+}
+
+export function isNumber(field: Field): field is Input {
+  return field.type === INPUT_NUMBER
 }
 
 export type Children = (props: {
@@ -72,10 +116,15 @@ export type Children = (props: {
   field: Field
 }) => React.ReactNode
 
-export type CommonProps = {
-  disabled?: boolean
-  id?: string
-  name?: string
+export type Schema = z.ZodTypeAny
+
+export type LunaConfig = {
+  inputs: {
+    [key: string]: React.ComponentType<React.HTMLAttributes<HTMLElement>>
+  }
 }
 
-export type Schema = z.ZodTypeAny
+export type LunaInputConfig = {
+  types: string | string[]
+  input: React.ComponentType<React.HTMLAttributes<HTMLElement>>
+}

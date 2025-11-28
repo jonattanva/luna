@@ -1,0 +1,119 @@
+{
+  "form": [
+    {
+      "title": "Payment Method",
+      "description": "All transactions are secure and encrypted",
+      "fields": [
+        {
+          "advanced": {
+            "autocomplete": "cc-name",
+            "data": {
+              "testid": "name"
+            }
+          },
+          "label": "Name on Card",
+          "name": "name",
+          "type": "input",
+          "placeholder": "Evil Rabbit",
+          "required": true,
+          "validation": {
+            "required": "Please enter the name as it appears on your card"
+          },
+          "order": 1
+        },
+        {
+          "advanced": {
+            "data": {
+              "testid": "card-number"
+            },
+            "length": {
+              "max": 16
+            }
+          },
+          "label": "Card Number",
+          "name": "card-number",
+          "type": "input",
+          "placeholder": "1234 5678 9012 3456",
+          "description": "Enter your 16-digit card number",
+          "required": true,
+          "validation": {
+            "required": "Please enter a valid card number"
+          },
+          "order": 2
+        },
+        {
+          "advanced": {
+            "cols": 3
+          },
+          "type": "column",
+          "fields": [
+            {
+              "advanced": {
+                "data": {
+                  "testid": "month"
+                }
+              },
+              "label": "Month",
+              "name": "month",
+              "type": "select/month",
+              "placeholder": "MM",
+              "required": true,
+              "validation": {
+                "required": "Please enter a valid month"
+              },
+              "order": 1
+            },
+            {
+              "advanced": {
+                "data": {
+                  "testid": "year"
+                },
+                "length": {
+                  "min": "current",
+                  "max": "current+6"
+                }
+              },
+              "label": "Year",
+              "name": "year",
+              "type": "select/year",
+              "placeholder": "YYYY",
+              "required": true,
+              "validation": {
+                "required": "Please enter a valid year"
+              },
+              "order": 2
+            },
+            {
+              "advanced": {
+                "data": {
+                  "testid": "cvv"
+                },
+                "length": {
+                  "max": 3
+                }
+              },
+              "label": "CVV",
+              "name": "cvv",
+              "type": "input/text",
+              "placeholder": "123",
+              "required": true,
+              "validation": {
+                "required": "Please enter a valid CVV"
+              },
+              "order": 3
+            }
+          ],
+          "order": 3
+        }
+      ],
+      "separator": true,
+      "order": 1
+    },
+    {
+      "title": "Billing Address",
+      "description": "The billing address associated with your payment method",
+      "fields": [],
+      "order": 2
+    }
+  ]
+}

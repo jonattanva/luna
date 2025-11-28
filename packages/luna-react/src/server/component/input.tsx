@@ -3,16 +3,28 @@ import type {
   CommonProps,
   DataAttributes,
   Field,
+  LunaConfig,
 } from '@/src/type'
 
 export function Input(
   props: Readonly<{
     ariaAttributes?: AriaAttributes
     commonProps: CommonProps
+    config: LunaConfig
     dataAttributes?: DataAttributes
     field: Field
   }>
 ) {
-  console.log('Input props:', props)
-  return <div>server input</div>
+  const Component = props.config.inputs[props.field.type]
+  if (!Component) {
+    return null
+  }
+
+  return (
+    <Component
+      {...props.ariaAttributes}
+      {...props.commonProps}
+      {...props.dataAttributes}
+    />
+  )
 }
