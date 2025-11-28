@@ -17,6 +17,7 @@ export default defineConfig([
       parser: eslintTypeScript.parser,
       parserOptions: {
         projectService: true,
+        tsconfigRootDir: import.meta.dirname,
       },
       globals: {
         ...globals.browser,
