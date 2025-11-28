@@ -112,7 +112,22 @@
     {
       "title": "Billing Address",
       "description": "The billing address associated with your payment method",
-      "fields": [],
+      "fields": [
+        {
+          "advanced": {
+            "data": {
+              "testid": "comments"
+            },
+            "length": {
+              "max": 4000
+            }
+          },
+          "label": "Comments",
+          "name": "comments",
+          "type": "textarea",
+          "placeholder": "Add any additional comments"
+        }
+      ],
       "order": 2
     }
   ]

@@ -42,3 +42,12 @@ export function defineTextArea(
     input,
   }
 }
+
+export function defineSelect(
+  input: React.ComponentType<React.HTMLAttributes<HTMLSelectElement>>
+): LunaInputConfig {
+  return {
+    types: ['select', 'select/year', 'select/month'],
+    input,
+  }
+}

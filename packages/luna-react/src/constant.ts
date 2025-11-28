@@ -6,3 +6,7 @@ export const INPUT_TEXT = 'text'
 export const INPUT_TEXTAREA = 'textarea'
 
 export const COLUMN = 'column'
+
+export const SELECT = 'select'
+export const SELECT_MONTH = 'select/month'
+export const SELECT_YEAR = 'select/year'

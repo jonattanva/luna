@@ -6,6 +6,9 @@ import {
   INPUT_PASSWORD,
   INPUT_TEXT,
   INPUT_TEXTAREA,
+  SELECT,
+  SELECT_MONTH,
+  SELECT_YEAR,
 } from './constant'
 import type { z } from 'zod'
 
@@ -76,6 +79,15 @@ export type Input = Field & {
   }
 }
 
+export type Select = Field & {
+  advanced?: {
+    length?: {
+      min?: number | string
+      max?: number | string
+    }
+  }
+}
+
 export type Slot = Field | Column<Field>
 export type Fields = readonly Slot[]
 
@@ -127,4 +139,16 @@ export type LunaConfig = {
 export type LunaInputConfig = {
   types: string | string[]
   input: React.ComponentType<React.HTMLAttributes<HTMLElement>>
+}
+
+export function isSelect(field: Field): field is Select {
+  return field.type === SELECT || field.type.startsWith(`${SELECT}/`)
+}
+
+export function isSelectMonth(field: Field): boolean {
+  return field.type === SELECT_MONTH
+}
+
+export function isSelectYear(field: Field): boolean {
+  return field.type === SELECT_YEAR
 }

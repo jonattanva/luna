@@ -1,14 +1,30 @@
 import { INPUT, INPUT_TEXT } from '../constant'
 import { getAriaAttributes } from '../util/aria-attributes'
 import { getDataAttributes } from '../util/data-attributes'
+
+import {
+  getConvert,
+  getCurrentYear,
+  getOptionMonth,
+  getOptionYear,
+} from '../util/date'
+
 import {
   isInput,
   isNumber,
+  isSelect,
+  isSelectMonth,
+  isSelectYear,
   isText,
   isTextArea,
   type Children,
+  type CommonProps,
   type Field,
+  type Input,
+  type Select,
 } from '../type'
+
+const now = getCurrentYear()
 
 export function InputBase(
   props: Readonly<{
@@ -27,47 +43,17 @@ export function InputBase(
     required: props.field.required,
   }
 
-  if (isInput(props.field) || isTextArea(props.field)) {
-    const autoComplete = props.field.advanced?.autocomplete
-    if (autoComplete) {
-      Object.assign(commonProps, { autoComplete })
-    }
+  if (isInput(props.field)) {
+    defineInput(props.field, commonProps)
   }
 
-  if (isInput(props.field)) {
-    const type = extract(props.field.type)
-    Object.assign(commonProps, { type })
+  if (isSelect(props.field)) {
+    defineOption(props.field, commonProps)
+  }
 
-    const copy = {
-      ...props.field,
-      type,
-    }
-
-    if (isText(copy) || isTextArea(copy)) {
-      const length = props.field.advanced?.length
-      if (length) {
-        if (length.max !== undefined) {
-          Object.assign(commonProps, { maxLength: length.max })
-        }
-
-        if (length.min !== undefined) {
-          Object.assign(commonProps, { minLength: length.min })
-        }
-      }
-    }
-
-    if (isNumber(copy)) {
-      const length = props.field.advanced?.length
-      if (length) {
-        if (length.max !== undefined) {
-          Object.assign(commonProps, { max: length.max })
-        }
-
-        if (length.min !== undefined) {
-          Object.assign(commonProps, { min: length.min })
-        }
-      }
-    }
+  if (isTextArea(props.field)) {
+    defineAutoComplete(props.field, commonProps)
+    defineMinMaxLength(props.field, commonProps)
   }
 
   return props.children({
@@ -76,6 +62,78 @@ export function InputBase(
     dataAttributes,
     field: props.field,
   })
+}
+
+function defineInput(input: Input, common: CommonProps) {
+  defineAutoComplete(input, common)
+
+  const type = extract(input.type)
+  Object.assign(common, { type })
+
+  const copy = {
+    ...input,
+    type,
+  }
+
+  if (isText(copy)) {
+    defineMinMaxLength(copy, common)
+  }
+
+  if (isNumber(copy)) {
+    defineMinMax(copy, common)
+  }
+}
+
+function defineAutoComplete(input: Input, common: CommonProps) {
+  const autoComplete = input.advanced?.autocomplete
+  if (autoComplete) {
+    Object.assign(common, { autoComplete })
+  }
+}
+
+function defineMinMaxLength(input: Input, common: CommonProps) {
+  const length = input.advanced?.length
+  if (length) {
+    if (length.min !== undefined) {
+      Object.assign(common, { minLength: length.min })
+    }
+
+    if (length.max !== undefined) {
+      Object.assign(common, { maxLength: length.max })
+    }
+  }
+}
+
+function defineMinMax(input: Input, common: CommonProps) {
+  const length = input.advanced?.length
+  if (length) {
+    if (length.min !== undefined) {
+      Object.assign(common, { min: length.min })
+    }
+
+    if (length.max !== undefined) {
+      Object.assign(common, { max: length.max })
+    }
+  }
+}
+
+function defineOption(select: Select, common: CommonProps) {
+  if (isSelectMonth(select)) {
+    Object.assign(common, {
+      options: getOptionMonth(select.placeholder),
+    })
+  } else if (isSelectYear(select)) {
+    const min = select.advanced?.length?.min ?? now
+    const max = select.advanced?.length?.max ?? now + 5
+
+    Object.assign(common, {
+      options: getOptionYear(
+        select.placeholder,
+        getConvert(min, now),
+        getConvert(max, now)
+      ),
+    })
+  }
 }
 
 function extract(value: string = INPUT_TEXT): string {
