@@ -6,6 +6,7 @@ import { Input } from './input'
 import { Separator } from '@/src/component/separator'
 import { Slot } from '@/src/component/slot'
 import { prepare } from '@/src/util/prepare'
+import { useSchema } from '../hook/useSchema'
 import type { Forms, LunaConfig } from '@/src/type'
 
 export function Form(
@@ -18,6 +19,8 @@ export function Form(
 ) {
   const forms = prepare(props.form)
 
+  const [, onMount, onUnmount] = useSchema()
+
   return (
     <div className="h-full w-full">
       <form>
@@ -26,7 +29,14 @@ export function Form(
             <Fragment key={index}>
               <FieldSet description={form.description} title={form.title}>
                 <Slot fields={form.fields}>
-                  {(internal) => <Input {...internal} config={props.config} />}
+                  {(internal) => (
+                    <Input
+                      {...internal}
+                      config={props.config}
+                      onMount={onMount}
+                      onUnmount={onUnmount}
+                    />
+                  )}
                 </Slot>
               </FieldSet>
               {form.separator && <Separator />}

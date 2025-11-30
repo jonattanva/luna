@@ -1,14 +1,12 @@
 import {
   COLUMN,
   INPUT,
-  INPUT_EMAIL,
   INPUT_NUMBER,
-  INPUT_PASSWORD,
-  INPUT_TEXT,
   INPUT_TEXTAREA,
   SELECT,
   SELECT_MONTH,
   SELECT_YEAR,
+  TYPE_NUMBER,
 } from './constant'
 import type { z } from 'zod'
 
@@ -109,18 +107,6 @@ export function isTextArea(field: Field): field is Input {
   return field.type === INPUT_TEXTAREA
 }
 
-export function isText(field: Field): field is Input {
-  return (
-    field.type === INPUT_TEXT ||
-    field.type === INPUT_EMAIL ||
-    field.type === INPUT_PASSWORD
-  )
-}
-
-export function isNumber(field: Field): field is Input {
-  return field.type === INPUT_NUMBER
-}
-
 export type Children = (props: {
   ariaAttributes?: AriaAttributes
   commonProps: CommonProps
@@ -151,4 +137,8 @@ export function isSelectMonth(field: Field): boolean {
 
 export function isSelectYear(field: Field): boolean {
   return field.type === SELECT_YEAR
+}
+
+export function isNumber(field: Field): field is Input {
+  return field.type === INPUT_NUMBER || field.type === TYPE_NUMBER
 }

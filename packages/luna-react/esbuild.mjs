@@ -3,44 +3,34 @@ import pkg from './package.json' with { type: 'json' }
 
 const dependencies = Object.keys(pkg.peerDependencies)
 
-await esbuild.build({
-  bundle: true,
-  entryPoints: ['./src/server/index.ts'],
-  external: dependencies,
-  format: 'esm',
-  logLevel: 'info',
-  minify: false,
-  outdir: './dist/server/esm',
-  splitting: true,
+function entry(entryPoints, callback) {
+  entryPoints = Array.isArray(entryPoints) ? entryPoints : [entryPoints]
+
+  callback(async (format, outdir) => {
+    await esbuild.build({
+      bundle: true,
+      entryPoints: entryPoints,
+      external: dependencies,
+      format: format,
+      logLevel: 'info',
+      minify: false,
+      outdir: outdir,
+      splitting: format === 'esm',
+    })
+  })
+}
+
+entry('./src/server/index.ts', async (build) => {
+  await build('esm', './dist/server/esm')
+  await build('cjs', './dist/server/cjs')
 })
 
-await esbuild.build({
-  bundle: true,
-  entryPoints: ['./src/server/index.ts'],
-  external: dependencies,
-  format: 'cjs',
-  logLevel: 'info',
-  minify: false,
-  outdir: './dist/server/cjs',
+entry('./src/client/index.ts', async (build) => {
+  await build('esm', './dist/client/esm')
+  await build('cjs', './dist/client/cjs')
 })
 
-await esbuild.build({
-  bundle: true,
-  entryPoints: ['./src/client/index.ts'],
-  external: dependencies,
-  format: 'esm',
-  logLevel: 'info',
-  minify: false,
-  outdir: './dist/client/esm',
-  splitting: true,
-})
-
-await esbuild.build({
-  bundle: true,
-  entryPoints: ['./src/client/index.ts'],
-  external: dependencies,
-  format: 'cjs',
-  logLevel: 'info',
-  minify: false,
-  outdir: './dist/client/cjs',
+entry('./src/config/index.ts', async (build) => {
+  await build('esm', './dist/config/esm')
+  await build('cjs', './dist/config/cjs')
 })

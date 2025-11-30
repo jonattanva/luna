@@ -38,6 +38,12 @@
       "import": "./dist/client/cjs/index.js",
       "types": "./dist/types/client/index.d.ts",
       "default": "./dist/client/cjs/index.js"
+    },
+    "./config": {
+      "module": "./dist/config/esm/index.js",
+      "import": "./dist/config/cjs/index.js",
+      "types": "./dist/types/config/index.d.ts",
+      "default": "./dist/config/cjs/index.js"
     }
   }
 }

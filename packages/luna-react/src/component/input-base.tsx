@@ -1,4 +1,4 @@
-import { INPUT, INPUT_TEXT } from '../constant'
+import { INPUT, TYPE_EMAIL, TYPE_PASSWORD, TYPE_TEXT } from '../constant'
 import { getAriaAttributes } from '../util/aria-attributes'
 import { getDataAttributes } from '../util/data-attributes'
 
@@ -15,7 +15,6 @@ import {
   isSelect,
   isSelectMonth,
   isSelectYear,
-  isText,
   isTextArea,
   type Children,
   type CommonProps,
@@ -136,7 +135,7 @@ function defineOption(select: Select, common: CommonProps) {
   }
 }
 
-function extract(value: string = INPUT_TEXT): string {
+function extract(value: string = TYPE_TEXT): string {
   const result = value.match(/[^/]+$/)
   if (result) {
     const [type] = result
@@ -144,5 +143,13 @@ function extract(value: string = INPUT_TEXT): string {
       return type.trim().toLowerCase()
     }
   }
-  return INPUT_TEXT
+  return TYPE_TEXT
+}
+
+function isText(field: Field): field is Input {
+  return (
+    field.type === TYPE_TEXT ||
+    field.type === TYPE_EMAIL ||
+    field.type === TYPE_PASSWORD
+  )
 }
