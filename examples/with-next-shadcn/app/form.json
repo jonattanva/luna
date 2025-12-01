@@ -115,6 +115,57 @@
       "fields": [
         {
           "advanced": {
+            "autocomplete": "street-address",
+            "data": {
+              "testid": "street-address"
+            }
+          },
+          "name": "street-address",
+          "label": "Street Address",
+          "type": "input/text",
+          "placeholder": "123 Main St",
+          "required": true,
+          "order": 1
+        },
+        {
+          "advanced": {
+            "cols": 2
+          },
+          "type": "column",
+          "fields": [
+            {
+              "advanced": {
+                "data": {
+                  "testid": "city"
+                }
+              },
+              "label": "City",
+              "name": "city",
+              "placeholder": "Select City",
+              "required": true,
+              "type": "select"
+            },
+            {
+              "advanced": {
+                "autocomplete": "postal-code",
+                "data": {
+                  "testid": "postal-code"
+                },
+                "length": {
+                  "max": 10
+                }
+              },
+              "label": "Postal Code",
+              "name": "postal-code",
+              "placeholder": "05001",
+              "type": "input/number",
+              "required": true
+            }
+          ],
+          "order": 2
+        },
+        {
+          "advanced": {
             "data": {
               "testid": "comments"
             },
@@ -125,10 +176,17 @@
           "label": "Comments",
           "name": "comments",
           "type": "textarea",
-          "placeholder": "Add any additional comments"
+          "placeholder": "Add any additional comments",
+          "order": 3
         }
       ],
       "order": 2
     }
-  ]
+  ],
+  "source": {
+    "city": {
+      "url": "https://example.com/api/cities",
+      "method": "GET"
+    }
+  }
 }

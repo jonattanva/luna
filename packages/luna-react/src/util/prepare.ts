@@ -1,4 +1,4 @@
-import type { Base } from '../type'
+import type { Base, Nullable } from '../type'
 
 export function prepare<T extends Base>(base: readonly T[] = []) {
   return base
@@ -10,6 +10,6 @@ function getOrder(item: Base) {
   return item.order ?? Number.MAX_VALUE
 }
 
-export function entries<T>(values?: Record<string, T>) {
+export function entries<T>(values?: Nullable<Record<string, T>>) {
   return Object.entries(values ?? {}) as [key: string, value: T][]
 }

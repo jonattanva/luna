@@ -14,12 +14,13 @@ export function Input(
     commonProps: CommonProps
     config: LunaConfig
     dataAttributes?: DataAttributes
+    defaultValue?: string | number
     field: Field
     onMount: (name: string, schema: Schema) => void
     onUnmount: (name: string) => void
   }>
 ) {
-  useInput(props.field, props.onMount, props.onUnmount)
+  const [] = useInput(props.field, props.onMount, props.onUnmount)
 
   const Component = props.config.inputs[props.field.type]
   if (!Component) {
@@ -31,6 +32,7 @@ export function Input(
       {...props.ariaAttributes}
       {...props.commonProps}
       {...props.dataAttributes}
+      defaultValue={props.defaultValue}
     />
   )
 }

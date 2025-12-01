@@ -1,6 +1,14 @@
-import { INPUT, TYPE_EMAIL, TYPE_PASSWORD, TYPE_TEXT } from '../constant'
 import { getAriaAttributes } from '../util/aria-attributes'
 import { getDataAttributes } from '../util/data-attributes'
+
+import {
+  ARIA_ERROR_MESSAGE,
+  ARIA_INVALID,
+  INPUT,
+  TYPE_EMAIL,
+  TYPE_PASSWORD,
+  TYPE_TEXT,
+} from '../constant'
 
 import {
   getConvert,
@@ -28,6 +36,8 @@ const now = getCurrentYear()
 export function InputBase(
   props: Readonly<{
     children: Children
+    defaultValue?: string | number
+    errors?: string[]
     field: Field
     htmlValidation?: boolean
   }>
@@ -35,6 +45,11 @@ export function InputBase(
   const { htmlValidation = true } = props
 
   const ariaAttributes = getAriaAttributes(props.field)
+  if (props.errors && props.errors.length > 0) {
+    ariaAttributes[ARIA_INVALID] = 'true'
+    ariaAttributes[ARIA_ERROR_MESSAGE] = `${props.field.name}-error`
+  }
+
   const dataAttributes = getDataAttributes(props.field)
 
   const commonProps = {
@@ -67,6 +82,7 @@ export function InputBase(
     ariaAttributes,
     commonProps,
     dataAttributes,
+    defaultValue: props.defaultValue,
     field: props.field,
   })
 }

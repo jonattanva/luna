@@ -1,6 +1,6 @@
-import type { Field, Schema } from '@/src/type'
 import { getSchema } from '@/src/util/schema'
 import { useEffect, useEffectEvent } from 'react'
+import type { Field, Schema } from '@/src/type'
 
 export function useInput(
   field: Field,
@@ -10,22 +10,21 @@ export function useInput(
   const schema = getSchema(field)
 
   const onMountHandler = useEffectEvent((name: string) => {
-    onMount(name, schema)
+    if (name) {
+      onMount(name, schema)
+    }
   })
 
   const onUnmountHandler = useEffectEvent((name: string) => {
-    onUnmount(name)
+    if (name) {
+      onUnmount(name)
+    }
   })
 
   useEffect(() => {
-    if (field.name) {
-      onMountHandler(field.name)
-    }
-
+    onMountHandler(field.name)
     return () => {
-      if (field.name) {
-        onUnmountHandler(field.name)
-      }
+      onUnmountHandler(field.name)
     }
   }, [field.name])
 

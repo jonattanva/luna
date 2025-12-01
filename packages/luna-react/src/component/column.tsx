@@ -2,13 +2,13 @@ import { FieldError } from './field-error'
 import { entries } from '../util/prepare'
 import { getColumn } from '../util/column'
 import { twMerge } from 'tailwind-merge'
-import type { Column, Field, FormError } from '../type'
+import type { Column, Field, FormError, Nullable } from '../type'
 
 export function Column(
   props: Readonly<{
     children?: React.ReactNode
     column?: Column<Field>
-    errors?: FormError
+    errors?: Nullable<FormError>
   }>
 ) {
   const cols = getColumn(props.column?.advanced?.cols)
@@ -19,7 +19,7 @@ export function Column(
     .flatMap(([, value]) => value?.errors ?? [])
 
   return (
-    <div className="w-full-flex-col flex gap-4">
+    <div className="flex w-full flex-col gap-4">
       <div className={twMerge('grid gap-4', cols)}>{props.children}</div>
       {errors.length > 0 && <FieldError errors={errors} />}
     </div>

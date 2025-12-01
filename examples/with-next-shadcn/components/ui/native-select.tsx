@@ -51,9 +51,10 @@ function Select({
 }: React.ComponentProps<'select'> & {
   options?: Array<{ value: string; label: string }>
 }) {
+  const { options, ...selectProps } = props
   return (
-    <NativeSelect className={className} {...props}>
-      {props.options?.map((option) => (
+    <NativeSelect className={className} {...selectProps}>
+      {options?.map((option) => (
         <NativeSelectOption key={option.value} value={option.value}>
           {option.label}
         </NativeSelectOption>

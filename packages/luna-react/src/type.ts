@@ -10,6 +10,8 @@ import {
 } from './constant'
 import type { z } from 'zod'
 
+export type Nullable<T> = T | null
+
 export type Orderable = {
   order?: number
 }
@@ -91,30 +93,23 @@ export type Fields = readonly Slot[]
 
 export type FormError = Record<string, { errors: string[] } | undefined>
 
-export function isColumn(slot: Slot): slot is Column<Field> {
-  return slot.type === COLUMN && 'fields' in slot
-}
-
-export function isField(slot: Slot): slot is Field {
-  return slot.type !== COLUMN
-}
-
-export function isInput(field: Field): field is Input {
-  return field.type === INPUT || field.type.startsWith(`${INPUT}/`)
-}
-
-export function isTextArea(field: Field): field is Input {
-  return field.type === INPUT_TEXTAREA
-}
-
 export type Children = (props: {
   ariaAttributes?: AriaAttributes
   commonProps: CommonProps
   dataAttributes?: DataAttributes
+  defaultValue?: string | number
   field: Field
 }) => React.ReactNode
 
 export type Schema = z.ZodTypeAny
+export type Schemas = Record<string, Schema>
+
+export type LunaForm = {
+  data: {
+    [key: string]: FormDataEntryValue
+  }
+  errors: FormError | null
+}
 
 export type LunaConfig = {
   inputs: {
@@ -141,4 +136,26 @@ export function isSelectYear(field: Field): boolean {
 
 export function isNumber(field: Field): field is Input {
   return field.type === INPUT_NUMBER || field.type === TYPE_NUMBER
+}
+
+export function isColumn(slot: Slot): slot is Column<Field> {
+  return slot.type === COLUMN && 'fields' in slot
+}
+
+export function isField(slot: Slot): slot is Field {
+  return slot.type !== COLUMN
+}
+
+export function isInput(field: Field): field is Input {
+  return field.type === INPUT || field.type.startsWith(`${INPUT}/`)
+}
+
+export function isTextArea(field: Field): field is Input {
+  return field.type === INPUT_TEXTAREA
+}
+
+export function getDefaultValue(value: unknown): string | number | undefined {
+  return typeof value === 'string' || typeof value === 'number'
+    ? value
+    : undefined
 }

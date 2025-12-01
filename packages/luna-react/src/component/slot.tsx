@@ -8,15 +8,17 @@ import {
   type Children,
   type Fields,
   type FormError,
+  type Nullable,
 } from '../type'
 
 export function Slot(
   props: Readonly<{
     children: Children
-    errors?: FormError
+    errors?: Nullable<FormError>
     fields?: Fields
     hideErrorDetails?: boolean
     htmlValidation?: boolean
+    value?: Record<string, unknown>
   }>
 ) {
   const fields = prepare(props.fields)
@@ -30,6 +32,7 @@ export function Slot(
             fields={field.fields}
             hideErrorDetails={true}
             htmlValidation={props.htmlValidation}
+            value={props.value}
           >
             {props.children}
           </Slot>
@@ -41,6 +44,7 @@ export function Slot(
           field={field}
           hideErrorDetails={props.hideErrorDetails}
           htmlValidation={props.htmlValidation}
+          value={props.value}
         >
           {props.children}
         </Field>
