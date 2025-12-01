@@ -16,6 +16,7 @@ export function Slot(
     errors?: FormError
     fields?: Fields
     hideErrorDetails?: boolean
+    htmlValidation?: boolean
   }>
 ) {
   const fields = prepare(props.fields)
@@ -28,6 +29,7 @@ export function Slot(
             errors={props.errors}
             fields={field.fields}
             hideErrorDetails={true}
+            htmlValidation={props.htmlValidation}
           >
             {props.children}
           </Slot>
@@ -38,6 +40,7 @@ export function Slot(
           errors={props.errors}
           field={field}
           hideErrorDetails={props.hideErrorDetails}
+          htmlValidation={props.htmlValidation}
         >
           {props.children}
         </Field>

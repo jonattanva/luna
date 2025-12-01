@@ -10,6 +10,7 @@ export function Field(
     errors?: FormError
     field: Field
     hideErrorDetails?: boolean
+    htmlValidation?: boolean
   }>
 ) {
   const errors = props.field.name
@@ -26,7 +27,9 @@ export function Field(
           {props.field.label}
         </Label>
       )}
-      <InputBase field={props.field}>{props.children}</InputBase>
+      <InputBase field={props.field} htmlValidation={props.htmlValidation}>
+        {props.children}
+      </InputBase>
       {props.field.description && (
         <Description>{props.field.description}</Description>
       )}

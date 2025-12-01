@@ -29,8 +29,11 @@ export function InputBase(
   props: Readonly<{
     children: Children
     field: Field
+    htmlValidation?: boolean
   }>
 ) {
+  const { htmlValidation = true } = props
+
   const ariaAttributes = getAriaAttributes(props.field)
   const dataAttributes = getDataAttributes(props.field)
 
@@ -39,7 +42,12 @@ export function InputBase(
     id: props.field.name,
     name: props.field.name,
     placeholder: props.field.placeholder,
-    required: props.field.required,
+  }
+
+  if (htmlValidation) {
+    Object.assign(commonProps, {
+      required: props.field.required,
+    })
   }
 
   if (isInput(props.field)) {

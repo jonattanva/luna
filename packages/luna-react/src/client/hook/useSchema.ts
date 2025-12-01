@@ -17,9 +17,5 @@ export function useSchema() {
     }
   }
 
-  function getSchema() {
-    return schemaRef.current
-  }
-
-  return [getSchema, onMount, onUnmount] as const
+  return [schemaRef, onMount, onUnmount] as const
 }
