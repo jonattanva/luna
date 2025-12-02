@@ -53,3 +53,9 @@ export function isText(field: Field): field is Input {
     field.type === TYPE_PASSWORD
   )
 }
+
+export function getDefaultValue(value: unknown): string | number | undefined {
+  return typeof value === 'string' || typeof value === 'number'
+    ? value
+    : undefined
+}

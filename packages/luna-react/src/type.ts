@@ -128,9 +128,3 @@ export type InputConfig = {
   types: string | string[]
   input: React.ComponentType<React.HTMLAttributes<HTMLElement>>
 }
-
-export function getDefaultValue(value: unknown): string | number | undefined {
-  return typeof value === 'string' || typeof value === 'number'
-    ? value
-    : undefined
-}

@@ -1,16 +1,10 @@
+import { DATA_INVALID } from '../constant'
 import { Description } from './description'
 import { FieldError } from './field-error'
 import { InputBase } from './input/input-base'
 import { Label } from './label'
-import { DATA_INVALID } from '../constant'
-
-import {
-  getDefaultValue,
-  type Children,
-  type Field,
-  type FormError,
-  type Nullable,
-} from '../type'
+import { getDefaultValue } from '../input'
+import type { Children, Field, FormError, Nullable } from '../type'
 
 export function Field(
   props: Readonly<{
