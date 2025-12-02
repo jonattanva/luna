@@ -185,8 +185,9 @@
   ],
   "source": {
     "city": {
-      "url": "${PUBLIC_API_URL}/api/cities",
-      "method": "GET"
+      "url": "http://localhost:3001/api/cities",
+      "method": "GET",
+      "namespace": "body"
     }
   }
 }

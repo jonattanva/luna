@@ -1,4 +1,5 @@
 import { isSelect } from '@/src/input'
+import { useDataSource } from '../hook/useDataSource'
 import { useInput } from '../hook/useInput'
 import type {
   AriaAttributes,
@@ -23,20 +24,19 @@ export function Input(
     source?: Source
   }>
 ) {
-  const [schema] = useInput(props.field, props.onMount, props.onUnmount)
+  useInput(props.field, props.onMount, props.onUnmount)
 
   const source =
     props.source && isSelect(props.field)
-      ? props.source[props.field.name] || []
-      : []
+      ? props.source[props.field.name]
+      : undefined
 
-  function onBlur(event: React.FocusEvent<HTMLElement>) {
-    // FIXME: Implement proper onBlur handling
-    console.log(event.target, 'onBlur event target')
-    console.log(schema, 'onBlur schema')
-  }
+  const [options] = useDataSource(source, props.config)
 
-  console.log(source, 'input source')
+  const commonPropsWithOptions =
+    isSelect(props.field) && Array.isArray(options)
+      ? { ...props.commonProps, options }
+      : props.commonProps
 
   const Component = props.config.inputs[props.field.type]
   if (!Component) {
@@ -46,10 +46,9 @@ export function Input(
   return (
     <Component
       {...props.ariaAttributes}
-      {...props.commonProps}
+      {...commonPropsWithOptions}
       {...props.dataAttributes}
       defaultValue={props.defaultValue}
-      onBlur={onBlur}
     />
   )
 }

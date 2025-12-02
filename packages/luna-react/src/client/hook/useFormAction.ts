@@ -16,8 +16,6 @@ export function useFormAction(
     }
 
     const validated = parse(schema, data)
-    console.log('Validated form data:', validated)
-
     if (!validated.success) {
       Object.assign(form, {
         errors: z.treeifyError(validated.error).properties,

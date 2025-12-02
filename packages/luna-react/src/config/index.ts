@@ -1,13 +1,16 @@
-import type { Config, Environment, InputConfig } from '../type'
+import { fetcher } from './fetcher'
+import type { Config, DataSource, Environment, InputConfig } from '../type'
 
 export function defineConfig(
   options: Readonly<{
     env?: Environment
+    fetcher?: <T>(dataSource: DataSource) => Promise<T>
     inputs: Array<InputConfig>
   }>
 ): Config {
   const config = {
     env: options.env,
+    fetcher,
     inputs: {},
   } as Config
 

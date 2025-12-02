@@ -21,16 +21,17 @@ export type Form = {
 
 export type Forms = readonly Form[]
 
-export type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
-
 export type DataSource = {
   url: string
-  headers?: Record<string, string>
-  method?: Method
+  body?: BodyInit | Record<string, unknown>
+  cache?: RequestCache
+  headers?: HeadersInit
+  method?: string
+  namespace?: string
 }
 
 export type Source = {
-  [key: string]: Array<unknown> | DataSource
+  [key: string]: DataSource | Array<unknown>
 }
 
 export type Column<T> = {
@@ -122,6 +123,7 @@ export type Config = {
   inputs: {
     [key: string]: React.ComponentType<React.HTMLAttributes<HTMLElement>>
   }
+  fetcher: <T>(dataSource: DataSource) => Promise<T>
 }
 
 export type InputConfig = {

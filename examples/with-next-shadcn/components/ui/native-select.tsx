@@ -50,11 +50,21 @@ function Select({
   ...props
 }: React.ComponentProps<'select'> & {
   options?: Array<{ value: string; label: string }>
+  placeholder?: string
 }) {
-  const { options, ...selectProps } = props
+  const {
+    options = [],
+    placeholder = 'Select an option',
+    ...selectProps
+  } = props
+
+  const optionsWithPlaceholder = placeholder
+    ? [{ value: '', label: placeholder }, ...options]
+    : options
+
   return (
     <NativeSelect className={className} {...selectProps}>
-      {options?.map((option) => (
+      {optionsWithPlaceholder.map((option) => (
         <NativeSelectOption key={option.value} value={option.value}>
           {option.label}
         </NativeSelectOption>

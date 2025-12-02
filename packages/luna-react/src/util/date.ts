@@ -7,10 +7,6 @@ export function getMonth() {
   }))
 }
 
-export function getOptionMonth(placeholder = 'Select month') {
-  return [{ value: '', label: placeholder }, ...getMonth()]
-}
-
 export function getYear(
   min: number,
   max: number
@@ -58,12 +54,4 @@ export function getConvert(value: string | number, current?: number): number {
   }
 
   return now
-}
-
-export function getOptionYear(
-  placeholder = 'Select year',
-  min: number,
-  max: number
-) {
-  return [{ value: '', label: placeholder }, ...getYear(min, max)]
 }
