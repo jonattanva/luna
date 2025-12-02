@@ -1,5 +1,6 @@
 import { z } from 'zod'
-import { isNumber, isSelectYear, type Input } from '../type'
+import { isNumber, isSelectYear } from '../input'
+import type { Input } from '../type'
 
 type Coerced<T = unknown> = z.ZodCoercedString<T> | z.ZodCoercedNumber<T>
 

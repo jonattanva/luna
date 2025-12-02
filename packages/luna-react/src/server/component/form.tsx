@@ -6,12 +6,12 @@ import { Input } from './input'
 import { Separator } from '@/src/component/separator'
 import { Slot } from '@/src/component/slot'
 import { prepare } from '@/src/util/prepare'
-import type { Forms, LunaConfig } from '@/src/type'
+import type { Forms, Config } from '@/src/type'
 
 export function Form(
   props: Readonly<{
     children?: React.ReactNode
-    config: LunaConfig
+    config: Config
     form: Forms
     value?: Record<string, unknown>
   }>

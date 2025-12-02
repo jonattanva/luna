@@ -1,13 +1,3 @@
-import {
-  COLUMN,
-  INPUT,
-  INPUT_NUMBER,
-  INPUT_TEXTAREA,
-  SELECT,
-  SELECT_MONTH,
-  SELECT_YEAR,
-  TYPE_NUMBER,
-} from './constant'
 import type { z } from 'zod'
 
 export type Nullable<T> = T | null
@@ -30,6 +20,18 @@ export type Form = {
 } & Base
 
 export type Forms = readonly Form[]
+
+export type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
+
+export type DataSource = {
+  url: string
+  headers?: Record<string, string>
+  method?: Method
+}
+
+export type Source = {
+  [key: string]: Array<unknown> | DataSource
+}
 
 export type Column<T> = {
   advanced?: {
@@ -111,47 +113,20 @@ export type LunaForm = {
   errors: FormError | null
 }
 
-export type LunaConfig = {
+export type Environment = {
+  [key: string]: string | number | boolean
+}
+
+export type Config = {
+  env?: Environment
   inputs: {
     [key: string]: React.ComponentType<React.HTMLAttributes<HTMLElement>>
   }
 }
 
-export type LunaInputConfig = {
+export type InputConfig = {
   types: string | string[]
   input: React.ComponentType<React.HTMLAttributes<HTMLElement>>
-}
-
-export function isSelect(field: Field): field is Select {
-  return field.type === SELECT || field.type.startsWith(`${SELECT}/`)
-}
-
-export function isSelectMonth(field: Field): boolean {
-  return field.type === SELECT_MONTH
-}
-
-export function isSelectYear(field: Field): boolean {
-  return field.type === SELECT_YEAR
-}
-
-export function isNumber(field: Field): field is Input {
-  return field.type === INPUT_NUMBER || field.type === TYPE_NUMBER
-}
-
-export function isColumn(slot: Slot): slot is Column<Field> {
-  return slot.type === COLUMN && 'fields' in slot
-}
-
-export function isField(slot: Slot): slot is Field {
-  return slot.type !== COLUMN
-}
-
-export function isInput(field: Field): field is Input {
-  return field.type === INPUT || field.type.startsWith(`${INPUT}/`)
-}
-
-export function isTextArea(field: Field): field is Input {
-  return field.type === INPUT_TEXTAREA
 }
 
 export function getDefaultValue(value: unknown): string | number | undefined {

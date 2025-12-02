@@ -8,14 +8,15 @@ import { Slot } from '@/src/component/slot'
 import { prepare } from '@/src/util/prepare'
 import { useFormAction } from '../hook/useFormAction'
 import { useSchema } from '../hook/useSchema'
-import type { Forms, LunaConfig, LunaForm } from '@/src/type'
+import type { Forms, Config, LunaForm, Source } from '@/src/type'
 
 export function Form(
   props: Readonly<{
     children?: React.ReactNode
-    config: LunaConfig
+    config: Config
     form: Forms
-    formAction?: (form: LunaForm) => Promise<void> | void
+    formAction?: (form: LunaForm) => Promise<void> | void // FIXME: Improve handling of formAction
+    source?: Source
     value?: Record<string, unknown>
   }>
 ) {
@@ -27,23 +28,19 @@ export function Form(
 
   return (
     <div className="h-full w-full">
-      <form action={formAction}>
+      <form action={formAction} noValidate>
         <Group>
           {forms.map((form, index) => (
             <Fragment key={index}>
               <FieldSet description={form.description} title={form.title}>
-                <Slot
-                  errors={state?.errors}
-                  fields={form.fields}
-                  htmlValidation={false}
-                  value={value}
-                >
+                <Slot errors={state?.errors} fields={form.fields} value={value}>
                   {(internal) => (
                     <Input
                       {...internal}
                       config={props.config}
                       onMount={onMount}
                       onUnmount={onUnmount}
+                      source={props.source}
                     />
                   )}
                 </Slot>

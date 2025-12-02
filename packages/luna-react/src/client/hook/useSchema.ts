@@ -1,14 +1,11 @@
 import { useRef } from 'react'
-import type { z } from 'zod'
+import type { Schema, Schemas } from '@/src/type'
 
 export function useSchema() {
-  const schemaRef = useRef<Record<string, z.ZodTypeAny>>({})
+  const schemaRef = useRef<Schemas>({})
 
-  function onMount(name: string, schema: z.ZodTypeAny) {
-    schemaRef.current = {
-      ...schemaRef.current,
-      [name]: schema,
-    }
+  function onMount(name: string, schema: Schema) {
+    schemaRef.current[name] = schema
   }
 
   function onUnmount(name: string) {

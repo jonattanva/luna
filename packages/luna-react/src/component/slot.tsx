@@ -2,14 +2,8 @@ import { Column } from './column'
 import { Field } from './field'
 import { Fragment } from 'react'
 import { prepare } from '../util/prepare'
-import {
-  isColumn,
-  isField,
-  type Children,
-  type Fields,
-  type FormError,
-  type Nullable,
-} from '../type'
+import { isColumn, isField } from '../input'
+import type { Children, Fields, FormError, Nullable } from '../type'
 
 export function Slot(
   props: Readonly<{
@@ -17,7 +11,6 @@ export function Slot(
     errors?: Nullable<FormError>
     fields?: Fields
     hideErrorDetails?: boolean
-    htmlValidation?: boolean
     value?: Record<string, unknown>
   }>
 ) {
@@ -31,7 +24,6 @@ export function Slot(
             errors={props.errors}
             fields={field.fields}
             hideErrorDetails={true}
-            htmlValidation={props.htmlValidation}
             value={props.value}
           >
             {props.children}
@@ -43,7 +35,6 @@ export function Slot(
           errors={props.errors}
           field={field}
           hideErrorDetails={props.hideErrorDetails}
-          htmlValidation={props.htmlValidation}
           value={props.value}
         >
           {props.children}

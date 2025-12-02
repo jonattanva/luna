@@ -8,4 +8,4 @@ package-lock.json
 test-results
 
 # build output
-dist
+packages/**/dist

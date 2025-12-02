@@ -185,7 +185,7 @@
   ],
   "source": {
     "city": {
-      "url": "https://example.com/api/cities",
+      "url": "${PUBLIC_API_URL}/api/cities",
       "method": "GET"
     }
   }

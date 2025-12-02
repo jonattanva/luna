@@ -3,14 +3,14 @@ import type {
   CommonProps,
   DataAttributes,
   Field,
-  LunaConfig,
+  Config,
 } from '@/src/type'
 
 export function Input(
   props: Readonly<{
     ariaAttributes?: AriaAttributes
     commonProps: CommonProps
-    config: LunaConfig
+    config: Config
     dataAttributes?: DataAttributes
     field: Field
   }>

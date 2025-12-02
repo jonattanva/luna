@@ -1,13 +1,15 @@
-import type { LunaConfig, LunaInputConfig } from '../type'
+import type { Config, Environment, InputConfig } from '../type'
 
 export function defineConfig(
   options: Readonly<{
-    inputs: Array<LunaInputConfig>
+    env?: Environment
+    inputs: Array<InputConfig>
   }>
-): LunaConfig {
+): Config {
   const config = {
+    env: options.env,
     inputs: {},
-  } as LunaConfig
+  } as Config
 
   options.inputs.forEach(({ types, input }) => {
     const type = Array.isArray(types) ? types : [types]
@@ -21,7 +23,7 @@ export function defineConfig(
 
 export function defineInput(
   input: React.ComponentType<React.HTMLAttributes<HTMLInputElement>>
-): LunaInputConfig {
+): InputConfig {
   return {
     types: [
       'input',
@@ -36,7 +38,7 @@ export function defineInput(
 
 export function defineTextArea(
   input: React.ComponentType<React.HTMLAttributes<HTMLTextAreaElement>>
-): LunaInputConfig {
+): InputConfig {
   return {
     types: ['textarea'],
     input,
@@ -45,7 +47,7 @@ export function defineTextArea(
 
 export function defineSelect(
   input: React.ComponentType<React.HTMLAttributes<HTMLSelectElement>>
-): LunaInputConfig {
+): InputConfig {
   return {
     types: ['select', 'select/year', 'select/month'],
     input,

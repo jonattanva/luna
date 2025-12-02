@@ -1,6 +1,6 @@
 import { Description } from './description'
 import { FieldError } from './field-error'
-import { InputBase } from './input-base'
+import { InputBase } from './input/input-base'
 import { Label } from './label'
 import { DATA_INVALID } from '../constant'
 
@@ -18,7 +18,6 @@ export function Field(
     errors?: Nullable<FormError>
     field: Field
     hideErrorDetails?: boolean
-    htmlValidation?: boolean
     value?: Record<string, unknown>
   }>
 ) {
@@ -45,7 +44,6 @@ export function Field(
         defaultValue={defaultValue}
         errors={errors}
         field={props.field}
-        htmlValidation={props.htmlValidation}
       >
         {props.children}
       </InputBase>
