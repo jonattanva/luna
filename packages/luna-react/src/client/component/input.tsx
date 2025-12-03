@@ -19,12 +19,13 @@ export function Input(
     dataAttributes?: DataAttributes
     defaultValue?: string | number
     field: Field
+    onInputValidation?: (name: string, errors: string[]) => void
     onMount: (name: string, schema: Schema) => void
     onUnmount: (name: string) => void
     source?: Source
   }>
 ) {
-  useInput(props.field, props.onMount, props.onUnmount)
+  const [schema] = useInput(props.field, props.onMount, props.onUnmount)
 
   const source =
     props.source && isSelect(props.field)
@@ -38,6 +39,21 @@ export function Input(
       ? { ...props.commonProps, options }
       : props.commonProps
 
+  function onBlur(
+    event: React.FocusEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
+    if (props.field.required) {
+      const validated = schema.safeParse(event.target.value)
+      if (!validated.success) {
+        const errors = validated.error.issues.map((issue) => issue.message)
+
+        if (props.onInputValidation) {
+          props.onInputValidation(props.field.name, errors)
+        }
+      }
+    }
+  }
+
   const Component = props.config.inputs[props.field.type]
   if (!Component) {
     return null
@@ -49,6 +65,7 @@ export function Input(
       {...commonPropsWithOptions}
       {...props.dataAttributes}
       defaultValue={props.defaultValue}
+      onBlur={onBlur}
     />
   )
 }

@@ -1,15 +1,41 @@
 import { z } from 'zod'
-import { isNumber, isSelectYear } from '../input'
+import { isNumber, isSelectMonth, isSelectYear } from '../input'
 import type { Input } from '../type'
 
 type Coerced<T = unknown> = z.ZodCoercedString<T> | z.ZodCoercedNumber<T>
 
 export function getSchema(input: Input) {
-  if (isNumber(input) || isSelectYear(input)) {
+  if (isNumber(input)) {
     return getNumber(input)
   }
 
+  if (isSelectYear(input)) {
+    return getYear(input)
+  }
+
+  if (isSelectMonth(input)) {
+    return getMonth(input)
+  }
+
   return getText(input)
+}
+
+export function getMonth(input: Input) {
+  const schema = z.coerce.number()
+  if (input.required) {
+    return schema
+      .min(1, input.validation?.required)
+      .max(12, input.validation?.required)
+  }
+  return schema.nullable()
+}
+
+export function getYear(input: Input) {
+  const schema = z.coerce.number()
+  if (input.required) {
+    return required(schema, undefined, input.validation?.required)
+  }
+  return schema.nullable()
 }
 
 export function getText(input: Input) {
@@ -19,7 +45,11 @@ export function getText(input: Input) {
   schema = max(schema, input.advanced?.length?.max)
 
   if (input.required) {
-    return required(schema, input.advanced?.length?.min)
+    return required(
+      schema,
+      input.advanced?.length?.min,
+      input.validation?.required
+    )
   }
 
   return schema.nullable()
@@ -32,7 +62,11 @@ export function getNumber(input: Input) {
   schema = max(schema, input.advanced?.length?.max)
 
   if (input.required) {
-    return required(schema, input.advanced?.length?.min)
+    return required(
+      schema,
+      input.advanced?.length?.min,
+      input.validation?.required
+    )
   }
 
   return schema.nullable()
@@ -46,6 +80,10 @@ function max<T extends Coerced>(schema: T, max?: number): T {
   return max !== undefined ? (schema.max(max) as T) : schema
 }
 
-function required<T extends Coerced>(schema: T, min?: number): T {
-  return min === undefined || min < 1 ? (schema.min(1) as T) : schema
+function required<T extends Coerced>(
+  schema: T,
+  min?: number,
+  message?: string
+): T {
+  return min === undefined || min < 1 ? (schema.min(1, message) as T) : schema
 }

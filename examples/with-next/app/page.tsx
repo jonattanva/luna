@@ -27,7 +27,7 @@ export default function Page() {
                 href="/client"
                 className="text-violet-800 hover:underline dark:text-violet-500"
               >
-                Client components
+                Client components (shadcn)
               </Link>
             </li>
             <li>
@@ -35,7 +35,7 @@ export default function Page() {
                 href="/server"
                 className="text-violet-800 hover:underline dark:text-violet-500"
               >
-                Server components
+                Server components (shadcn)
               </Link>
             </li>
           </ul>

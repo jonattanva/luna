@@ -27,7 +27,7 @@ export function Field(
     <div
       {...(errors && { [DATA_INVALID]: 'true' })}
       data-slot="field"
-      className="flex w-full flex-col gap-4 data-[invalid=true]:text-red-500 [&>*]:w-full"
+      className="flex w-full flex-col gap-4 *:w-full data-[invalid=true]:text-red-500"
     >
       {props.field.name && (
         <Label name={props.field.name} required={props.field.required}>

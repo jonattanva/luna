@@ -1,9 +1,8 @@
-import { Metadata } from 'next'
 import { Content } from './content'
-import { ModeToggle } from '../theme'
+import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Server - Luna React',
+  title: 'Client - Luna React',
 }
 
 export default function Page() {
@@ -14,9 +13,6 @@ export default function Page() {
           <Content />
         </div>
       </main>
-      <div className="absolute top-4 right-4 z-50">
-        <ModeToggle />
-      </div>
     </div>
   )
 }

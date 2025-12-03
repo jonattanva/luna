@@ -59,7 +59,7 @@
               "placeholder": "MM",
               "required": true,
               "validation": {
-                "required": "Please enter a valid month"
+                "required": "Please select the expiration month"
               },
               "order": 1
             },
@@ -79,7 +79,7 @@
               "placeholder": "YYYY",
               "required": true,
               "validation": {
-                "required": "Please enter a valid year"
+                "required": "Please select the expiration year"
               },
               "order": 2
             },
@@ -98,7 +98,7 @@
               "placeholder": "123",
               "required": true,
               "validation": {
-                "required": "Please enter a valid CVV"
+                "required": "Please enter the 3-digit security code on the back of your card"
               },
               "order": 3
             }
