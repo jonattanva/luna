@@ -1,9 +1,7 @@
 import './globals.css'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { LanguageToggle } from './language'
-import { NextIntlClientProvider } from 'next-intl'
 import { ThemeProvider } from '@/components/theme-provider'
-import { ThemeToggle } from './theme'
+import { ThemeToggle } from '../components/toggle/theme'
 import type { Metadata } from 'next'
 
 const geistSans = Geist({
@@ -31,22 +29,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NextIntlClientProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-            <div className="absolute top-4 right-4 z-50">
-              <div className="flex flex-row gap-2">
-                <LanguageToggle />
-                <ThemeToggle />
-              </div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <div className="absolute top-4 right-4 z-50">
+            <div className="flex flex-row gap-2">
+              <ThemeToggle />
             </div>
-          </ThemeProvider>
-        </NextIntlClientProvider>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )

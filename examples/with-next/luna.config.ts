@@ -1,6 +1,6 @@
-import { Input } from './ui/input'
-import { Textarea } from './ui/textarea'
-import { Select } from './ui/native-select'
+import { Input } from './components/ui/input'
+import { Textarea } from './components/ui/textarea'
+import { Select } from './components/ui/native-select'
 
 import {
   defineConfig,

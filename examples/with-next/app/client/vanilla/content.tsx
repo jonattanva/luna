@@ -1,5 +1,5 @@
 import define from '@/luna.config'
-import form from '@/forms/payment/basic.json'
+import form from '@/forms/issue/basic.json'
 import { Form } from '@luna/react/server'
 
 export function Content() {
