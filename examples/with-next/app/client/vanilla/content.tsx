@@ -1,6 +1,8 @@
+'use client'
+
 import define from '@/luna.config'
 import form from '@/forms/issue/basic.json'
-import { Form } from '@luna/react/server'
+import { Form } from '@luna/react/client'
 
 export function Content() {
   return (

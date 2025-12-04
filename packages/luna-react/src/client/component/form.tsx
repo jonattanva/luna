@@ -6,34 +6,31 @@ import { Input } from './input'
 import { Separator } from '@/src/component/separator'
 import { Slot } from '@/src/component/slot'
 import { prepare } from '@/src/util/prepare'
-import { useFormAction } from '../hook/useFormAction'
 import { useSchema } from '../hook/useSchema'
-import type { Forms, Config, LunaForm, Source } from '@/src/type'
+import type { Forms, Config, Source } from '@/src/type'
 
 export function Form(
   props: Readonly<{
     children?: React.ReactNode
     config: Config
+    disabled?: boolean
     form: Forms
-    formAction?: (form: LunaForm) => Promise<void> | void // FIXME: Improve handling of formAction
     source?: Source
     value?: Record<string, unknown>
   }>
 ) {
-  const [schema, onMount, onUnmount] = useSchema()
-  const [state, formAction] = useFormAction(schema, props.formAction) // FIXME: Improve handling of formAction
+  const [, onMount, onUnmount] = useSchema()
 
   const forms = prepare(props.form)
-  const value = state?.data ?? props.value
 
   return (
     <div className="h-full w-full">
-      <form action={formAction} noValidate>
+      <form noValidate>
         <Group>
           {forms.map((form, index) => (
             <Fragment key={index}>
               <FieldSet description={form.description} title={form.title}>
-                <Slot errors={state?.errors} fields={form.fields} value={value}>
+                <Slot fields={form.fields} disabled={props.disabled}>
                   {(internal) => (
                     <Input
                       {...internal}

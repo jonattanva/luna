@@ -1,12 +1,12 @@
-import { isSelect } from '@/src/input'
+import { isOptions } from '@/src/util/input'
 import { useDataSource } from '../hook/useDataSource'
 import { useInput } from '../hook/useInput'
 import type {
   AriaAttributes,
   CommonProps,
+  Config,
   DataAttributes,
   Field,
-  Config,
   Schema,
   Source,
 } from '@/src/type'
@@ -28,14 +28,14 @@ export function Input(
   const [schema] = useInput(props.field, props.onMount, props.onUnmount)
 
   const source =
-    props.source && isSelect(props.field)
+    props.source && isOptions(props.field)
       ? props.source[props.field.name]
       : undefined
 
   const [options] = useDataSource(source, props.config)
 
   const commonPropsWithOptions =
-    isSelect(props.field) && Array.isArray(options)
+    isOptions(props.field) && Array.isArray(options)
       ? { ...props.commonProps, options }
       : props.commonProps
 

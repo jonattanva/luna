@@ -6,11 +6,16 @@ export function InputBase(
   props: Readonly<{
     children: Children
     defaultValue?: string | number
+    disabled?: boolean
     errors?: string[]
     field: Field
   }>
 ) {
-  const commonProps = buildCommon(props.field)
+  if (!props.field.type) {
+    return null
+  }
+
+  const commonProps = buildCommon(props.field, props.disabled)
 
   const dataAttributes = buildDataAttributes(props.field)
   const ariaAttributes = buildAriaAttributes(props.field, props.errors)

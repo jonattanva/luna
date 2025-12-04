@@ -30,10 +30,11 @@ export function defineInput(
   return {
     types: [
       'input',
-      'input/text',
+      'input/email',
       'input/number',
       'input/password',
-      'input/email',
+      'input/tel',
+      'input/text',
     ],
     input,
   }

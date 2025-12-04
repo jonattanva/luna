@@ -110,6 +110,19 @@
       "order": 1
     },
     {
+      "title": "Subscription Plan",
+      "description": "Choose the plan that best fits your needs",
+      "fields": [
+        {
+          "name": "plan",
+          "required": true,
+          "type": "radio/price"
+        }
+      ],
+      "separator": true,
+      "order": 2
+    },
+    {
       "title": "Billing Address",
       "description": "The billing address associated with your payment method",
       "fields": [
@@ -180,7 +193,7 @@
           "order": 3
         }
       ],
-      "order": 2
+      "order": 3
     }
   ],
   "source": {
@@ -188,6 +201,20 @@
       "url": "http://localhost:3001/api/cities",
       "method": "GET",
       "namespace": "body"
-    }
+    },
+    "plan": [
+      {
+        "name": "Basic",
+        "description": "For individuals and small teams",
+        "value": "basic",
+        "price": "$10/month"
+      },
+      {
+        "name": "Pro",
+        "description": "For growing businesses",
+        "value": "pro",
+        "price": "$30/month"
+      }
+    ]
   }
 }

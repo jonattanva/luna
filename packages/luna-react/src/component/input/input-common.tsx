@@ -1,11 +1,20 @@
-import { isInput, isNumber, isSelect, isText, isTextArea } from '@/src/input'
+import {
+  extract,
+  isInput,
+  isNumber,
+  isSelect,
+  isText,
+  isTextArea,
+} from '@/src/util/input'
 import { buildOptionSelect } from './input-option-select'
-import { INPUT, TYPE_TEXT } from '@/src/constant'
 import type { CommonProps, Field, Input } from '@/src/type'
 
-export function buildCommon(field: Field) {
+export function buildCommon(
+  field: Field,
+  disabled: boolean = false
+): CommonProps {
   const commonProps: CommonProps = {
-    disabled: field.readonly,
+    disabled: disabled ?? field.readonly,
     id: field.name,
     name: field.name,
     placeholder: field.placeholder,
@@ -112,15 +121,4 @@ function defineNumberLimits(input: Input): Partial<CommonProps> {
     return defineMinMax(input)
   }
   return {}
-}
-
-function extract(value: string = TYPE_TEXT): string {
-  const result = value.match(/[^/]+$/)
-  if (result) {
-    const [type] = result
-    if (type !== INPUT) {
-      return type.trim().toLowerCase()
-    }
-  }
-  return TYPE_TEXT
 }

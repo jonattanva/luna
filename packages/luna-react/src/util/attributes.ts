@@ -1,4 +1,4 @@
-import { PREFIX_ARIA, PREFIX_DATA } from '../constant'
+import { PREFIX_ARIA, PREFIX_DATA } from './constant'
 import { entries } from './prepare'
 
 export function getPrefixedAttributes(

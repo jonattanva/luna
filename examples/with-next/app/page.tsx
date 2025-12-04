@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-stone-950">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between bg-white px-16 py-32 dark:bg-black">
         <div className="w-full max-w-md">
           <Link
@@ -23,7 +23,7 @@ export default function Page() {
           <div className="mt-8 space-y-6">
             <div>
               <h2 className="flex items-center gap-2 text-base font-semibold text-zinc-900 dark:text-zinc-100">
-                <span className="inline-flex items-center rounded-md bg-violet-100 px-2 py-1 text-xs font-medium text-violet-800 ring-1 ring-violet-200/60 transition-colors ring-inset hover:bg-violet-200 dark:bg-violet-900/30 dark:text-violet-300 dark:ring-violet-800/50 dark:hover:bg-violet-900/50">
+                <span className="inline-flex items-center rounded-md bg-amber-100 px-2 py-1 text-xs font-medium text-amber-800 ring-1 ring-amber-200/60 transition-colors ring-inset hover:bg-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:ring-amber-800/50 dark:hover:bg-amber-900/50">
                   Client component - vanilla
                 </span>
               </h2>
@@ -31,7 +31,7 @@ export default function Page() {
                 <li>
                   <Link
                     href="/client/vanilla"
-                    className="text-violet-700 underline-offset-4 transition-colors hover:text-violet-800 hover:underline focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:outline-none dark:text-violet-400 dark:hover:text-violet-300 dark:focus-visible:ring-violet-700"
+                    className="text-amber-700 underline-offset-4 transition-colors hover:text-amber-800 hover:underline focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:outline-none dark:text-amber-400 dark:hover:text-amber-300 dark:focus-visible:ring-amber-700"
                   >
                     Payment form
                   </Link>

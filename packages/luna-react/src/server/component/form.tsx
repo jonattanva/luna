@@ -6,13 +6,15 @@ import { Input } from './input'
 import { Separator } from '@/src/component/separator'
 import { Slot } from '@/src/component/slot'
 import { prepare } from '@/src/util/prepare'
-import type { Forms, Config } from '@/src/type'
+import type { Forms, Config, Source } from '@/src/type'
 
 export function Form(
   props: Readonly<{
     children?: React.ReactNode
     config: Config
+    disabled?: boolean
     form: Forms
+    source?: Source
     value?: Record<string, unknown>
   }>
 ) {
@@ -25,8 +27,14 @@ export function Form(
           {forms.map((form, index) => (
             <Fragment key={index}>
               <FieldSet description={form.description} title={form.title}>
-                <Slot fields={form.fields}>
-                  {(internal) => <Input {...internal} config={props.config} />}
+                <Slot fields={form.fields} disabled={props.disabled}>
+                  {(internal) => (
+                    <Input
+                      {...internal}
+                      config={props.config}
+                      source={props.source}
+                    />
+                  )}
                 </Slot>
               </FieldSet>
               {form.separator && <Separator />}

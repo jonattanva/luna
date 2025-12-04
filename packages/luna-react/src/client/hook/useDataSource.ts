@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { isObject } from '@/src/input'
+import { isObject } from '@/src/util/input'
 import type { Config, DataSource, Nullable } from '@/src/type'
 
 export function useDataSource<T>(

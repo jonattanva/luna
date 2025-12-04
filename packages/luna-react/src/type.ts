@@ -107,13 +107,6 @@ export type Children = (props: {
 export type Schema = z.ZodTypeAny
 export type Schemas = Record<string, Schema>
 
-export type LunaForm = {
-  data: {
-    [key: string]: FormDataEntryValue
-  }
-  errors: FormError | null
-}
-
 export type Environment = {
   [key: string]: string | number | boolean
 }

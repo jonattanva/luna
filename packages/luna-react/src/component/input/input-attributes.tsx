@@ -1,4 +1,4 @@
-import { ARIA_ERROR_MESSAGE, ARIA_INVALID } from '@/src/constant'
+import { ARIA_ERROR_MESSAGE, ARIA_INVALID } from '@/src/util/constant'
 import { getAriaAttributes, getDataAttributes } from '@/src/util/attributes'
 import type { Field } from '@/src/type'
 

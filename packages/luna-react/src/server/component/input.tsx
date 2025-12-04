@@ -1,9 +1,11 @@
+import { isOptions } from '@/src/util/input'
 import type {
   AriaAttributes,
   CommonProps,
   DataAttributes,
   Field,
   Config,
+  Source,
 } from '@/src/type'
 
 export function Input(
@@ -12,9 +14,21 @@ export function Input(
     commonProps: CommonProps
     config: Config
     dataAttributes?: DataAttributes
+    defaultValue?: string | number
     field: Field
+    source?: Source
   }>
 ) {
+  const source =
+    props.source && isOptions(props.field)
+      ? props.source[props.field.name]
+      : undefined
+
+  const commonPropsWithOptions =
+    isOptions(props.field) && Array.isArray(source)
+      ? { ...props.commonProps, options: source }
+      : props.commonProps
+
   const Component = props.config.inputs[props.field.type]
   if (!Component) {
     return null
@@ -23,8 +37,9 @@ export function Input(
   return (
     <Component
       {...props.ariaAttributes}
-      {...props.commonProps}
+      {...commonPropsWithOptions}
       {...props.dataAttributes}
+      defaultValue={props.defaultValue}
     />
   )
 }
