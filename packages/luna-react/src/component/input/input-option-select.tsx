@@ -1,4 +1,4 @@
-import { isSelect, isSelectMonth, isSelectYear } from '@/src/util/input'
+import { isSelect, isSelectMonth, isSelectYear } from '@/src/util/is-input'
 import { getConvert, getCurrentYear, getMonth, getYear } from '@/src/util/date'
 import type { Field, Select } from '@/src/type'
 

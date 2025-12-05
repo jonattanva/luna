@@ -4,7 +4,9 @@ export const INPUT_NUMBER = 'input/number'
 export const INPUT_TEXTAREA = 'textarea'
 
 export const COLUMN = 'column'
+export const FIELDS = 'fields'
 export const RADIO = 'radio'
+export const VALUE = 'value'
 
 export const SELECT = 'select'
 export const SELECT_MONTH = 'select/month'
@@ -13,7 +15,7 @@ export const SELECT_YEAR = 'select/year'
 export const TYPE_EMAIL = 'email'
 export const TYPE_NUMBER = 'number'
 export const TYPE_PASSWORD = 'password'
-export const TYPE_PHONE = 'tel'
+export const TYPE_TEL = 'tel'
 export const TYPE_TEXT = 'text'
 
 export const ARIA_ERROR_MESSAGE = 'aria-errormessage'

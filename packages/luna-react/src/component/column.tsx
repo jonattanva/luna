@@ -20,7 +20,9 @@ export function Column(
 
   return (
     <div className="flex w-full flex-col gap-4">
-      <div className={twMerge('grid gap-4', cols)}>{props.children}</div>
+      <div className={twMerge('grid grid-cols-1 gap-4', cols)}>
+        {props.children}
+      </div>
       {errors.length > 0 && <FieldError errors={errors} />}
     </div>
   )

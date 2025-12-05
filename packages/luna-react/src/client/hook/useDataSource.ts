@@ -1,12 +1,12 @@
 import useSWR from 'swr'
-import { isObject } from '@/src/util/input'
+import { getArray } from '@/src/util/extract'
 import type { Config, DataSource, Nullable } from '@/src/type'
 
 export function useDataSource<T>(
-  dataSource: Nullable<DataSource | Array<T>> = null,
+  dataSource: Nullable<DataSource | T[]> = null,
   config: Config
 ): [Nullable<T[]>] {
-  const { data } = useSWR<Record<string, T[]>>(
+  const { data } = useSWR<Record<string, T> | T[]>(
     buildSource(dataSource),
     config.fetcher
   )
@@ -17,43 +17,11 @@ export function useDataSource<T>(
     }
 
     if (data) {
-      const extracted = extract(data, dataSource.namespace)
-      return [extracted]
+      return [getArray(data, dataSource.namespace)]
     }
   }
 
   return [null]
-}
-
-function extract<T>(
-  collection: Record<string, T[]>,
-  namespace?: string
-): T[] | null {
-  if (!namespace) {
-    return null
-  }
-
-  const keys = namespace.split('.').filter((key) => key !== '')
-  if (keys.length === 0) {
-    return null
-  }
-
-  let result: Record<string, T[]> | T[] = collection
-
-  for (const key of keys) {
-    if (isObject(result)) {
-      const value = result[key]
-      if (value !== undefined) {
-        result = value as Record<string, T[]> | T[]
-      } else {
-        return null
-      }
-    } else {
-      return null
-    }
-  }
-
-  return Array.isArray(result) ? result : null
 }
 
 function buildSource<T>(dataSource: Nullable<DataSource | Array<T>> = null) {

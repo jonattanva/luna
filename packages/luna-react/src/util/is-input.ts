@@ -1,5 +1,6 @@
 import {
   COLUMN,
+  FIELDS,
   INPUT,
   INPUT_EMAIL,
   INPUT_NUMBER,
@@ -11,10 +12,18 @@ import {
   TYPE_EMAIL,
   TYPE_NUMBER,
   TYPE_PASSWORD,
+  TYPE_TEL,
   TYPE_TEXT,
 } from './constant'
-
 import type { Column, Field, Input, Select, Slot } from '../type'
+
+export function isSelectMonth(field: Field): boolean {
+  return field.type === SELECT_MONTH
+}
+
+export function isSelectYear(field: Field): boolean {
+  return field.type === SELECT_YEAR
+}
 
 export function isOptions(field: Field): field is Input {
   return isSelect(field) || isRadio(field)
@@ -28,16 +37,8 @@ export function isSelect(field: Field): field is Select {
   return field.type === SELECT || field.type.startsWith(`${SELECT}/`)
 }
 
-export function isSelectMonth(field: Field): boolean {
-  return field.type === SELECT_MONTH
-}
-
-export function isSelectYear(field: Field): boolean {
-  return field.type === SELECT_YEAR
-}
-
 export function isColumn(slot: Slot): slot is Column<Field> {
-  return slot.type === COLUMN && 'fields' in slot
+  return slot.type === COLUMN && FIELDS in slot
 }
 
 export function isField(slot: Slot): slot is Field {
@@ -56,7 +57,8 @@ export function isText(field: Field): field is Input {
   return (
     field.type === TYPE_TEXT ||
     field.type === TYPE_EMAIL ||
-    field.type === TYPE_PASSWORD
+    field.type === TYPE_PASSWORD ||
+    field.type === TYPE_TEL
   )
 }
 
@@ -68,17 +70,7 @@ export function isEmail(field: Field): field is Input {
   return field.type === INPUT_EMAIL || field.type === TYPE_EMAIL
 }
 
-export function getDefaultValue(value: unknown): string | number | undefined {
-  return typeof value === 'string' || typeof value === 'number'
-    ? value
-    : undefined
-}
-
-export function isObject(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value)
-}
-
-export function extract(value: string = TYPE_TEXT): string {
+export function getType(value: string = TYPE_TEXT): string {
   const result = value.match(/[^/]+$/)
   if (result) {
     const [type] = result

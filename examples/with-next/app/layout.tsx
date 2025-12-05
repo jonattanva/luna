@@ -36,7 +36,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <div className="absolute top-4 right-4 z-50">
+          <div className="fixed top-4 right-4 z-50">
             <div className="flex flex-row gap-2">
               <ThemeToggle />
             </div>

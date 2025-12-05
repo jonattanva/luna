@@ -1,8 +1,10 @@
-import { Content } from './content'
-import { Metadata } from 'next'
+import define from '@/luna.config'
+import form from '@/forms/payment.json'
+import { Form } from '@luna/react/server'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Server - Luna React',
+  title: 'Server - Payment form - Luna React',
 }
 
 export default function Page() {
@@ -13,6 +15,14 @@ export default function Page() {
           <Content />
         </div>
       </main>
+    </div>
+  )
+}
+
+function Content() {
+  return (
+    <div className="h-full w-full">
+      <Form {...form} config={define} />
     </div>
   )
 }

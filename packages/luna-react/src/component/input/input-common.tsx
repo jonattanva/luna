@@ -1,11 +1,11 @@
 import {
-  extract,
+  getType,
   isInput,
   isNumber,
   isSelect,
   isText,
   isTextArea,
-} from '@/src/util/input'
+} from '@/src/util/is-input'
 import { buildOptionSelect } from './input-option-select'
 import type { CommonProps, Field, Input } from '@/src/type'
 
@@ -46,7 +46,7 @@ export function buildCommon(
 }
 
 function defineInput(input: Input) {
-  const type = extract(input.type)
+  const type = getType(input.type)
   const copy = { ...input, type }
 
   return {

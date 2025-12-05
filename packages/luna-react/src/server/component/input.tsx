@@ -1,4 +1,4 @@
-import { isOptions } from '@/src/util/input'
+import { isOptions } from '@/src/util/is-input'
 import type {
   AriaAttributes,
   CommonProps,
@@ -6,6 +6,7 @@ import type {
   Field,
   Config,
   Source,
+  Value,
 } from '@/src/type'
 
 export function Input(
@@ -14,7 +15,7 @@ export function Input(
     commonProps: CommonProps
     config: Config
     dataAttributes?: DataAttributes
-    defaultValue?: string | number
+    defaultValue?: Value
     field: Field
     source?: Source
   }>

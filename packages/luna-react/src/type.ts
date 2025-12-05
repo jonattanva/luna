@@ -12,14 +12,14 @@ export type Hiddenable = {
 
 export type Base = Orderable & Hiddenable
 
-export type Form = {
+export type Section = {
   description?: string
   fields?: Fields
   separator?: boolean
   title?: string
 } & Base
 
-export type Forms = readonly Form[]
+export type Sections = readonly Section[]
 
 export type DataSource = {
   url: string
@@ -100,7 +100,7 @@ export type Children = (props: {
   ariaAttributes?: AriaAttributes
   commonProps: CommonProps
   dataAttributes?: DataAttributes
-  defaultValue?: string | number
+  defaultValue?: Value
   field: Field
 }) => React.ReactNode
 
@@ -108,7 +108,7 @@ export type Schema = z.ZodTypeAny
 export type Schemas = Record<string, Schema>
 
 export type Environment = {
-  [key: string]: string | number | boolean
+  [key: string]: Value
 }
 
 export type Config = {
@@ -123,3 +123,5 @@ export type InputConfig = {
   types: string | string[]
   input: React.ComponentType<React.HTMLAttributes<HTMLElement>>
 }
+
+export type Value = string | number | readonly string[]

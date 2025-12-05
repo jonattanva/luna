@@ -33,7 +33,7 @@ export default function Page() {
                     href="/client/vanilla"
                     className="text-amber-700 underline-offset-4 transition-colors hover:text-amber-800 hover:underline focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:outline-none dark:text-amber-400 dark:hover:text-amber-300 dark:focus-visible:ring-amber-700"
                   >
-                    Payment form
+                    Issue form
                   </Link>
                 </li>
               </ul>
@@ -58,7 +58,7 @@ export default function Page() {
                     href="/client/detail"
                     className="text-violet-700 underline-offset-4 transition-colors hover:text-violet-800 hover:underline focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:outline-none dark:text-violet-400 dark:hover:text-violet-300 dark:focus-visible:ring-violet-700"
                   >
-                    Detail page
+                    Detail form
                   </Link>
                 </li>
               </ul>
@@ -83,7 +83,7 @@ export default function Page() {
                     href="/server/detail"
                     className="text-emerald-700 underline-offset-4 transition-colors hover:text-emerald-800 hover:underline focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:outline-none dark:text-emerald-400 dark:hover:text-emerald-300 dark:focus-visible:ring-emerald-700"
                   >
-                    Detail page
+                    Detail form
                   </Link>
                 </li>
               </ul>

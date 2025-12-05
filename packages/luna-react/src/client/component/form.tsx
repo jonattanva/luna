@@ -7,30 +7,34 @@ import { Separator } from '@/src/component/separator'
 import { Slot } from '@/src/component/slot'
 import { prepare } from '@/src/util/prepare'
 import { useSchema } from '../hook/useSchema'
-import type { Forms, Config, Source } from '@/src/type'
+import type { Sections, Config, Source } from '@/src/type'
 
 export function Form(
   props: Readonly<{
     children?: React.ReactNode
     config: Config
-    disabled?: boolean
-    form: Forms
+    readOnly?: boolean
+    sections: Sections
     source?: Source
     value?: Record<string, unknown>
   }>
 ) {
   const [, onMount, onUnmount] = useSchema()
 
-  const forms = prepare(props.form)
+  const sections = prepare(props.sections)
 
   return (
     <div className="h-full w-full">
       <form noValidate>
         <Group>
-          {forms.map((form, index) => (
+          {sections.map((section, index) => (
             <Fragment key={index}>
-              <FieldSet description={form.description} title={form.title}>
-                <Slot fields={form.fields} disabled={props.disabled}>
+              <FieldSet description={section.description} title={section.title}>
+                <Slot
+                  disabled={props.readOnly}
+                  fields={section.fields}
+                  value={props.value}
+                >
                   {(internal) => (
                     <Input
                       {...internal}
@@ -42,7 +46,7 @@ export function Form(
                   )}
                 </Slot>
               </FieldSet>
-              {form.separator && <Separator />}
+              {section.separator && <Separator />}
             </Fragment>
           ))}
           {props.children && <Control>{props.children}</Control>}

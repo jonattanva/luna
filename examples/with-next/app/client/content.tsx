@@ -1,15 +1,20 @@
 'use client'
 
 import config from '@/luna.config'
-import form from '@/forms/payment/basic.json'
 import { Button } from '@/components/ui/button'
 import { Form } from '@luna/react/client'
+import type { Sections, Source } from '@luna/react/client'
 
-export function Content() {
+export function Content(props: {
+  readOnly?: boolean
+  sections: Sections
+  source?: Source
+  value?: Record<string, unknown>
+}) {
   return (
     <div className="h-full w-full">
-      <Form {...form} config={config}>
-        <Button type="submit">Submit</Button>
+      <Form {...props} config={config} readOnly={props.readOnly}>
+        {!props.readOnly && <Button type="submit">Submit</Button>}
       </Form>
     </div>
   )

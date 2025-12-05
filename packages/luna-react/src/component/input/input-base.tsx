@@ -1,11 +1,11 @@
 import { buildCommon } from './input-common'
 import { buildAriaAttributes, buildDataAttributes } from './input-attributes'
-import type { Children, Field } from '@/src/type'
+import type { Children, Field, Value } from '@/src/type'
 
 export function InputBase(
   props: Readonly<{
     children: Children
-    defaultValue?: string | number
+    defaultValue?: Value
     disabled?: boolean
     errors?: string[]
     field: Field

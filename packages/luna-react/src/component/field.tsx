@@ -3,7 +3,7 @@ import { Description } from './description'
 import { FieldError } from './field-error'
 import { InputBase } from './input/input-base'
 import { Label } from './label'
-import { getDefaultValue } from '../util/input'
+import { getDefaultValue } from '../util/extract'
 import type { Children, Field, FormError, Nullable } from '../type'
 
 export function Field(

@@ -2,7 +2,7 @@ import { Column } from './column'
 import { Field } from './field'
 import { Fragment } from 'react'
 import { prepare } from '../util/prepare'
-import { isColumn, isField } from '../util/input'
+import { isColumn, isField } from '../util/is-input'
 import type { Children, Fields, FormError, Nullable } from '../type'
 
 export function Slot(

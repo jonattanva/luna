@@ -1,4 +1,4 @@
-import { isOptions } from '@/src/util/input'
+import { isOptions } from '@/src/util/is-input'
 import { useDataSource } from '../hook/useDataSource'
 import { useInput } from '../hook/useInput'
 import type {
@@ -9,6 +9,7 @@ import type {
   Field,
   Schema,
   Source,
+  Value,
 } from '@/src/type'
 
 export function Input(
@@ -17,7 +18,7 @@ export function Input(
     commonProps: CommonProps
     config: Config
     dataAttributes?: DataAttributes
-    defaultValue?: string | number
+    defaultValue?: Value
     field: Field
     onInputValidation?: (name: string, errors: string[]) => void
     onMount: (name: string, schema: Schema) => void
@@ -28,7 +29,7 @@ export function Input(
   const [schema] = useInput(props.field, props.onMount, props.onUnmount)
 
   const source =
-    props.source && isOptions(props.field)
+    props.source && !props.commonProps.disabled && isOptions(props.field)
       ? props.source[props.field.name]
       : undefined
 
