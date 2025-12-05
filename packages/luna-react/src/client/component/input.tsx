@@ -40,9 +40,7 @@ export function Input(
       ? { ...props.commonProps, options }
       : props.commonProps
 
-  function onBlur(
-    event: React.FocusEvent<HTMLInputElement | HTMLSelectElement>
-  ) {
+  function onBlur(event: React.FocusEvent<HTMLInputElement>) {
     if (props.field.required) {
       const validated = schema.safeParse(event.target.value)
       if (!validated.success) {
