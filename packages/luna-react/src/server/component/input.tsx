@@ -1,3 +1,5 @@
+import { buildOptions, buildSource } from '@/src/util/build'
+import { getCurrentValue } from '@/src/util/extract'
 import { isOptions } from '@/src/util/is-input'
 import type {
   AriaAttributes,
@@ -6,7 +8,6 @@ import type {
   Field,
   Config,
   Source,
-  Value,
 } from '@/src/type'
 
 export function Input(
@@ -15,15 +16,17 @@ export function Input(
     commonProps: CommonProps
     config: Config
     dataAttributes?: DataAttributes
-    defaultValue?: Value
     field: Field
     source?: Source
+    value?: Record<string, unknown>
   }>
 ) {
-  const source =
-    props.source && isOptions(props.field)
-      ? props.source[props.field.name]
-      : undefined
+  const defaultSource = buildOptions(props.field, props.value)
+  const currentValue = getCurrentValue(
+    props.field.name ? props.value?.[props.field.name] : undefined
+  )
+
+  const source = buildSource(props.field, props.source) ?? defaultSource
 
   const commonPropsWithOptions =
     isOptions(props.field) && Array.isArray(source)
@@ -40,7 +43,7 @@ export function Input(
       {...props.ariaAttributes}
       {...commonPropsWithOptions}
       {...props.dataAttributes}
-      defaultValue={props.defaultValue}
+      defaultValue={currentValue}
     />
   )
 }

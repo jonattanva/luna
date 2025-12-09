@@ -1,0 +1,108 @@
+import { expect, test } from '@playwright/test'
+import { buildOptions, buildSource } from '@/packages/luna-react/src/util/build'
+
+test.describe('Build', { tag: ['@unit'] }, () => {
+  test('should build source for radio fields', () => {
+    const field = {
+      type: 'radio',
+      name: 'gender',
+    }
+
+    const source = {
+      gender: [
+        {
+          label: 'Male',
+          value: 'male',
+        },
+      ],
+    }
+
+    const result = buildSource(field, source)
+    expect(result).toEqual([{ label: 'Male', value: 'male' }])
+  })
+
+  test('should build source for select fields', () => {
+    const field = {
+      type: 'select',
+      name: 'country',
+      disabled: false,
+    }
+
+    const source = {
+      country: [
+        {
+          label: 'USA',
+          value: 'us',
+        },
+      ],
+    }
+
+    const result = buildSource(field, source)
+    expect(result).toEqual([{ label: 'USA', value: 'us' }])
+  })
+
+  test('should return undefined for non-radio/select fields', () => {
+    const field = {
+      type: 'text',
+      name: 'username',
+    }
+
+    const result = buildSource(field)
+    expect(result).toBeUndefined()
+  })
+
+  test('should return undefined for select fields without source', () => {
+    const field = {
+      type: 'select',
+      name: 'country',
+      disabled: false,
+    }
+
+    const result = buildSource(field)
+    expect(result).toBeUndefined()
+  })
+
+  test('should build options for disabled select fields', () => {
+    const field = {
+      type: 'select',
+      name: 'country',
+      disabled: true,
+    }
+
+    const values = {
+      country: { label: 'USA', value: 'us' },
+    }
+
+    const options = buildOptions(field, values)
+    expect(options).toEqual([{ label: 'USA', value: 'us' }])
+  })
+
+  test('should return empty for non-disabled select fields', () => {
+    const field = {
+      type: 'select',
+      name: 'country',
+      disabled: false,
+    }
+
+    const values = {
+      country: { label: 'USA', value: 'us' },
+    }
+
+    const options = buildOptions(field, values)
+    expect(options).toBeUndefined()
+  })
+
+  test('should return empty for non-select fields', () => {
+    const field = {
+      type: 'text',
+      name: 'username',
+    }
+
+    const values = {
+      username: 'john_doe',
+    }
+
+    const options = buildOptions(field, values)
+    expect(options).toBeUndefined()
+  })
+})

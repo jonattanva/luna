@@ -4,10 +4,11 @@ import type { Config, DataSource, Nullable } from '@/src/type'
 
 export function useDataSource<T>(
   dataSource: Nullable<DataSource | T[]> = null,
-  config: Config
+  config: Config,
+  disabled = false
 ): [Nullable<T[]>] {
   const { data } = useSWR<Record<string, T> | T[]>(
-    buildSource(dataSource),
+    buildSource(dataSource, disabled),
     config.fetcher
   )
 
@@ -24,8 +25,11 @@ export function useDataSource<T>(
   return [null]
 }
 
-function buildSource<T>(dataSource: Nullable<DataSource | Array<T>> = null) {
-  if (dataSource && !Array.isArray(dataSource)) {
+function buildSource<T>(
+  dataSource: Nullable<DataSource | Array<T>> = null,
+  disabled = false
+): Nullable<DataSource | Array<T>> {
+  if (dataSource && !Array.isArray(dataSource) && !disabled) {
     return dataSource
   }
   return null

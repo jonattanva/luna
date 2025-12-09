@@ -12,7 +12,6 @@ export function Slot(
     errors?: Nullable<FormError>
     fields?: Fields
     hideErrorDetails?: boolean
-    value?: Record<string, unknown>
   }>
 ) {
   const fields = prepare(props.fields)
@@ -26,7 +25,6 @@ export function Slot(
             errors={props.errors}
             fields={field.fields}
             hideErrorDetails={true}
-            value={props.value}
           >
             {props.children}
           </Slot>
@@ -38,7 +36,6 @@ export function Slot(
           errors={props.errors}
           field={field}
           hideErrorDetails={props.hideErrorDetails}
-          value={props.value}
         >
           {props.children}
         </Field>

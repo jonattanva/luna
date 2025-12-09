@@ -11,13 +11,15 @@
     "prepare": "husky",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "test:unit": "npx playwright test --grep '@unit'"
+    "test:e2e": "npx playwright test --grep '@e2e'",
+    "test:unit": "npx playwright test --grep '@unit' --project=chromium"
   },
   "devDependencies": {
     "@playwright/test": "1.57.0",
     "@types/eslint-plugin-jsx-a11y": "6.10.1",
-    "@typescript-eslint/eslint-plugin": "8.48.1",
-    "@typescript-eslint/parser": "8.48.1",
+    "@types/node": "24.10.2",
+    "@typescript-eslint/eslint-plugin": "8.49.0",
+    "@typescript-eslint/parser": "8.49.0",
     "esbuild": "0.27.1",
     "eslint": "9.39.1",
     "eslint-plugin-jsx-a11y": "6.10.2",
@@ -28,7 +30,7 @@
     "prettier": "3.7.4",
     "prettier-plugin-tailwindcss": "0.7.2",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.48.1"
+    "typescript-eslint": "8.49.0"
   },
   "packageManager": "pnpm@10.20.0",
   "engines": {

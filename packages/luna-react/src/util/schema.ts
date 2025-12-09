@@ -24,7 +24,12 @@ export function getSchema(input: Input) {
 }
 
 export function getEmail(input: Input) {
-  return applyInputCommon(z.email().trim(), input)
+  let schema = z.email().trim()
+  if (!input.required) {
+    schema = schema.or(z.literal(''))
+  }
+
+  return applyInputCommon(schema, input)
 }
 
 export function getText(input: Input) {

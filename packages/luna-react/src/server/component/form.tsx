@@ -27,16 +27,13 @@ export function Form(
           {sections.map((section, index) => (
             <Fragment key={index}>
               <FieldSet description={section.description} title={section.title}>
-                <Slot
-                  fields={section.fields}
-                  disabled={props.readOnly}
-                  value={props.value}
-                >
+                <Slot disabled={props.readOnly} fields={section.fields}>
                   {(internal) => (
                     <Input
                       {...internal}
                       config={props.config}
                       source={props.source}
+                      value={props.value}
                     />
                   )}
                 </Slot>

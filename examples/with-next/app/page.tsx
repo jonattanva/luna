@@ -1,8 +1,40 @@
+import { cn } from '@/lib/utils'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Luna React',
+}
+
+const options = [
+  {
+    href: '/client/detail',
+    title: 'User Information',
+    description:
+      'A comprehensive form displaying basic user information including personal details, contact information, and address.',
+    badge: 'Client component',
+  },
+  {
+    href: '/server/detail',
+    title: 'User Information',
+    description:
+      'A comprehensive form displaying basic user information including personal details, contact information, and address.',
+    badge: 'Server component',
+  },
+]
+
+const badge: Record<string, string> = {
+  'Server component':
+    'bg-purple-100 text-purple-800 ring-purple-200/60 hover:bg-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:ring-purple-800/50 dark:hover:bg-purple-900/50',
+  'Client component':
+    'bg-green-100 text-green-800 ring-green-200/60 hover:bg-green-200 dark:bg-green-900/30 dark:text-green-300 dark:ring-green-800/50 dark:hover:bg-green-900/50',
+}
+
+const theme: Record<string, string> = {
+  'Server component':
+    'border-purple-400 hover:border-purple-200 dark:border-purple-600 dark:hover:border-purple-800',
+  'Client component':
+    'border-green-400 hover:border-green-200 dark:border-green-600 dark:hover:border-green-800',
 }
 
 export default function Page() {
@@ -21,73 +53,35 @@ export default function Page() {
             schema definition, validations, data handling, and submit actions
           </p>
           <div className="mt-8 space-y-6">
-            <div>
-              <h2 className="flex items-center gap-2 text-base font-semibold text-zinc-900 dark:text-zinc-100">
-                <span className="inline-flex items-center rounded-md bg-amber-100 px-2 py-1 text-xs font-medium text-amber-800 ring-1 ring-amber-200/60 transition-colors ring-inset hover:bg-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:ring-amber-800/50 dark:hover:bg-amber-900/50">
-                  Client component - vanilla
-                </span>
-              </h2>
-              <ul className="mt-2 list-disc pl-5">
-                <li>
-                  <Link
-                    href="/client/vanilla"
-                    className="text-amber-700 underline-offset-4 transition-colors hover:text-amber-800 hover:underline focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:outline-none dark:text-amber-400 dark:hover:text-amber-300 dark:focus-visible:ring-amber-700"
-                  >
-                    Issue form
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2 className="flex items-center gap-2 text-base font-semibold text-zinc-900 dark:text-zinc-100">
-                <span className="inline-flex items-center rounded-md bg-violet-100 px-2 py-1 text-xs font-medium text-violet-800 ring-1 ring-violet-200/60 transition-colors ring-inset hover:bg-violet-200 dark:bg-violet-900/30 dark:text-violet-300 dark:ring-violet-800/50 dark:hover:bg-violet-900/50">
-                  Client component - shadcn
-                </span>
-              </h2>
-              <ul className="mt-2 list-disc pl-5">
-                <li>
-                  <Link
-                    href="/client"
-                    className="text-violet-700 underline-offset-4 transition-colors hover:text-violet-800 hover:underline focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:outline-none dark:text-violet-400 dark:hover:text-violet-300 dark:focus-visible:ring-violet-700"
-                  >
-                    Payment form
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/client/detail"
-                    className="text-violet-700 underline-offset-4 transition-colors hover:text-violet-800 hover:underline focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:outline-none dark:text-violet-400 dark:hover:text-violet-300 dark:focus-visible:ring-violet-700"
-                  >
-                    Detail form
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2 className="flex items-center gap-2 text-base font-semibold text-zinc-900 dark:text-zinc-100">
-                <span className="inline-flex items-center rounded-md bg-emerald-100 px-2 py-1 text-xs font-medium text-emerald-800 ring-1 ring-emerald-200/60 transition-colors ring-inset hover:bg-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:ring-emerald-800/50 dark:hover:bg-emerald-900/50">
-                  Server component - shadcn
-                </span>
-              </h2>
-              <ul className="mt-2 list-disc pl-5">
-                <li>
-                  <Link
-                    href="/server"
-                    className="text-emerald-700 underline-offset-4 transition-colors hover:text-emerald-800 hover:underline focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:outline-none dark:text-emerald-400 dark:hover:text-emerald-300 dark:focus-visible:ring-emerald-700"
-                  >
-                    Payment form
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/server/detail"
-                    className="text-emerald-700 underline-offset-4 transition-colors hover:text-emerald-800 hover:underline focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:outline-none dark:text-emerald-400 dark:hover:text-emerald-300 dark:focus-visible:ring-emerald-700"
-                  >
-                    Detail form
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            {options.map((option) => (
+              <Link
+                className={cn(
+                  'group block rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:bg-zinc-900',
+                  theme[option.badge]
+                )}
+                href={option.href}
+                key={option.href}
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 text-base font-semibold text-zinc-900 dark:text-zinc-100">
+                    <h2 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                      {option.title}
+                    </h2>
+                    <span
+                      className={cn(
+                        'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset',
+                        badge[option.badge]
+                      )}
+                    >
+                      {option.badge}
+                    </span>
+                  </div>
+                </div>
+                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                  {option.description}
+                </p>
+              </Link>
+            ))}
           </div>
         </div>
       </main>

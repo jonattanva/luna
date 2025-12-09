@@ -1,3 +1,5 @@
+import { buildOptions, buildSource } from '@/src/util/build'
+import { getCurrentValue } from '@/src/util/extract'
 import { isOptions } from '@/src/util/is-input'
 import { useDataSource } from '../hook/useDataSource'
 import { useInput } from '../hook/useInput'
@@ -9,7 +11,6 @@ import type {
   Field,
   Schema,
   Source,
-  Value,
 } from '@/src/type'
 
 export function Input(
@@ -18,27 +19,33 @@ export function Input(
     commonProps: CommonProps
     config: Config
     dataAttributes?: DataAttributes
-    defaultValue?: Value
     field: Field
     onInputValidation?: (name: string, errors: string[]) => void
     onMount: (name: string, schema: Schema) => void
     onUnmount: (name: string) => void
     source?: Source
+    value?: Record<string, unknown>
   }>
 ) {
   const [schema] = useInput(props.field, props.onMount, props.onUnmount)
 
-  const source =
-    props.source && !props.commonProps.disabled && isOptions(props.field)
-      ? props.source[props.field.name]
-      : undefined
+  const defaultSource = buildOptions(props.field, props.value)
+  const currentValue = getCurrentValue(
+    props.field.name ? props.value?.[props.field.name] : undefined
+  )
 
-  const [options] = useDataSource(source, props.config)
+  const source = buildSource(props.field, props.source) ?? defaultSource
+  const [options] = useDataSource(source, props.config, props.field.disabled)
 
   const commonPropsWithOptions =
     isOptions(props.field) && Array.isArray(options)
       ? { ...props.commonProps, options }
       : props.commonProps
+
+  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
+    console.log('Input changed:', event.target.value)
+    // TODO: apply event handling logic here
+  }
 
   function onBlur(event: React.FocusEvent<HTMLInputElement>) {
     if (props.field.required) {
@@ -63,8 +70,9 @@ export function Input(
       {...props.ariaAttributes}
       {...commonPropsWithOptions}
       {...props.dataAttributes}
-      defaultValue={props.defaultValue}
+      defaultValue={currentValue}
       onBlur={onBlur}
+      onChange={onChange}
     />
   )
 }

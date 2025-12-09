@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 import {
   extract,
   getArray,
-  getDefaultValue,
+  getCurrentValue,
   getValue,
 } from '@/packages/luna-react/src/util/extract'
 
@@ -85,8 +85,8 @@ test.describe('Extract', { tag: ['@unit'] }, () => {
       value: 2,
     }
 
-    expect(getDefaultValue(data, 'label')).toBe('John Doe')
-    expect(getDefaultValue(data)).toBe(2)
-    expect(getDefaultValue('John Doe')).toBe('John Doe')
+    expect(getCurrentValue(data, 'label')).toBe('John Doe')
+    expect(getCurrentValue(data)).toBe(2)
+    expect(getCurrentValue('John Doe')).toBe('John Doe')
   })
 })

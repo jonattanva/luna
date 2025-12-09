@@ -2,7 +2,7 @@ import { isObject, isValue } from './is-type'
 import { VALUE } from './constant'
 import type { Nullable, Value } from '../type'
 
-export function getDefaultValue<T>(
+export function getCurrentValue<T>(
   value: T,
   entity = VALUE
 ): Value | undefined {

@@ -100,7 +100,6 @@ export type Children = (props: {
   ariaAttributes?: AriaAttributes
   commonProps: CommonProps
   dataAttributes?: DataAttributes
-  defaultValue?: Value
   field: Field
 }) => React.ReactNode
 

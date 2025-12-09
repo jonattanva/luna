@@ -37,6 +37,6 @@ async function user() {
           label: 'United States',
         },
       })
-    }, 1000)
+    }, 500)
   })
 }

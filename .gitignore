@@ -9,3 +9,9 @@ test-results
 
 # build output
 packages/**/dist
+
+# Playwright
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
