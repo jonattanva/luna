@@ -12,25 +12,35 @@ const options = [
     title: 'User Information',
     description:
       'A comprehensive form displaying basic user information including personal details, contact information, and address.',
-    badge: 'Client component',
+    type: 'Client component',
+    badges: ['shadcn/ui'],
+  },
+  {
+    href: '/client',
+    title: 'Payment Form',
+    description:
+      'A detailed payment form capturing credit card information, billing address, and payment options.',
+    type: 'Client component',
+    badges: ['shadcn/ui'],
   },
   {
     href: '/server/detail',
     title: 'User Information',
     description:
       'A comprehensive form displaying basic user information including personal details, contact information, and address.',
-    badge: 'Server component',
+    type: 'Server component',
+    badges: ['shadcn/ui'],
   },
 ]
 
-const badge: Record<string, string> = {
+const badgeTheme: Record<string, string> = {
   'Server component':
     'bg-purple-100 text-purple-800 ring-purple-200/60 hover:bg-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:ring-purple-800/50 dark:hover:bg-purple-900/50',
   'Client component':
     'bg-green-100 text-green-800 ring-green-200/60 hover:bg-green-200 dark:bg-green-900/30 dark:text-green-300 dark:ring-green-800/50 dark:hover:bg-green-900/50',
 }
 
-const theme: Record<string, string> = {
+const generalTheme: Record<string, string> = {
   'Server component':
     'border-purple-400 hover:border-purple-200 dark:border-purple-600 dark:hover:border-purple-800',
   'Client component':
@@ -57,7 +67,7 @@ export default function Page() {
               <Link
                 className={cn(
                   'group block rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:bg-zinc-900',
-                  theme[option.badge]
+                  generalTheme[option.type]
                 )}
                 href={option.href}
                 key={option.href}
@@ -67,19 +77,35 @@ export default function Page() {
                     <h2 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
                       {option.title}
                     </h2>
-                    <span
-                      className={cn(
-                        'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset',
-                        badge[option.badge]
-                      )}
-                    >
-                      {option.badge}
-                    </span>
                   </div>
                 </div>
                 <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                   {option.description}
                 </p>
+                <div className="mt-4 flex items-center">
+                  <span
+                    className={cn(
+                      'mr-2 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset',
+                      badgeTheme[option.type]
+                    )}
+                  >
+                    {option.type}
+                  </span>
+                  {option.badges.map((badge) => (
+                    <span
+                      key={badge}
+                      className={cn(
+                        'mr-2 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset',
+                        badgeTheme[option.type]
+                      )}
+                    >
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+                <span className="mt-4 inline-block text-sm font-medium text-blue-600 group-hover:underline dark:text-blue-400">
+                  Explore example &rarr;
+                </span>
               </Link>
             ))}
           </div>

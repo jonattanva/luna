@@ -33,7 +33,7 @@ async function user() {
         state: 'IL',
         'postal-code': '62704',
         country: {
-          value: 'us',
+          value: 'US',
           label: 'United States',
         },
       })

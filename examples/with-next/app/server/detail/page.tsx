@@ -1,7 +1,6 @@
 import define from '@/luna.config'
 import form from '@/forms/user.json'
-import { Form } from '@luna/react/server'
-import { Suspense } from 'react'
+import { Form, Fallback } from '@luna/react/server'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -13,9 +12,9 @@ export default function Page() {
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-stone-950">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between bg-white px-16 py-32 dark:bg-black">
         <div className="w-full max-w-md">
-          <Suspense fallback={<Form {...form} config={define} readOnly />}>
+          <Fallback config={define} sections={form.sections}>
             <Content />
-          </Suspense>
+          </Fallback>
         </div>
       </main>
     </div>
