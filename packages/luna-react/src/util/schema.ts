@@ -56,8 +56,8 @@ export function getNumber(input: Input) {
 export function getYear(input: Input) {
   if (input.required) {
     const schema = z.coerce
-      .number()
-      .int({ message: input.validation?.required })
+      .number({ message: input.validation?.required })
+      .int()
 
     return z.preprocess(normalize, schema)
   }

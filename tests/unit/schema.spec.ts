@@ -57,6 +57,25 @@ test.describe('Schema Utility', { tag: ['@unit'] }, () => {
     expect(schema.safeParse(5).success).toBe(true)
   })
 
+  test('should create a month schema with empty value', () => {
+    const input = {
+      name: 'month',
+      type: 'input/month',
+      required: true,
+      validation: {
+        required: 'Please select the expiration year',
+      },
+    }
+
+    const schema = getMonth(input)
+    const validated = schema.safeParse('')
+
+    expect(validated.success).toBe(false)
+    expect(validated.error!.issues[0].message).toBe(
+      'Please select the expiration year'
+    )
+  })
+
   test('should create a month schema without required validation', () => {
     const input = {
       name: 'month',
@@ -69,6 +88,25 @@ test.describe('Schema Utility', { tag: ['@unit'] }, () => {
     expect(schema.safeParse(0).success).toBe(false)
     expect(schema.safeParse(13).success).toBe(false)
     expect(schema.safeParse(5).success).toBe(true)
+  })
+
+  test('should create a year schema with empty value', () => {
+    const input = {
+      name: 'year',
+      type: 'input/year',
+      required: true,
+      validation: {
+        required: 'Please select the expiration year',
+      },
+    }
+
+    const schema = getYear(input)
+    const validated = schema.safeParse('')
+
+    expect(validated.success).toBe(false)
+    expect(validated.error!.issues[0].message).toBe(
+      'Please select the expiration year'
+    )
   })
 
   test('should create a year schema with required validation', () => {

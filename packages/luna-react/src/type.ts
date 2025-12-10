@@ -94,8 +94,6 @@ export type Select = Field & {
 export type Slot = Field | Column<Field>
 export type Fields = readonly Slot[]
 
-export type FormError = Record<string, { errors: string[] } | undefined>
-
 export type Children = (props: {
   ariaAttributes?: AriaAttributes
   commonProps: CommonProps

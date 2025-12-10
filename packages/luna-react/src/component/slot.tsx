@@ -3,40 +3,35 @@ import { Field } from './field'
 import { Fragment } from 'react'
 import { prepare } from '../util/prepare'
 import { isColumn, isField } from '../util/is-input'
-import type { Children, Fields, FormError, Nullable } from '../type'
+import type { Children, Fields } from '../type'
 
 export function Slot(
   props: Readonly<{
     children: Children
     disabled?: boolean
-    errors?: Nullable<FormError>
+    errors?: Record<string, string[]>
     fields?: Fields
-    hideErrorDetails?: boolean
   }>
 ) {
   const fields = prepare(props.fields)
 
+  // FIXME: Mirar que es posible llevar a client y server
+
   return fields.map((field, index) => (
     <Fragment key={index}>
       {isColumn(field) && (
-        <Column column={field} errors={props.errors}>
+        <Column column={field}>
           <Slot
             disabled={props.disabled}
             errors={props.errors}
             fields={field.fields}
-            hideErrorDetails={true}
           >
             {props.children}
           </Slot>
         </Column>
       )}
       {isField(field) && (
-        <Field
-          disabled={props.disabled}
-          errors={props.errors}
-          field={field}
-          hideErrorDetails={props.hideErrorDetails}
-        >
+        <Field disabled={props.disabled} field={field} errors={props.errors}>
           {props.children}
         </Field>
       )}

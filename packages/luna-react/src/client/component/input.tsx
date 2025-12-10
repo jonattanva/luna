@@ -1,8 +1,10 @@
+import { FieldError } from '@/src/component/field-error'
 import { buildOptions, buildSource } from '@/src/util/build'
 import { getCurrentValue } from '@/src/util/extract'
 import { isOptions } from '@/src/util/is-input'
 import { useDataSource } from '../hook/useDataSource'
 import { useInput } from '../hook/useInput'
+import { useInputError } from '../hook/useInputError'
 import type {
   AriaAttributes,
   CommonProps,
@@ -20,21 +22,22 @@ export function Input(
     config: Config
     dataAttributes?: DataAttributes
     field: Field
-    onInputValidation?: (name: string, errors: string[]) => void
     onMount: (name: string, schema: Schema) => void
     onUnmount: (name: string) => void
     source?: Source
     value?: Record<string, unknown>
   }>
 ) {
-  const [schema] = useInput(props.field, props.onMount, props.onUnmount)
-
   const defaultSource = buildOptions(props.field, props.value)
+  const source = buildSource(props.field, props.source) ?? defaultSource
+
   const currentValue = getCurrentValue(
     props.field.name ? props.value?.[props.field.name] : undefined
   )
 
-  const source = buildSource(props.field, props.source) ?? defaultSource
+  const [errors, setErrors] = useInputError(props.field.name)
+
+  const [schema] = useInput(props.field, props.onMount, props.onUnmount)
   const [options] = useDataSource(source, props.config, props.field.disabled)
 
   const commonPropsWithOptions =
@@ -50,13 +53,12 @@ export function Input(
   function onBlur(event: React.FocusEvent<HTMLInputElement>) {
     if (props.field.required) {
       const validated = schema.safeParse(event.target.value)
-      if (!validated.success) {
-        const errors = validated.error.issues.map((issue) => issue.message)
+      const errors =
+        validated.error?.issues.map((issue) => {
+          return issue.message
+        }) ?? []
 
-        if (props.onInputValidation) {
-          props.onInputValidation(props.field.name, errors)
-        }
-      }
+      setErrors(errors)
     }
   }
 
@@ -65,14 +67,20 @@ export function Input(
     return null
   }
 
+  // FIXME: Solo mostrar el error si el campo no pertence a una columna
+
+  console.log('Rendering input for field:', props.field.name)
   return (
-    <Component
-      {...props.ariaAttributes}
-      {...commonPropsWithOptions}
-      {...props.dataAttributes}
-      defaultValue={currentValue}
-      onBlur={onBlur}
-      onChange={onChange}
-    />
+    <>
+      <Component
+        {...props.ariaAttributes}
+        {...commonPropsWithOptions}
+        {...props.dataAttributes}
+        defaultValue={currentValue}
+        onBlur={onBlur}
+        onChange={onChange}
+      />
+      <FieldError name={props.field.name} errors={errors} />
+    </>
   )
 }

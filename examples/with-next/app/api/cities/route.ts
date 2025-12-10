@@ -10,11 +10,11 @@ async function cities() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([
-        { id: 1, name: 'New York' },
-        { id: 2, name: 'Los Angeles' },
-        { id: 3, name: 'Chicago' },
-        { id: 4, name: 'Houston' },
-        { id: 5, name: 'Phoenix' },
+        { value: 1, label: 'New York' },
+        { value: 2, label: 'Los Angeles' },
+        { value: 3, label: 'Chicago' },
+        { value: 4, label: 'Houston' },
+        { value: 5, label: 'Phoenix' },
       ])
     }, 1000)
   })

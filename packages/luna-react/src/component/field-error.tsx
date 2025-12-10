@@ -1,6 +1,8 @@
+import type { Nullable } from '../type'
+
 export function FieldError(
   props: Readonly<{
-    errors?: string[]
+    errors?: Nullable<string[]>
     name?: string
   }>
 ) {

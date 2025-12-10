@@ -1,4 +1,4 @@
-import { Form as Component } from '@/src/component/form'
+import { Form as Body } from '@/src/component/form'
 import { Input } from './input'
 import { useSchema } from '../hook/useSchema'
 import type { Sections, Config, Source } from '@/src/type'
@@ -16,7 +16,7 @@ export function Form(
   const [, onMount, onUnmount] = useSchema()
 
   return (
-    <Component
+    <Body
       control={props.children}
       readOnly={props.readOnly}
       sections={props.sections}
@@ -32,6 +32,6 @@ export function Form(
           value={props.value}
         />
       )}
-    </Component>
+    </Body>
   )
 }
