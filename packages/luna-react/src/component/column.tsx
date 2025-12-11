@@ -4,13 +4,13 @@ import { getColumn } from '../util/column'
 import { twMerge } from 'tailwind-merge'
 import type { Column, Field } from '../type'
 
-export function Column(
-  props: Readonly<{
-    children?: React.ReactNode
-    column?: Column<Field>
-    errors?: Record<string, string[]>
-  }>
-) {
+export type ColumnProps = Readonly<{
+  children?: React.ReactNode
+  column?: Column<Field>
+  errors?: Record<string, string[]>
+}>
+
+export function Column(props: ColumnProps) {
   const cols = getColumn(props.column?.advanced?.cols)
 
   const fields = props.column?.fields ?? []

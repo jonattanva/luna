@@ -6,6 +6,7 @@ import { Form } from '@luna/react/client'
 import type { Sections, Source } from '@luna/react/client'
 
 export function Content(props: {
+  action?: (formData: FormData) => Promise<void> | void
   readOnly?: boolean
   sections: Sections
   source?: Source
@@ -13,7 +14,12 @@ export function Content(props: {
 }) {
   return (
     <div className="h-full w-full">
-      <Form {...props} config={config} readOnly={props.readOnly}>
+      <Form
+        {...props}
+        action={props.action}
+        config={config}
+        readOnly={props.readOnly}
+      >
         {!props.readOnly && <Button type="submit">Submit</Button>}
       </Form>
     </div>

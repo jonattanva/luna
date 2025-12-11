@@ -91,14 +91,20 @@ export type Select = Field & {
   }
 }
 
-export type Slot = Field | Column<Field>
-export type Fields = readonly Slot[]
+export type Fields = Array<Field | Column<Field>>
+
+export type Slot = (props: {
+  disabled?: boolean
+  fields?: Fields
+  withinColumn?: boolean
+}) => React.ReactNode
 
 export type Children = (props: {
   ariaAttributes?: AriaAttributes
   commonProps: CommonProps
   dataAttributes?: DataAttributes
   field: Field
+  withinColumn?: boolean
 }) => React.ReactNode
 
 export type Schema = z.ZodTypeAny

@@ -1,10 +1,13 @@
 import { Form as Body } from '@/src/component/form'
 import { Input } from './input'
+import { Slot } from './slot'
+import { useFormAction } from '../hook/useFormAction'
 import { useSchema } from '../hook/useSchema'
 import type { Sections, Config, Source } from '@/src/type'
 
 export function Form(
   props: Readonly<{
+    action?: (formData: FormData) => Promise<void> | void
     children?: React.ReactNode
     config: Config
     readOnly?: boolean
@@ -13,24 +16,31 @@ export function Form(
     value?: Record<string, unknown>
   }>
 ) {
-  const [, onMount, onUnmount] = useSchema()
+  const [schema, onMount, onUnmount] = useSchema()
+
+  const [action] = useFormAction(schema, props.action)
 
   return (
     <Body
+      action={action}
       control={props.children}
+      noValidate
       readOnly={props.readOnly}
       sections={props.sections}
-      noValidate
     >
-      {(internal) => (
-        <Input
-          {...internal}
-          config={props.config}
-          onMount={onMount}
-          onUnmount={onUnmount}
-          source={props.source}
-          value={props.value}
-        />
+      {({ disabled, fields }) => (
+        <Slot disabled={disabled} fields={fields}>
+          {(internal) => (
+            <Input
+              {...internal}
+              config={props.config}
+              onMount={onMount}
+              onUnmount={onUnmount}
+              source={props.source}
+              value={props.value}
+            />
+          )}
+        </Slot>
       )}
     </Body>
   )

@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { isEmail, isNumber, isSelectMonth, isSelectYear } from './is-input'
-import type { Input } from '../type'
+import type { Input, Schemas } from '../type'
 
 type Coerced<T = unknown> = z.ZodCoercedString<T> | z.ZodCoercedNumber<T>
 
@@ -13,6 +13,21 @@ const approach: Array<[SchemaChecker, SchemaGetter]> = [
   [isSelectYear, getYear],
   [isSelectMonth, getMonth],
 ]
+
+export function buildSchema(schemas: Schemas) {
+  return z.object(schemas)
+}
+
+export function flatten(error: z.ZodError<Record<string, unknown>>) {
+  const results: Record<string, string[]> = {}
+  const errors = z.flattenError(error).fieldErrors
+  for (const [key, value] of Object.entries(errors)) {
+    if (value !== undefined) {
+      results[key] = value
+    }
+  }
+  return results
+}
 
 export function getSchema(input: Input) {
   for (const [check, getSchema] of approach) {

@@ -1,5 +1,6 @@
 import { Form as Component } from '@/src/component/form'
 import { Input } from './input'
+import { Slot } from '@/src/component/slot/slot'
 import type { Sections, Config, Source } from '@/src/type'
 
 export function Form(
@@ -18,13 +19,17 @@ export function Form(
       readOnly={props.readOnly}
       sections={props.sections}
     >
-      {(internal) => (
-        <Input
-          {...internal}
-          config={props.config}
-          source={props.source}
-          value={props.value}
-        />
+      {({ disabled, fields }) => (
+        <Slot disabled={disabled} fields={fields}>
+          {(internal) => (
+            <Input
+              {...internal}
+              config={props.config}
+              source={props.source}
+              value={props.value}
+            />
+          )}
+        </Slot>
       )}
     </Component>
   )

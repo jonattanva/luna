@@ -15,7 +15,7 @@ import {
   TYPE_TEL,
   TYPE_TEXT,
 } from './constant'
-import type { Column, Field, Input, Select, Slot } from '../type'
+import type { Column, Field, Input, Select } from '../type'
 
 export function isSelectMonth(field: Field): boolean {
   return field.type === SELECT_MONTH
@@ -29,24 +29,16 @@ export function isOptions(field: Field): field is Input {
   return isSelect(field) || isRadio(field)
 }
 
-export function isRadio(field: Field): field is Select {
-  return field.type === RADIO || field.type.startsWith(`${RADIO}/`)
-}
+export const isInput = checkInputType<Input>(INPUT)
+export const isRadio = checkInputType<Select>(RADIO)
+export const isSelect = checkInputType<Select>(SELECT)
 
-export function isSelect(field: Field): field is Select {
-  return field.type === SELECT || field.type.startsWith(`${SELECT}/`)
-}
-
-export function isColumn(slot: Slot): slot is Column<Field> {
+export function isColumn(slot: Field | Column<Field>): slot is Column<Field> {
   return slot.type === COLUMN && FIELDS in slot
 }
 
-export function isField(slot: Slot): slot is Field {
+export function isField(slot: Field | Column<Field>): slot is Field {
   return slot.type !== COLUMN
-}
-
-export function isInput(field: Field): field is Input {
-  return field.type === INPUT || field.type.startsWith(`${INPUT}/`)
 }
 
 export function isTextArea(field: Field): field is Input {
@@ -79,4 +71,11 @@ export function getType(value: string = TYPE_TEXT): string {
     }
   }
   return TYPE_TEXT
+}
+
+function checkInputType<T extends Field>(
+  type: string
+): (field: Field) => field is T {
+  return (field): field is T =>
+    field.type === type || field.type.startsWith(`${type}/`)
 }

@@ -163,9 +163,6 @@
                 "autocomplete": "postal-code",
                 "data": {
                   "testid": "postal-code"
-                },
-                "length": {
-                  "max": 10
                 }
               },
               "label": "Postal Code",

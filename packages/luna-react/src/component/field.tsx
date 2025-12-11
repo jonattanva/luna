@@ -1,17 +1,18 @@
-import { DATA_INVALID } from '../util/constant'
+import { DATA_INVALID } from '@/src/util/constant'
 import { Description } from './description'
 import { InputBase } from './input/input-base'
 import { Label } from './label'
-import type { Children, Field } from '../type'
+import type { Children, Field } from '@/src/type'
 
-export function Field(
-  props: Readonly<{
-    children: Children
-    disabled?: boolean
-    errors?: Record<string, string[]>
-    field: Field
-  }>
-) {
+export type FieldProps = Readonly<{
+  children: Children
+  disabled?: boolean
+  errors?: Record<string, string[]>
+  field: Field
+  withinColumn?: boolean
+}>
+
+export function Field(props: FieldProps) {
   const errors = props.field.name ? props.errors?.[props.field.name] : undefined
 
   return (
@@ -25,7 +26,12 @@ export function Field(
           {props.field.label}
         </Label>
       )}
-      <InputBase disabled={props.disabled} errors={errors} field={props.field}>
+      <InputBase
+        disabled={props.disabled}
+        errors={errors}
+        field={props.field}
+        withinColumn={props.withinColumn}
+      >
         {props.children}
       </InputBase>
       {props.field.description && (

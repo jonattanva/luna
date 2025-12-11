@@ -2,9 +2,10 @@ import { FieldError } from '@/src/component/field-error'
 import { buildOptions, buildSource } from '@/src/util/build'
 import { getCurrentValue } from '@/src/util/extract'
 import { isOptions } from '@/src/util/is-input'
+import { reportInputErrorAtom } from '../lib/error-store'
+import { useAtom } from 'jotai'
 import { useDataSource } from '../hook/useDataSource'
 import { useInput } from '../hook/useInput'
-import { useInputError } from '../hook/useInputError'
 import type {
   AriaAttributes,
   CommonProps,
@@ -26,6 +27,7 @@ export function Input(
     onUnmount: (name: string) => void
     source?: Source
     value?: Record<string, unknown>
+    withinColumn?: boolean
   }>
 ) {
   const defaultSource = buildOptions(props.field, props.value)
@@ -35,7 +37,7 @@ export function Input(
     props.field.name ? props.value?.[props.field.name] : undefined
   )
 
-  const [errors, setErrors] = useInputError(props.field.name)
+  const [errors, setErrors] = useAtom(reportInputErrorAtom(props.field.name))
 
   const [schema] = useInput(props.field, props.onMount, props.onUnmount)
   const [options] = useDataSource(source, props.config, props.field.disabled)
@@ -46,20 +48,23 @@ export function Input(
       : props.commonProps
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
-    console.log('Input changed:', event.target.value)
-    // TODO: apply event handling logic here
+    const target = event.target.value
+    validated(target)
   }
 
   function onBlur(event: React.FocusEvent<HTMLInputElement>) {
-    if (props.field.required) {
-      const validated = schema.safeParse(event.target.value)
-      const errors =
-        validated.error?.issues.map((issue) => {
-          return issue.message
-        }) ?? []
+    const target = event.target.value
+    validated(target)
+  }
 
-      setErrors(errors)
-    }
+  function validated(value: string) {
+    const results = schema.safeParse(value)
+    const errors =
+      results.error?.issues.map((issue) => {
+        return issue.message
+      }) ?? []
+
+    setErrors(errors)
   }
 
   const Component = props.config.inputs[props.field.type]
@@ -67,9 +72,6 @@ export function Input(
     return null
   }
 
-  // FIXME: Solo mostrar el error si el campo no pertence a una columna
-
-  console.log('Rendering input for field:', props.field.name)
   return (
     <>
       <Component
@@ -80,7 +82,9 @@ export function Input(
         onBlur={onBlur}
         onChange={onChange}
       />
-      <FieldError name={props.field.name} errors={errors} />
+      {!props.withinColumn && (
+        <FieldError name={props.field.name} errors={errors} />
+      )}
     </>
   )
 }

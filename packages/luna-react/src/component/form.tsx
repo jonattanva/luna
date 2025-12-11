@@ -3,13 +3,13 @@ import { FieldSet } from './field-set'
 import { Fragment } from 'react'
 import { Group } from './group'
 import { Separator } from './separator'
-import { Slot } from './slot'
-import { prepare } from '../util/prepare'
-import type { Children, Sections } from '../type'
+import { prepare } from '@/src/util/prepare'
+import type { Sections, Slot } from '@/src/type'
 
 export function Form(
   props: Readonly<{
-    children: Children
+    action?: (formData: FormData) => void
+    children: Slot
     control?: React.ReactNode
     noValidate?: boolean
     readOnly?: boolean
@@ -20,14 +20,15 @@ export function Form(
 
   return (
     <div className="h-full w-full">
-      <form noValidate={props.noValidate}>
+      <form noValidate={props.noValidate} action={props.action}>
         <Group>
           {sections.map((section, index) => (
             <Fragment key={index}>
               <FieldSet description={section.description} title={section.title}>
-                <Slot disabled={props.readOnly} fields={section.fields}>
-                  {props.children}
-                </Slot>
+                {props.children({
+                  disabled: props.readOnly,
+                  fields: section.fields,
+                })}
               </FieldSet>
               {section.separator && <Separator />}
             </Fragment>

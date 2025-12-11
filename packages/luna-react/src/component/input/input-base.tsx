@@ -8,6 +8,7 @@ export function InputBase(
     disabled?: boolean
     errors?: string[]
     field: Field
+    withinColumn?: boolean
   }>
 ) {
   if (!props.field.type) {
@@ -29,5 +30,6 @@ export function InputBase(
     commonProps,
     dataAttributes,
     field,
+    withinColumn: props.withinColumn,
   })
 }

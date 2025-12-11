@@ -101,14 +101,6 @@ function defineConstraints(
   return result
 }
 
-function defineLength(input: Input): Partial<CommonProps> {
-  return defineConstraints(input, { min: 'minLength', max: 'maxLength' })
-}
-
-function defineMinMax(input: Input): Partial<CommonProps> {
-  return defineConstraints(input, { min: 'min', max: 'max' })
-}
-
 function defineTextLimits(input: Input): Partial<CommonProps> {
   if (isText(input)) {
     return defineLength(input)
@@ -121,4 +113,12 @@ function defineNumberLimits(input: Input): Partial<CommonProps> {
     return defineMinMax(input)
   }
   return {}
+}
+
+function defineLength(input: Input): Partial<CommonProps> {
+  return defineConstraints(input, { min: 'minLength', max: 'maxLength' })
+}
+
+function defineMinMax(input: Input): Partial<CommonProps> {
+  return defineConstraints(input, { min: 'min', max: 'max' })
 }

@@ -26,3 +26,13 @@ export function buildSource(field: Field, source?: Source) {
     }
   }
 }
+
+export function buildFormData(form: Record<string, unknown>) {
+  const formData = new FormData()
+  for (const [key, value] of Object.entries(form)) {
+    if (value !== null) {
+      formData.append(key, String(value))
+    }
+  }
+  return formData
+}
