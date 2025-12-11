@@ -1,11 +1,14 @@
+import { Description } from '@/src/component/description'
 import { FieldError } from '@/src/component/field-error'
-import { buildOptions, buildSource } from '@/src/util/build'
-import { getCurrentValue } from '@/src/util/extract'
-import { isOptions } from '@/src/util/is-input'
 import { reportInputErrorAtom } from '../lib/error-store'
 import { useAtom } from 'jotai'
 import { useDataSource } from '../hook/useDataSource'
 import { useInput } from '../hook/useInput'
+import {
+  getValue,
+  mergeCommonProps,
+  resolveSource,
+} from '@/src/util/helper/input'
 import type {
   AriaAttributes,
   CommonProps,
@@ -30,22 +33,19 @@ export function Input(
     withinColumn?: boolean
   }>
 ) {
-  const defaultSource = buildOptions(props.field, props.value)
-  const source = buildSource(props.field, props.source) ?? defaultSource
-
-  const currentValue = getCurrentValue(
-    props.field.name ? props.value?.[props.field.name] : undefined
-  )
+  const currentValue = getValue(props.field, props.value)
+  const source = resolveSource(props.field, props.value, props.source)
 
   const [errors, setErrors] = useAtom(reportInputErrorAtom(props.field.name))
 
   const [schema] = useInput(props.field, props.onMount, props.onUnmount)
   const [options] = useDataSource(source, props.config, props.field.disabled)
 
-  const commonPropsWithOptions =
-    isOptions(props.field) && Array.isArray(options)
-      ? { ...props.commonProps, options }
-      : props.commonProps
+  const commonPropsWithOptions = mergeCommonProps(
+    props.field,
+    props.commonProps,
+    options
+  )
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     const target = event.target.value
@@ -82,6 +82,9 @@ export function Input(
         onBlur={onBlur}
         onChange={onChange}
       />
+      {props.field.description && (
+        <Description>{props.field.description}</Description>
+      )}
       {!props.withinColumn && (
         <FieldError name={props.field.name} errors={errors} />
       )}

@@ -24,3 +24,8 @@ export const DATA_INVALID = 'data-invalid'
 
 export const PREFIX_ARIA = 'aria'
 export const PREFIX_DATA = 'data'
+
+export const MIN = 'min'
+export const MAX = 'max'
+export const MIN_LENGTH = 'minLength'
+export const MAX_LENGTH = 'maxLength'

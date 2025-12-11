@@ -1,3 +1,4 @@
+import { MAX, MAX_LENGTH, MIN, MIN_LENGTH } from '@/src/util/constant'
 import {
   getType,
   isInput,
@@ -52,7 +53,7 @@ function defineInput(input: Input) {
   return {
     ...defineAutoComplete(input),
     ...defineNumberLimits(copy),
-    ...defineTextLimits(copy),
+    ...(isText(copy) ? defineLength(copy) : {}),
     type,
   }
 }
@@ -80,11 +81,26 @@ function defineAutoComplete(input: Input) {
   return {}
 }
 
+function defineNumberLimits(input: Input): Partial<CommonProps> {
+  if (isNumber(input)) {
+    return defineMinMax(input)
+  }
+  return {}
+}
+
+function defineLength(input: Input): Partial<CommonProps> {
+  return defineConstraints(input, { min: MIN_LENGTH, max: MAX_LENGTH })
+}
+
+function defineMinMax(input: Input): Partial<CommonProps> {
+  return defineConstraints(input, { min: MIN, max: MAX })
+}
+
 function defineConstraints(
   input: Input,
   keys: {
-    min: 'min' | 'minLength'
-    max: 'max' | 'maxLength'
+    min: typeof MIN | typeof MIN_LENGTH
+    max: typeof MAX | typeof MAX_LENGTH
   }
 ): Partial<CommonProps> {
   const result: Record<string, number> = {}
@@ -99,26 +115,4 @@ function defineConstraints(
     }
   }
   return result
-}
-
-function defineTextLimits(input: Input): Partial<CommonProps> {
-  if (isText(input)) {
-    return defineLength(input)
-  }
-  return {}
-}
-
-function defineNumberLimits(input: Input): Partial<CommonProps> {
-  if (isNumber(input)) {
-    return defineMinMax(input)
-  }
-  return {}
-}
-
-function defineLength(input: Input): Partial<CommonProps> {
-  return defineConstraints(input, { min: 'minLength', max: 'maxLength' })
-}
-
-function defineMinMax(input: Input): Partial<CommonProps> {
-  return defineConstraints(input, { min: 'min', max: 'max' })
 }

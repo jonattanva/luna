@@ -1,5 +1,4 @@
 import { DATA_INVALID } from '@/src/util/constant'
-import { Description } from './description'
 import { InputBase } from './input/input-base'
 import { Label } from './label'
 import type { Children, Field } from '@/src/type'
@@ -34,9 +33,6 @@ export function Field(props: FieldProps) {
       >
         {props.children}
       </InputBase>
-      {props.field.description && (
-        <Description>{props.field.description}</Description>
-      )}
     </div>
   )
 }

@@ -1,6 +1,9 @@
-import { buildOptions, buildSource } from '@/src/util/build'
-import { getCurrentValue } from '@/src/util/extract'
-import { isOptions } from '@/src/util/is-input'
+import { Description } from '@/src/component/description'
+import {
+  getValue,
+  mergeCommonProps,
+  resolveSource,
+} from '@/src/util/helper/input'
 import type {
   AriaAttributes,
   CommonProps,
@@ -21,17 +24,14 @@ export function Input(
     value?: Record<string, unknown>
   }>
 ) {
-  const defaultSource = buildOptions(props.field, props.value)
-  const currentValue = getCurrentValue(
-    props.field.name ? props.value?.[props.field.name] : undefined
+  const currentValue = getValue(props.field, props.value)
+  const source = resolveSource(props.field, props.value, props.source)
+
+  const commonPropsWithOptions = mergeCommonProps(
+    props.field,
+    props.commonProps,
+    source
   )
-
-  const source = buildSource(props.field, props.source) ?? defaultSource
-
-  const commonPropsWithOptions =
-    isOptions(props.field) && Array.isArray(source)
-      ? { ...props.commonProps, options: source }
-      : props.commonProps
 
   const Component = props.config.inputs[props.field.type]
   if (!Component) {
@@ -39,11 +39,16 @@ export function Input(
   }
 
   return (
-    <Component
-      {...props.ariaAttributes}
-      {...commonPropsWithOptions}
-      {...props.dataAttributes}
-      defaultValue={currentValue}
-    />
+    <>
+      <Component
+        {...props.ariaAttributes}
+        {...commonPropsWithOptions}
+        {...props.dataAttributes}
+        defaultValue={currentValue}
+      />
+      {props.field.description && (
+        <Description>{props.field.description}</Description>
+      )}
+    </>
   )
 }

@@ -1,5 +1,6 @@
-import { z } from 'zod'
+import { MAX, MIN } from './constant'
 import { isEmail, isNumber, isSelectMonth, isSelectYear } from './is-input'
+import { z } from 'zod'
 import type { Input, Schemas } from '../type'
 
 type Coerced<T = unknown> = z.ZodCoercedString<T> | z.ZodCoercedNumber<T>
@@ -89,20 +90,6 @@ export function getMonth(input: Input) {
   return !input.required ? schema.nullable() : schema
 }
 
-function min<T extends Coerced>(schema: T, min?: number): T {
-  if (min !== undefined) {
-    return schema.min(min) as T
-  }
-  return schema
-}
-
-function max<T extends Coerced>(schema: T, max?: number): T {
-  if (max !== undefined) {
-    return schema.max(max) as T
-  }
-  return schema
-}
-
 function normalize(value: unknown) {
   return value === null || value === undefined || value === ''
     ? undefined
@@ -110,8 +97,8 @@ function normalize(value: unknown) {
 }
 
 function applyMinAndMax<T extends Coerced>(schema: T, input: Input): T {
-  schema = min(schema, input.advanced?.length?.min)
-  schema = max(schema, input.advanced?.length?.max)
+  schema = min(schema, input)
+  schema = max(schema, input)
   return schema
 }
 
@@ -119,6 +106,24 @@ function applyRequired<T extends Coerced>(schema: T, input: Input): T {
   const min = input.advanced?.length?.min
   if (min === undefined || min < 1) {
     return schema.min(1, input.validation?.required) as T
+  }
+  return schema
+}
+
+const min = <T extends Coerced>(schema: T, input: Input) =>
+  applyConstraint(schema, input, MIN)
+
+const max = <T extends Coerced>(schema: T, input: Input) =>
+  applyConstraint(schema, input, MAX)
+
+function applyConstraint<T extends Coerced>(
+  schema: T,
+  input: Input,
+  method: typeof MIN | typeof MAX
+) {
+  const value = input.advanced?.length?.[method]
+  if (value !== undefined) {
+    return schema[method](value, input.validation?.length?.[method]) as T
   }
   return schema
 }

@@ -27,7 +27,8 @@
               "testid": "card-number"
             },
             "length": {
-              "max": 16
+              "max": 16,
+              "min": 16
             }
           },
           "label": "Card Number",
@@ -37,7 +38,11 @@
           "description": "Enter your 16-digit card number",
           "required": true,
           "validation": {
-            "required": "Please enter a valid card number"
+            "required": "Please enter a valid card number",
+            "length": {
+              "max": "Card number must be 16 digits",
+              "min": "Card number must be 16 digits"
+            }
           },
           "order": 2
         },
@@ -167,8 +172,8 @@
               },
               "label": "Postal Code",
               "name": "postal-code",
-              "placeholder": "05001",
-              "type": "input/number",
+              "placeholder": "12345",
+              "type": "input/text",
               "required": true
             }
           ],
