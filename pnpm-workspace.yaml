@@ -1,7 +1,6 @@
 packages:
+  - apps/*
   - examples/*
   - packages/*
 
 updateNotifier: false
-onlyBuiltDependencies:
-  - esbuild

@@ -118,17 +118,4 @@ export type Environment = {
   [key: string]: Value
 }
 
-export type Config = {
-  env?: Environment
-  inputs: {
-    [key: string]: React.ComponentType<React.HTMLAttributes<HTMLElement>>
-  }
-  fetcher: <T>(dataSource: DataSource) => Promise<T>
-}
-
-export type InputConfig = {
-  types: string | string[]
-  input: React.ComponentType<React.HTMLAttributes<HTMLElement>>
-}
-
 export type Value = string | number | readonly string[]

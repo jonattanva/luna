@@ -1,5 +1,18 @@
 import { fetcher } from './fetcher'
-import type { Config, DataSource, Environment, InputConfig } from '../type'
+import type { DataSource, Environment } from '../type'
+
+export type Config = {
+  env?: Environment
+  inputs: {
+    [key: string]: React.ComponentType<React.HTMLAttributes<HTMLElement>>
+  }
+  fetcher: <T>(dataSource: DataSource) => Promise<T>
+}
+
+export type InputConfig<TProps = React.HTMLAttributes<HTMLElement>> = {
+  types: string | string[]
+  input: React.ComponentType<TProps>
+}
 
 export function defineConfig(
   options: Readonly<{
