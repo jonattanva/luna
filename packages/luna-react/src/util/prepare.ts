@@ -1,9 +1,11 @@
 import type { Base, Nullable } from '../type'
 
 export function prepare<T extends Base>(base: readonly T[] = []) {
-  return base
-    .filter((field) => field.hidden !== true)
-    .sort((a, b) => getOrder(a) - getOrder(b))
+  return Array.isArray(base)
+    ? base
+        .filter((field) => field.hidden !== true)
+        .sort((a, b) => getOrder(a) - getOrder(b))
+    : []
 }
 
 function getOrder(item: Base) {

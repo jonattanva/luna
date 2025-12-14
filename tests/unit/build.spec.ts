@@ -1,5 +1,9 @@
 import { expect, test } from '@playwright/test'
-import { buildOptions, buildSource } from '@/packages/luna-react/src/util/build'
+import {
+  buildOptions,
+  buildSource,
+  buildFormData,
+} from '@/packages/luna-react/src/util/build'
 
 test.describe('Build', { tag: ['@unit'] }, () => {
   test('should build source for radio fields', () => {
@@ -104,5 +108,18 @@ test.describe('Build', { tag: ['@unit'] }, () => {
 
     const options = buildOptions(field, values)
     expect(options).toBeUndefined()
+  })
+
+  test('should build FormData from form object', () => {
+    const form = {
+      username: 'john_doe',
+      age: 30,
+      email: null,
+    }
+
+    const formData = buildFormData(form)
+    expect(formData.get('username')).toBe('john_doe')
+    expect(formData.get('age')).toBe('30')
+    expect(formData.get('email')).toBeNull()
   })
 })

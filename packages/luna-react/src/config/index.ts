@@ -1,24 +1,11 @@
 import { fetcher } from './fetcher'
-import type { DataSource, Environment } from '../type'
+import type { Config, DataSource, Environment, InputConfig } from '../type'
 
-export type Config = {
-  env?: Environment
-  inputs: {
-    [key: string]: React.ComponentType<React.HTMLAttributes<HTMLElement>>
-  }
-  fetcher: <T>(dataSource: DataSource) => Promise<T>
-}
-
-export type InputConfig<TProps = React.HTMLAttributes<HTMLElement>> = {
-  types: string | string[]
-  input: React.ComponentType<TProps>
-}
-
-export function defineConfig(
+export function defineConfig<T extends React.ElementType>(
   options: Readonly<{
     env?: Environment
     fetcher?: <T>(dataSource: DataSource) => Promise<T>
-    inputs: Array<InputConfig>
+    inputs: Array<InputConfig<T>>
   }>
 ): Config {
   const config = {
@@ -37,9 +24,9 @@ export function defineConfig(
   return config
 }
 
-export function defineInput(
-  input: React.ComponentType<React.HTMLAttributes<HTMLInputElement>>
-): InputConfig {
+export function defineInput<T extends React.ElementType>(
+  input: React.ComponentProps<T>
+): InputConfig<T> {
   return {
     types: [
       'input',
@@ -53,18 +40,18 @@ export function defineInput(
   }
 }
 
-export function defineTextArea(
-  input: React.ComponentType<React.HTMLAttributes<HTMLTextAreaElement>>
-): InputConfig {
+export function defineTextArea<T extends React.ElementType>(
+  input: React.ComponentProps<T>
+): InputConfig<T> {
   return {
     types: ['textarea'],
     input,
   }
 }
 
-export function defineSelect(
-  input: React.ComponentType<React.HTMLAttributes<HTMLSelectElement>>
-): InputConfig {
+export function defineSelect<T extends React.ElementType>(
+  input: React.ComponentProps<T>
+): InputConfig<T> {
   return {
     types: ['select', 'select/year', 'select/month'],
     input,

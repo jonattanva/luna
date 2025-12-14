@@ -6,11 +6,15 @@ export type Orderable = {
   order?: number
 }
 
-export type Hiddenable = {
+export type Hideable = {
   hidden?: boolean
 }
 
-export type Base = Orderable & Hiddenable
+export type Sections = Section[]
+export type Value = string | number | readonly string[]
+export type Fields = Array<Field | Column<Field>>
+
+export type Base = Orderable & Hideable
 
 export type Section = {
   description?: string
@@ -18,8 +22,6 @@ export type Section = {
   separator?: boolean
   title?: string
 } & Base
-
-export type Sections = readonly Section[]
 
 export type DataSource = {
   url: string
@@ -61,6 +63,7 @@ export type CommonProps = {
 export type Field = CommonProps & {
   advanced?: {
     aria?: AriaAttributes
+    cols?: number
     data?: DataAttributes
   }
   description?: string
@@ -95,8 +98,6 @@ export type Select = Field & {
   }
 }
 
-export type Fields = Array<Field | Column<Field>>
-
 export type Slot = (props: {
   disabled?: boolean
   fields?: Fields
@@ -118,4 +119,15 @@ export type Environment = {
   [key: string]: Value
 }
 
-export type Value = string | number | readonly string[]
+export type InputConfig<T extends React.ElementType> = {
+  types: string | string[]
+  input: React.ComponentProps<T>
+}
+
+export type Config = {
+  env?: Environment
+  inputs: {
+    [key: string]: React.ComponentProps<React.ElementType>
+  }
+  fetcher: <T>(dataSource: DataSource) => Promise<T>
+}

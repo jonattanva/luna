@@ -29,9 +29,9 @@ export function isOptions(field: Field): field is Input {
   return isSelect(field) || isRadio(field)
 }
 
-export const isInput = checkInputType<Input>(INPUT)
-export const isRadio = checkInputType<Select>(RADIO)
-export const isSelect = checkInputType<Select>(SELECT)
+export const isInput = createTypeChecker<Input>(INPUT)
+export const isRadio = createTypeChecker<Select>(RADIO)
+export const isSelect = createTypeChecker<Select>(SELECT)
 
 export function isColumn(slot: Field | Column<Field>): slot is Column<Field> {
   return slot.type === COLUMN && FIELDS in slot
@@ -63,17 +63,19 @@ export function isEmail(field: Field): field is Input {
 }
 
 export function getType(value: string = TYPE_TEXT): string {
-  const result = value.match(/[^/]+$/)
-  if (result) {
-    const [type] = result
-    if (type !== INPUT) {
-      return type.trim().toLowerCase()
+  if (value) {
+    const result = value.match(/[^/]+$/)
+    if (result) {
+      const [type] = result
+      if (type !== INPUT) {
+        return type.trim().toLowerCase()
+      }
     }
   }
   return TYPE_TEXT
 }
 
-function checkInputType<T extends Field>(
+function createTypeChecker<T extends Field>(
   type: string
 ): (field: Field) => field is T {
   return (field): field is T =>

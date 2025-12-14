@@ -10,13 +10,15 @@ export function SlotBase<
     column: React.ComponentType<ColumnProps>
     field: React.ComponentType<FieldProps>
   },
->(props: {
-  children: Children
-  disabled?: boolean
-  fields?: Fields
-  withinColumn?: boolean
-  components: T
-}) {
+>(
+  props: Readonly<{
+    children: Children
+    disabled?: boolean
+    fields?: Fields
+    withinColumn?: boolean
+    components: T
+  }>
+) {
   const fields = prepare(props.fields)
 
   const { column: Column, field: Field } = props.components

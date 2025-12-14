@@ -23,32 +23,62 @@
         },
         {
           "advanced": {
-            "data": {
-              "testid": "card-number"
+            "cols": 3
+          },
+          "type": "column",
+          "fields": [
+            {
+              "advanced": {
+                "cols": 2,
+                "data": {
+                  "testid": "card-number"
+                },
+                "length": {
+                  "max": 16,
+                  "min": 16
+                }
+              },
+              "label": "Card Number",
+              "name": "card-number",
+              "type": "input",
+              "placeholder": "1234 5678 9012 3456",
+              "description": "Enter your 16-digit card number",
+              "required": true,
+              "validation": {
+                "required": "Please enter a valid card number",
+                "length": {
+                  "max": "Card number must be 16 digits",
+                  "min": "Card number must be 16 digits"
+                }
+              },
+              "order": 1
             },
-            "length": {
-              "max": 16,
-              "min": 16
+            {
+              "advanced": {
+                "cols": 1,
+                "data": {
+                  "testid": "cvv"
+                },
+                "length": {
+                  "max": 3
+                }
+              },
+              "label": "CVV",
+              "name": "cvv",
+              "type": "input/text",
+              "placeholder": "123",
+              "required": true,
+              "validation": {
+                "required": "Please enter the 3-digit security code on the back of your card"
+              },
+              "order": 2
             }
-          },
-          "label": "Card Number",
-          "name": "card-number",
-          "type": "input",
-          "placeholder": "1234 5678 9012 3456",
-          "description": "Enter your 16-digit card number",
-          "required": true,
-          "validation": {
-            "required": "Please enter a valid card number",
-            "length": {
-              "max": "Card number must be 16 digits",
-              "min": "Card number must be 16 digits"
-            }
-          },
+          ],
           "order": 2
         },
         {
           "advanced": {
-            "cols": 3
+            "cols": 2
           },
           "type": "column",
           "fields": [
@@ -87,25 +117,6 @@
                 "required": "Please select the expiration year"
               },
               "order": 2
-            },
-            {
-              "advanced": {
-                "data": {
-                  "testid": "cvv"
-                },
-                "length": {
-                  "max": 3
-                }
-              },
-              "label": "CVV",
-              "name": "cvv",
-              "type": "input/text",
-              "placeholder": "123",
-              "required": true,
-              "validation": {
-                "required": "Please enter the 3-digit security code on the back of your card"
-              },
-              "order": 3
             }
           ],
           "order": 3
