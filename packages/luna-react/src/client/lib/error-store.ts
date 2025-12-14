@@ -3,10 +3,6 @@ import { atomFamily } from 'jotai-family'
 
 export const inputErrorAtom = atom<Record<string, string[]>>({})
 
-export const resetErrorAtom = atom(null, (get, set) => {
-  set(inputErrorAtom, {})
-})
-
 export const reportInputErrorAtom = atomFamily((name: string) =>
   atom(
     (get) => get(inputErrorAtom)[name] ?? null,
@@ -32,36 +28,39 @@ export const reportErrorAtom = atom(
   (get, set, error: Record<string, string[]>) => {
     const current = get(inputErrorAtom)
 
-    const currentKeys = Object.keys(current)
-    const errorKeys = Object.keys(error)
-
-    if (currentKeys.length !== errorKeys.length) {
+    if (areErrorsPresent(current, error)) {
       set(inputErrorAtom, error)
-      return
-    }
-
-    for (const key of errorKeys) {
-      const currentErrors = current[key]
-      const newErrors = error[key]
-
-      if (!currentErrors) {
-        set(inputErrorAtom, error)
-        return
-      }
-
-      if (currentErrors.length !== newErrors.length) {
-        set(inputErrorAtom, error)
-        return
-      }
-
-      if (currentErrors.length > 0) {
-        const currentSet = new Set(currentErrors)
-        const allMatch = newErrors.every((err) => currentSet.has(err))
-        if (!allMatch) {
-          set(inputErrorAtom, error)
-          return
-        }
-      }
     }
   }
 )
+
+function areErrorsPresent(
+  current: Record<string, string[]>,
+  errors: Record<string, string[]>
+): boolean {
+  const currentKeys = Object.keys(current)
+  const errorKeys = Object.keys(errors)
+
+  if (currentKeys.length !== errorKeys.length) {
+    return true
+  }
+
+  for (const key of errorKeys) {
+    const currentErrors = current[key]
+    const newErrors = errors[key]
+
+    if (!currentErrors || currentErrors.length !== newErrors.length) {
+      return true
+    }
+
+    if (currentErrors.length > 0) {
+      const currentSet = new Set(currentErrors)
+      const allMatch = newErrors.every((err) => currentSet.has(err))
+      if (!allMatch) {
+        return true
+      }
+    }
+  }
+
+  return false
+}

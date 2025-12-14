@@ -1,31 +1,21 @@
 import type { DataSource } from '../type'
 
 export async function fetcher(dataSource: DataSource) {
-  const url = buildUrl(dataSource)
-  const method = buildMethod(dataSource)
+  const [url, method] = buildRequest(dataSource)
 
+  let body = dataSource.body
   let headers = buildHeaders(dataSource)
-  if (dataSource.body) {
-    if (isGetMethod(method)) {
-      Object.entries(dataSource.body)
-        .filter(([, value]) => value !== undefined && value !== 'undefined')
-        .forEach(([key, value]) => {
-          url.searchParams.append(key, String(value))
-        })
-    } else {
-      const body = stringify(dataSource.body)
-      if (body) {
-        dataSource.body = body
-        headers = {
-          ...headers,
-          'Content-Type': 'application/json',
-        }
-      }
+
+  if (body && !isGetMethod(method)) {
+    const bodyStringify = stringify(body)
+    if (bodyStringify) {
+      body = bodyStringify
+      headers = asJson(headers)
     }
   }
 
   const request = await fetch(url.toString(), {
-    body: buildBody(method, dataSource.body),
+    body: buildBody(method, body),
     cache: dataSource.cache,
     headers,
     method,
@@ -39,16 +29,35 @@ export async function fetcher(dataSource: DataSource) {
   throw response
 }
 
-function isValid(value: string) {
-  return !value.includes('undefined') && !value.includes('null')
-}
-
-function buildUrl(dataSource: DataSource) {
-  const url = dataSource.url?.trim()
-  if (!url || !isValid(url)) {
+function buildRequest(dataSource: DataSource) {
+  const current = dataSource.url?.trim()
+  if (!current || !isValid(current)) {
     throw new Error(`Invalid URL: ${dataSource.url}`)
   }
-  return new URL(url)
+
+  const url = new URL(current)
+  const method = buildMethod(dataSource)
+
+  if (dataSource.body && isGetMethod(method)) {
+    Object.entries(dataSource.body)
+      .filter(([, value]) => value !== undefined && value !== 'undefined')
+      .forEach(([key, value]) => {
+        url.searchParams.append(key, String(value))
+      })
+  }
+
+  return [url, method] as const
+}
+
+function asJson(headers: HeadersInit) {
+  return {
+    ...headers,
+    'Content-Type': 'application/json',
+  }
+}
+
+function isValid(value: string) {
+  return !value.includes('undefined') && !value.includes('null')
 }
 
 function buildMethod(dataSource: DataSource) {

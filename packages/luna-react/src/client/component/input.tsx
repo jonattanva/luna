@@ -59,11 +59,7 @@ export function Input(
 
   function validated(value: string) {
     const results = schema.safeParse(value)
-    const errors =
-      results.error?.issues.map((issue) => {
-        return issue.message
-      }) ?? []
-
+    const errors = results.error?.issues.map((issue) => issue.message) ?? []
     setErrors(errors)
   }
 
