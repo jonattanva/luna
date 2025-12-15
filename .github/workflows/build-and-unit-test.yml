@@ -32,11 +32,11 @@ jobs:
           node-version: 22
           cache: 'pnpm'
 
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
-
       - name: Install dependencies
         run: pnpm install
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps
 
       - name: Build project
         run: pnpm build
