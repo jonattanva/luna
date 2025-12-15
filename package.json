@@ -2,7 +2,6 @@
   "name": "luna-form",
   "private": true,
   "workspaces": [
-    "examples/*",
     "packages/*"
   ],
   "scripts": {
