@@ -1,9 +1,9 @@
-import { Form as Body } from '@/src/component/form'
+import { Form as Body } from '../../component/form'
 import { Input } from './input'
 import { Slot } from './slot'
 import { useFormAction } from '../hook/useFormAction'
 import { useSchema } from '../hook/useSchema'
-import type { Sections, Config, Source } from '@/src/type'
+import type { Sections, Config, Source } from '../../type'
 
 export function Form(
   props: Readonly<{

@@ -1,6 +1,6 @@
 import { buildCommon } from './input-common'
 import { buildAriaAttributes, buildDataAttributes } from './input-attributes'
-import type { Children, Field } from '@/src/type'
+import type { Children, Field } from '../../type'
 
 export function InputBase(
   props: Readonly<{

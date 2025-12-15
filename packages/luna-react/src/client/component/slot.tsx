@@ -1,7 +1,7 @@
 import { Column } from './wrapper/column'
 import { Field } from './wrapper/field'
-import { SlotBase } from '@/src/component/slot/slot-base'
-import type { Children, Fields } from '@/src/type'
+import { SlotBase } from '../../component/slot/slot-base'
+import type { Children, Fields } from '../../type'
 
 export const Slot = (
   props: Readonly<{

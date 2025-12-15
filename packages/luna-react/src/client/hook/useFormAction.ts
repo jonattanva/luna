@@ -1,9 +1,9 @@
-import { buildFormData } from '@/src/util/build'
-import { buildSchema, flatten } from '@/src/util/schema'
+import { buildFormData } from '../../util/build'
+import { buildSchema, flatten } from '../../util/schema'
 import { reportErrorAtom } from '../lib/error-store'
 import { startTransition } from 'react'
 import { useSetAtom } from 'jotai'
-import type { Schemas } from '@/src/type'
+import type { Schemas } from '../../type'
 
 export function useFormAction(
   getSchema: () => Schemas,

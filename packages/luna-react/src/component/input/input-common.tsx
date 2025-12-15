@@ -1,4 +1,5 @@
-import { MAX, MAX_LENGTH, MIN, MIN_LENGTH } from '@/src/util/constant'
+import { MAX, MAX_LENGTH, MIN, MIN_LENGTH } from '../../util/constant'
+import { buildOptionSelect } from './input-option-select'
 import {
   getType,
   isInput,
@@ -6,9 +7,8 @@ import {
   isSelect,
   isText,
   isTextArea,
-} from '@/src/util/is-input'
-import { buildOptionSelect } from './input-option-select'
-import type { CommonProps, Field, Input } from '@/src/type'
+} from '../../util/is-input'
+import type { CommonProps, Field, Input } from '../../type'
 
 export function buildCommon(
   field: Field,

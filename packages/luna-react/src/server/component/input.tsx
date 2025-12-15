@@ -1,9 +1,9 @@
-import { Description } from '@/src/component/description'
+import { Description } from '../../component/description'
 import {
   getValue,
   mergeCommonProps,
   resolveSource,
-} from '@/src/util/helper/input'
+} from '../../util/helper/input'
 import type {
   AriaAttributes,
   CommonProps,
@@ -11,7 +11,7 @@ import type {
   Field,
   Config,
   Source,
-} from '@/src/type'
+} from '../../type'
 
 export function Input(
   props: Readonly<{

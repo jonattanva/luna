@@ -3,8 +3,8 @@ import { FieldSet } from './field-set'
 import { Fragment } from 'react'
 import { Group } from './group'
 import { Separator } from './separator'
-import { prepare } from '@/src/util/prepare'
-import type { Sections, Slot } from '@/src/type'
+import { prepare } from '../util/prepare'
+import type { Sections, Slot } from '../type'
 
 export function Form(
   props: Readonly<{

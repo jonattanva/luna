@@ -3,14 +3,10 @@
     "strict": true,
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
-    "jsx": "react-jsx",
     "module": "ESNext",
     "target": "es2020",
     "moduleResolution": "bundler",
-    "skipLibCheck": true,
-    "paths": {
-      "@/*": ["./*"]
-    }
+    "skipLibCheck": true
   },
   "include": ["tests/**/*", "playwright.config.ts"],
   "exclude": ["node_modules", "dist"]

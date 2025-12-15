@@ -1,9 +1,9 @@
-import { DATA_INVALID } from '@/src/util/constant'
+import { DATA_INVALID } from '../util/constant'
 import { InputBase } from './input/input-base'
 import { Label } from './label'
 import { getSpan } from '../util/column'
 import { twMerge } from 'tailwind-merge'
-import type { Children, Field } from '@/src/type'
+import type { Children, Field } from '../type'
 
 export type FieldProps = Readonly<{
   children: Children

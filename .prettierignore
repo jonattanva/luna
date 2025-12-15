@@ -1,6 +1,4 @@
-examples/**/.next
-examples/**/.turbo
-examples/**/node_modules
+examples
 
 packages/**/.turbo
 packages/**/dist

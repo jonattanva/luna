@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import type { Schema, Schemas } from '@/src/type'
+import type { Schema, Schemas } from '../../type'
 
 export function useSchema() {
   const schemaRef = useRef<Schemas>({})

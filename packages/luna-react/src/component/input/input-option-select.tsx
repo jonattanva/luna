@@ -1,6 +1,6 @@
-import { isSelect, isSelectMonth, isSelectYear } from '@/src/util/is-input'
-import { getConvert, getCurrentYear, getMonth, getYear } from '@/src/util/date'
-import type { Field, Select } from '@/src/type'
+import { isSelect, isSelectMonth, isSelectYear } from '../../util/is-input'
+import { getConvert, getCurrentYear, getMonth, getYear } from '../../util/date'
+import type { Field, Select } from '../../type'
 
 const now = getCurrentYear()
 

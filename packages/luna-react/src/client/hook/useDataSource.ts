@@ -1,6 +1,6 @@
 import useSWR from 'swr'
-import { getArray } from '@/src/util/extract'
-import type { Config, DataSource, Nullable } from '@/src/type'
+import { getArray } from '../../util/extract'
+import type { Config, DataSource, Nullable } from '../../type'
 
 export function useDataSource<T>(
   dataSource: Nullable<DataSource | T[]> = null,

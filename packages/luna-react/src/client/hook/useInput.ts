@@ -1,6 +1,6 @@
-import { getSchema } from '@/src/util/schema'
+import { getSchema } from '../../util/schema'
 import { useEffect, useEffectEvent } from 'react'
-import type { Field, Schema } from '@/src/type'
+import type { Field, Schema } from '../../type'
 
 export function useInput(
   field: Field,

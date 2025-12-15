@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { Form } from './form'
-import type { Config, Sections } from '@/src/type'
+import type { Config, Sections } from '../../type'
 
 export function Fallback(
   props: Readonly<{

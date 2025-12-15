@@ -1,7 +1,7 @@
-import { prepare } from '@/src/util/prepare'
+import { prepare } from '../../util/prepare'
 import { Fragment } from 'react'
-import { isColumn, isField } from '@/src/util/is-input'
-import type { Children, Fields } from '@/src/type'
+import { isColumn, isField } from '../../util/is-input'
+import type { Children, Fields } from '../../type'
 import type { ColumnProps } from '../column'
 import type { FieldProps } from '../field'
 

@@ -7,7 +7,7 @@ import type {
   Field,
   Nullable,
   Source,
-} from '@/src/type'
+} from '../../type'
 
 export function resolveSource(
   field: Field,

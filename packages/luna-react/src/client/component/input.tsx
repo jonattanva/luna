@@ -1,5 +1,5 @@
-import { Description } from '@/src/component/description'
-import { FieldError } from '@/src/component/field-error'
+import { Description } from '../../component/description'
+import { FieldError } from '../../component/field-error'
 import { reportInputErrorAtom } from '../lib/error-store'
 import { useAtom } from 'jotai'
 import { useDataSource } from '../hook/useDataSource'
@@ -8,7 +8,7 @@ import {
   getValue,
   mergeCommonProps,
   resolveSource,
-} from '@/src/util/helper/input'
+} from '../../util/helper/input'
 import type {
   AriaAttributes,
   CommonProps,
@@ -17,7 +17,7 @@ import type {
   Field,
   Schema,
   Source,
-} from '@/src/type'
+} from '../../type'
 
 export function Input(
   props: Readonly<{

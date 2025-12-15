@@ -1,7 +1,7 @@
-import { Form as Component } from '@/src/component/form'
+import { Form as Component } from '../../component/form'
 import { Input } from './input'
-import { Slot } from '@/src/component/slot/slot'
-import type { Sections, Config, Source } from '@/src/type'
+import { Slot } from '../../component/slot/slot'
+import type { Sections, Config, Source } from '../../type'
 
 export function Form(
   props: Readonly<{
