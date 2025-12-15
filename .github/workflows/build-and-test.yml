@@ -15,8 +15,20 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v5
 
-      - name: Setup Node.js and pnpm
-        uses: ./.github/actions/setup-node-pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        shell: bash
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: 'pnpm'
+        shell: bash
+
+      - name: Install dependencies
+        run: pnpm install
+        shell: bash
 
       - name: Cache turbo build setup
         uses: actions/cache@v4
@@ -37,8 +49,20 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v5
 
-      - name: Setup Node.js and pnpm
-        uses: ./.github/actions/setup-node-pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        shell: bash
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: 'pnpm'
+        shell: bash
+
+      - name: Install dependencies
+        run: pnpm install
+        shell: bash
 
       - name: Cache turbo build setup
         uses: actions/cache@v4
@@ -63,8 +87,20 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v5
 
-      - name: Setup Node.js and pnpm
-        uses: ./.github/actions/setup-node-pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        shell: bash
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: 'pnpm'
+        shell: bash
+
+      - name: Install dependencies
+        run: pnpm install
+        shell: bash
 
       - name: Get Playwright version
         id: playwright-version
