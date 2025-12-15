@@ -6,7 +6,8 @@
     "build:tsc": "tsc --emitDeclarationOnly",
     "lint": "eslint . --cache",
     "prettier:check": "prettier --check .",
-    "prettier:fix": "prettier --write ."
+    "prettier:fix": "prettier --write .",
+    "typescript": "tsc --noEmit"
   },
   "type": "module",
   "sideEffects": false,

@@ -5,7 +5,9 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "turbo run build",
     "lint": "eslint . --cache",
+    "typescript": "turbo run typescript",
     "prepare": "husky",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
@@ -26,6 +28,7 @@
     "lint-staged": "16.2.7",
     "prettier": "3.7.4",
     "prettier-plugin-tailwindcss": "0.7.2",
+    "turbo": "2.6.3",
     "typescript": "5.9.3",
     "typescript-eslint": "8.49.0"
   },
