@@ -12,6 +12,9 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
+      - name: Check out code
+        uses: actions/checkout@v5
+
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
 
@@ -31,6 +34,9 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
+      - name: Check out code
+        uses: actions/checkout@v5
+
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
 
@@ -53,6 +59,9 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
+      - name: Check out code
+        uses: actions/checkout@v5
+
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
 
