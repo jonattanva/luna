@@ -1,7 +1,6 @@
 {
-  "name": "@luna/react",
+  "name": "react-luna-form",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "build": "node esbuild.mjs",
     "build:tsc": "tsc --emitDeclarationOnly",
@@ -9,6 +8,18 @@
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write ."
   },
+  "type": "module",
+  "sideEffects": false,
+  "keywords": [
+    "forms",
+    "json-schema",
+    "react",
+    "typescript",
+    "validation"
+  ],
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "jotai": "^2.0.0",
     "jotai-family": "^1.0.0",
@@ -23,13 +34,16 @@
     "@types/react-dom": "19.2.3",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
-    "eslint-plugin-react-refresh": "0.4.24"
+    "eslint-plugin-react-refresh": "0.4.25"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonattanva/luna.git",
+    "directory": "packages/luna-react"
   },
   "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
+    "./package.json": "./package.json",
     "./server": {
       "types": "./dist/types/server/index.d.ts",
       "import": "./dist/server/esm/index.js",

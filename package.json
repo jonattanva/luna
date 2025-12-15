@@ -1,6 +1,5 @@
 {
-  "name": "luna-project",
-  "version": "0.0.0",
+  "name": "luna-form",
   "private": true,
   "workspaces": [
     "examples/*",
@@ -28,9 +27,13 @@
     "lint-staged": "16.2.7",
     "prettier": "3.7.4",
     "prettier-plugin-tailwindcss": "0.7.2",
-    "turbo": "2.6.3",
     "typescript": "5.9.3",
     "typescript-eslint": "8.49.0"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonattanva/luna.git"
   },
   "packageManager": "pnpm@10.20.0",
   "engines": {
