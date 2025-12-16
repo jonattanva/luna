@@ -1,7 +1,7 @@
 import { MAX, MAX_LENGTH, MIN, MIN_LENGTH } from '../../util/constant'
 import { buildOptionSelect } from './input-option-select'
+import { getType } from '../../util/extract'
 import {
-  getType,
   isInput,
   isNumber,
   isSelect,

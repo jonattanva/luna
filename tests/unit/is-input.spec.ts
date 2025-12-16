@@ -1,6 +1,5 @@
 import { expect, test } from '@playwright/test'
 import {
-  getType,
   isOptions,
   isSelectMonth,
   isSelectYear,
@@ -60,13 +59,5 @@ test.describe('Is Input Utility', { tag: ['@unit'] }, () => {
     }
 
     expect(isOptions(fieldText)).toBe(false)
-  })
-
-  test('should get the correct type of input', () => {
-    expect(getType('select/month')).toBe('month')
-    expect(getType('select/year')).toBe('year')
-    expect(getType('select/options')).toBe('options')
-    expect(getType('text')).toBe('text')
-    expect(getType()).toBe('text')
   })
 })

@@ -1,5 +1,5 @@
 import { isObject, isValue } from './is-type'
-import { VALUE } from './constant'
+import { INPUT, TYPE_TEXT, VALUE } from './constant'
 import type { Nullable, Value } from '../type'
 
 export function getCurrentValue<T>(
@@ -70,4 +70,17 @@ export function extract<T>(
   }
 
   return result as T
+}
+
+export function getType(value: string = TYPE_TEXT): string {
+  if (value) {
+    const result = value.match(/[^/]+$/)
+    if (result) {
+      const [type] = result
+      if (type !== INPUT) {
+        return type.trim().toLowerCase()
+      }
+    }
+  }
+  return TYPE_TEXT
 }

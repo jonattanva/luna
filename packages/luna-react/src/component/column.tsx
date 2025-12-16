@@ -2,11 +2,11 @@ import { FieldError } from './field-error'
 import { entries } from '../util/prepare'
 import { getColumn } from '../util/column'
 import { twMerge } from 'tailwind-merge'
-import type { Column, Field } from '../type'
+import type { Column } from '../type'
 
 export type ColumnProps = Readonly<{
   children?: React.ReactNode
-  column?: Column<Field>
+  column?: Column
   errors?: Record<string, string[]>
 }>
 

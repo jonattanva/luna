@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 import {
   extract,
+  getType,
   getArray,
   getCurrentValue,
   getValue,
@@ -88,5 +89,13 @@ test.describe('Extract', { tag: ['@unit'] }, () => {
     expect(getCurrentValue(data, 'label')).toBe('John Doe')
     expect(getCurrentValue(data)).toBe(2)
     expect(getCurrentValue('John Doe')).toBe('John Doe')
+  })
+
+  test('should get the correct type of input', () => {
+    expect(getType('select/month')).toBe('month')
+    expect(getType('select/year')).toBe('year')
+    expect(getType('select/options')).toBe('options')
+    expect(getType('text')).toBe('text')
+    expect(getType()).toBe('text')
   })
 })

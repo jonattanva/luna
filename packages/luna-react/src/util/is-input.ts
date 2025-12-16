@@ -1,6 +1,5 @@
 import {
   COLUMN,
-  FIELDS,
   INPUT,
   INPUT_EMAIL,
   INPUT_NUMBER,
@@ -33,11 +32,11 @@ export const isInput = createTypeChecker<Input>(INPUT)
 export const isRadio = createTypeChecker<Select>(RADIO)
 export const isSelect = createTypeChecker<Select>(SELECT)
 
-export function isColumn(slot: Field | Column<Field>): slot is Column<Field> {
-  return slot.type === COLUMN && FIELDS in slot
+export function isColumn(slot: Field | Column): slot is Column {
+  return slot.type === COLUMN
 }
 
-export function isField(slot: Field | Column<Field>): slot is Field {
+export function isField(slot: Field | Column): slot is Field {
   return slot.type !== COLUMN
 }
 
@@ -60,19 +59,6 @@ export function isNumber(field: Field): field is Input {
 
 export function isEmail(field: Field): field is Input {
   return field.type === INPUT_EMAIL || field.type === TYPE_EMAIL
-}
-
-export function getType(value: string = TYPE_TEXT): string {
-  if (value) {
-    const result = value.match(/[^/]+$/)
-    if (result) {
-      const [type] = result
-      if (type !== INPUT) {
-        return type.trim().toLowerCase()
-      }
-    }
-  }
-  return TYPE_TEXT
 }
 
 function createTypeChecker<T extends Field>(

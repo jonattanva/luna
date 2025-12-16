@@ -2,26 +2,13 @@ import type { z } from 'zod'
 
 export type Nullable<T> = T | null
 
-export type Orderable = {
-  order?: number
+export type DataAttributes = {
+  [key: `data-${string}`]: string | number | boolean
 }
 
-export type Hideable = {
-  hidden?: boolean
+export type AriaAttributes = {
+  [key: `aria-${string}`]: string | number | boolean
 }
-
-export type Sections = Section[]
-export type Value = string | number | readonly string[]
-export type Fields = Array<Field | Column<Field>>
-
-export type Base = Orderable & Hideable
-
-export type Section = {
-  description?: string
-  fields?: Fields
-  separator?: boolean
-  title?: string
-} & Base
 
 export type DataSource = {
   url: string
@@ -36,21 +23,18 @@ export type Source = {
   [key: string]: DataSource | Array<unknown>
 }
 
-export type Column<T> = {
-  advanced?: {
-    cols?: number
-  }
-  fields?: T[]
-  type: 'column'
-} & Base
-
-export type DataAttributes = {
-  [key: `data-${string}`]: string | number | boolean
+export type Orderable = {
+  order?: number
 }
 
-export type AriaAttributes = {
-  [key: `aria-${string}`]: string | number | boolean
+export type Hideable = {
+  hidden?: boolean
 }
+
+export type Sections = Array<Section>
+export type Value = string | number | readonly string[]
+export type Fields = Array<Field | Column>
+export type Base = Orderable & Hideable
 
 export type CommonProps = {
   disabled?: boolean
@@ -60,6 +44,21 @@ export type CommonProps = {
   required?: boolean
 }
 
+export type Section = {
+  description?: string
+  fields?: Fields
+  separator?: boolean
+  title?: string
+} & Base
+
+export type Column = {
+  advanced?: {
+    cols?: number
+  }
+  fields?: Array<Field>
+  type: 'column'
+} & Base
+
 export type Field = CommonProps & {
   advanced?: {
     aria?: AriaAttributes
@@ -67,36 +66,32 @@ export type Field = CommonProps & {
     data?: DataAttributes
   }
   description?: string
-  fields?: never
+  fields?: undefined
   label?: string
   name: string
   readonly?: boolean
   type: string
   validation?: {
     required?: string
-    length?: {
-      max?: string
-      min?: string
-    }
+    length?: Length<string>
   }
 } & Base
+
+export type Length<T> = {
+  max?: T
+  min?: T
+}
 
 export type Input = Field & {
   advanced?: {
     autocomplete?: string
-    length?: {
-      max?: number
-      min?: number
-    }
+    length?: Length<number>
   }
 }
 
 export type Select = Field & {
   advanced?: {
-    length?: {
-      min?: number | string
-      max?: number | string
-    }
+    length?: Length<number | string>
   }
 }
 
