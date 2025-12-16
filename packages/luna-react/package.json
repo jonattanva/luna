@@ -1,7 +1,7 @@
 {
   "name": "react-luna-form",
-  "version": "0.0.1",
-  "description": "A React library for building forms based on JSON Schema with validation powered by Zod.",
+  "version": "0.0.2",
+  "description": "A React library for building forms based on JSON Schema",
   "main": "./dist/client/cjs/index.js",
   "module": "./dist/client/esm/index.js",
   "types": "./dist/types/client/index.d.ts",

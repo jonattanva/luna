@@ -1,0 +1,151 @@
+{
+    "sections": [
+        {
+            "title": "Payment Method",
+            "description": "All transactions are secure and encrypted",
+            "fields": [
+                {
+                    "advanced": {
+                        "autocomplete": "cc-name",
+                        "data": {
+                            "testid": "name"
+                        }
+                    },
+                    "label": "Name on Card",
+                    "name": "name",
+                    "type": "input/text",
+                    "placeholder": "Evil Rabbit",
+                    "required": true,
+                    "validation": {
+                        "required": "Please enter the name as it appears on your card"
+                    },
+                    "order": 1
+                },
+                {
+                    "advanced": {
+                        "cols": 3
+                    },
+                    "type": "column",
+                    "fields": [
+                        {
+                            "advanced": {
+                                "cols": 2,
+                                "data": {
+                                    "testid": "card-number"
+                                },
+                                "length": {
+                                    "max": 16,
+                                    "min": 16
+                                }
+                            },
+                            "label": "Card Number",
+                            "name": "card-number",
+                            "type": "input/text",
+                            "placeholder": "1234 5678 9012 3456",
+                            "description": "Enter your 16-digit card number",
+                            "required": true,
+                            "validation": {
+                                "required": "Please enter a valid card number",
+                                "length": {
+                                    "max": "Card number must be 16 digits",
+                                    "min": "Card number must be 16 digits"
+                                }
+                            },
+                            "order": 1
+                        },
+                        {
+                            "advanced": {
+                                "cols": 1,
+                                "data": {
+                                    "testid": "cvv"
+                                },
+                                "length": {
+                                    "max": 3
+                                }
+                            },
+                            "label": "CVV",
+                            "name": "cvv",
+                            "type": "input/text",
+                            "placeholder": "123",
+                            "required": true,
+                            "validation": {
+                                "required": "Please enter the 3-digit security code on the back of your card"
+                            },
+                            "order": 2
+                        }
+                    ],
+                    "order": 2
+                },
+                {
+                    "advanced": {
+                        "cols": 2
+                    },
+                    "type": "column",
+                    "fields": [
+                        {
+                            "advanced": {
+                                "data": {
+                                    "testid": "month"
+                                }
+                            },
+                            "label": "Month",
+                            "name": "month",
+                            "type": "select/month",
+                            "placeholder": "MM",
+                            "required": true,
+                            "validation": {
+                                "required": "Please select the expiration month"
+                            },
+                            "order": 1
+                        },
+                        {
+                        "advanced": {
+                            "data": {
+                                "testid": "year"
+                            },
+                            "length": {
+                                "min": "current",
+                                "max": "current+6"
+                            }
+                        },
+                        "label": "Year",
+                        "name": "year",
+                        "type": "select/year",
+                        "placeholder": "YYYY",
+                        "required": true,
+                        "validation": {
+                            "required": "Please select the expiration year"
+                        },
+                        "order": 2
+                        }
+                    ],
+                    "order": 3
+                }
+            ],
+            "separator": true,
+            "order": 1
+        },
+        {
+            "title": "Billing Address",
+            "description": "The billing address associated with your payment method",
+            "fields": [
+                {
+                    "advanced": {
+                        "data": {
+                            "testid": "comments"
+                        },
+                        "length": {
+                            "max": 4000
+                        }
+                    },
+                    "label": "Comments",
+                    "name": "comments",
+                    "type": "textarea",
+                    "placeholder": "Add any additional comments",
+                    "order": 3
+                }
+            ],
+            "order": 2
+        }
+    ]
+}

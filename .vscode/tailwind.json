@@ -47,7 +47,7 @@
       "references": [
         {
           "name": "Tailwind Documentation",
-          "url": "https://tailwindcss.com/docs/functions-and-directives#variants"
+          "url": "https://tailwindcss.com/docs/functions-and-directives#variant-directive"
         }
       ]
     },
@@ -67,7 +67,17 @@
       "references": [
         {
           "name": "Tailwind Documentation",
-          "url": "https://tailwindcss.com/docs/functions-and-directives#custom-variant"
+          "url": "https://tailwindcss.com/docs/functions-and-directives#custom-variant-directive"
+        }
+      ]
+    },
+    {
+      "name": "@source",
+      "description": "The `@source` directive allows you to include external CSS files or libraries into your Tailwind CSS file:\n```css\n@source 'path/to/external.css';\n```\n",
+      "references": [
+        {
+          "name": "Tailwind Documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#source-directive"
         }
       ]
     }

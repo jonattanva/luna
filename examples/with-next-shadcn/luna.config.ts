@@ -1,6 +1,6 @@
 import { Input } from "./components/ui/input";
 import { Select } from "./components/ui/native-select";
-import { TextArea } from "./components/ui/textarea";
+import { Textarea } from "./components/ui/textarea";
 
 import { 
     defineConfig, 
@@ -13,6 +13,6 @@ export default defineConfig({
     inputs: [
         defineInput(Input),
         defineSelect(Select),
-        defineTextArea(TextArea)
+        defineTextArea(Textarea),
     ],
 });

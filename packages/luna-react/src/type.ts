@@ -40,8 +40,8 @@ export type Column<T> = {
   advanced?: {
     cols?: number
   }
-  type: 'column'
   fields?: T[]
+  type: 'column'
 } & Base
 
 export type DataAttributes = {
@@ -55,7 +55,7 @@ export type AriaAttributes = {
 export type CommonProps = {
   disabled?: boolean
   id?: string
-  name: string
+  name?: string
   placeholder?: string
   required?: boolean
 }
@@ -68,6 +68,7 @@ export type Field = CommonProps & {
   }
   description?: string
   label?: string
+  name: string
   readonly?: boolean
   type: string
   validation?: {

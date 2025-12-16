@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Legend from './Legend.svelte'
   import Group from './Group.svelte'
+  import Legend from './Legend.svelte'
 
   export let title = ''
   export let description = ''

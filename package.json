@@ -1,6 +1,6 @@
 {
   "name": "luna-form",
-  "description": "A monorepo for Luna, a form builder library based on JSON Schema with validation powered by Zod.",
+  "description": "A monorepo for Luna, a form builder library based on JSON Schema.",
   "private": true,
   "workspaces": [
     "packages/*"

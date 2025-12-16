@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "React luna form - vanilla",
+  title: "React luna form - shadcn",
   description: "An example of using Luna form with Next.js",
 };
 
