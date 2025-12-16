@@ -1,6 +1,6 @@
 {
   "name": "svelte-luna-form",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Svelte library for building forms based on JSON Schema",
   "type": "module",
   "sideEffects": false,
