@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "sections": {
+      "description": "An array of sections in the form",
+      "type": "array"
+    }
+  }
+}

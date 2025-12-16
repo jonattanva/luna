@@ -66,7 +66,7 @@ export type Field = CommonProps & {
     data?: DataAttributes
   }
   description?: string
-  fields?: undefined
+  fields?: never
   label?: string
   name: string
   readonly?: boolean

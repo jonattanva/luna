@@ -3,6 +3,7 @@
   "description": "A monorepo for Luna, a form builder library based on JSON Schema.",
   "private": true,
   "workspaces": [
+    "apps/*",
     "packages/*"
   ],
   "scripts": {
