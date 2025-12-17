@@ -1,23 +1,51 @@
 'use client'
 
-import MonacoEditor, { type OnMount } from '@monaco-editor/react'
-import { lunaDarkTheme } from '@/lib/monaco-theme'
-import { useTheme } from 'next-themes'
+import MonacoEditor, { type Monaco, type OnMount } from '@monaco-editor/react'
+import schema from '@/public/schema.json'
 import { codeAtom } from '@/lib/code-store'
+import { lunaDarkTheme } from '@/lib/monaco-theme'
 import { useAtom } from 'jotai'
+import { useRef } from 'react'
+import { useTheme } from 'next-themes'
 
-export function CodeEditor() {
-  const { theme } = useTheme()
-
+export function CodeEditor(
+  props: Readonly<{
+    timeout?: number
+  }>
+) {
+  const { resolvedTheme } = useTheme()
   const [value, setValue] = useAtom(codeAtom)
+
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  const handleLocalSchema = (monaco: Monaco) => {
+    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+      validate: true,
+      schemas: [
+        {
+          uri: 'https://luna-form-editor.vercel.app/schema.json',
+          fileMatch: ['*'],
+          schema: schema,
+        },
+      ],
+    })
+  }
 
   const handleEditorMount: OnMount = (_, monaco) => {
     monaco.editor.defineTheme('luna-dark', lunaDarkTheme)
-    monaco.editor.setTheme(theme === 'dark' ? 'luna-dark' : 'light')
+    monaco.editor.setTheme(resolvedTheme === 'dark' ? 'luna-dark' : 'light')
+
+    handleLocalSchema(monaco)
   }
 
   const handleValueChange = (newValue: string | undefined) => {
-    setValue(newValue ?? '')
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setValue(newValue ?? '')
+    }, props.timeout ?? 500)
   }
 
   return (
@@ -27,7 +55,7 @@ export function CodeEditor() {
         language="json"
         onChange={handleValueChange}
         onMount={handleEditorMount}
-        theme={theme === 'dark' ? 'vs-dark' : 'light'}
+        theme={resolvedTheme === 'dark' ? 'luna-dark' : 'light'}
         options={{
           autoClosingBrackets: 'always',
           autoClosingQuotes: 'always',

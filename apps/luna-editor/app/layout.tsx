@@ -1,17 +1,26 @@
 import './globals.css'
 import { Roboto, Roboto_Mono } from 'next/font/google'
-import { ThemeProvider } from '@/components/provider/theme'
-import type { Metadata } from 'next'
+import { ThemeProvider } from '@/components/theme-provider'
+import { cn } from '@/lib/utils'
+import type { Metadata, Viewport } from 'next'
 
-const robotoSans = Roboto({
+const sans = Roboto({
   variable: '--font-roboto-sans',
   subsets: ['latin'],
 })
 
-const robotoMono = Roboto_Mono({
+const mono = Roboto_Mono({
   variable: '--font-roboto-mono',
   subsets: ['latin'],
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: 'cover',
+}
 
 export const metadata: Metadata = {
   title: 'Luna | Form editor',
@@ -25,14 +34,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${robotoSans.variable} ${robotoMono.variable} antialiased`}
-      >
+      <body className={cn(sans.variable, mono.variable, 'antialiased')}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
-          enableSystem
           disableTransitionOnChange
+          enableSystem
         >
           {children}
         </ThemeProvider>

@@ -4,7 +4,36 @@
   "properties": {
     "sections": {
       "description": "An array of sections in the form",
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The title of the section"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the section"
+          },
+          "fields": {
+            "type": "array",
+            "description": "An array of fields in the section",
+            "items": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "separator": {
+            "type": "boolean",
+            "description": "Whether to display a separator after the section"
+          },
+          "order": {
+            "type": "integer",
+            "description": "The order of the section in the form"
+          }
+        }
+      }
     }
   }
 }
