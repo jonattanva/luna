@@ -70,7 +70,12 @@ export function CodeEditor(
           quickSuggestions: {
             comments: false,
             other: true,
-            strings: true,
+            strings: false,
+          },
+          suggest: {
+            snippetsPreventQuickSuggestions: false,
+            showSnippets: false,
+            showWords: false,
           },
         }}
         value={value}

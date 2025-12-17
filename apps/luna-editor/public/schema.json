@@ -1,12 +1,15 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema#",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "sections": {
-      "description": "An array of sections in the form",
       "type": "array",
+      "description": "An array of sections in the form",
       "items": {
         "type": "object",
+        "additionalProperties": false,
+        "required": ["fields"],
         "properties": {
           "title": {
             "type": "string",
@@ -21,7 +24,355 @@
             "description": "An array of fields in the section",
             "items": {
               "type": "object",
-              "properties": {}
+              "required": ["type"],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "The type of the field"
+                },
+                "label": {
+                  "type": "string",
+                  "description": "The label of the field"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the field"
+                },
+                "placeholder": {
+                  "type": "string",
+                  "description": "The placeholder text for the field"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The description of the field"
+                },
+                "required": {
+                  "type": "boolean",
+                  "description": "Whether the field is required"
+                },
+                "order": {
+                  "type": "integer",
+                  "description": "The order of the field in the section"
+                },
+                "advanced": {
+                  "type": "object",
+                  "description": "Advanced configuration for the field",
+                  "properties": {
+                    "aria": {
+                      "type": "object",
+                      "description": "ARIA attributes for the field",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    },
+                    "autocomplete": {
+                      "type": "string",
+                      "description": "Autocomplete attribute for the field"
+                    },
+                    "cols": {
+                      "type": "number",
+                      "description": "Number of columns the field spans or contains in the layout"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Custom data attributes for the field",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    },
+                    "length": {
+                      "$ref": "#/definitions/length"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "validation": {
+                  "$ref": "#/definitions/validation"
+                },
+                "fields": {
+                  "type": "array",
+                  "description": "An array of fields within the column (only for column type)",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["type"],
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "description": "The type of the field"
+                      },
+                      "label": {
+                        "type": "string",
+                        "description": "The label of the field"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the field"
+                      },
+                      "placeholder": {
+                        "type": "string",
+                        "description": "The placeholder text for the field"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "The description of the field"
+                      },
+                      "required": {
+                        "type": "boolean",
+                        "description": "Whether the field is required"
+                      },
+                      "order": {
+                        "type": "integer",
+                        "description": "The order of the field"
+                      },
+                      "advanced": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "description": "Advanced configuration for the field",
+                        "properties": {
+                          "aria": {
+                            "type": "object",
+                            "description": "ARIA attributes for the field",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
+                          "autocomplete": {
+                            "type": "string",
+                            "description": "Autocomplete attribute for the field"
+                          },
+                          "cols": {
+                            "type": "number",
+                            "description": "Number of columns the field spans in the layout"
+                          },
+                          "data": {
+                            "type": "object",
+                            "description": "Custom data attributes for the field",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
+                          "length": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "description": "Length constraints for the field",
+                            "properties": {
+                              "min": {
+                                "oneOf": [
+                                  {
+                                    "type": "number",
+                                    "description": "Minimum length"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "description": "Minimum length (e.g., 'current' for current year)"
+                                  }
+                                ]
+                              },
+                              "max": {
+                                "oneOf": [
+                                  {
+                                    "type": "number",
+                                    "description": "Maximum length"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "description": "Maximum length (e.g., 'current+6' for 6 years ahead)"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "validation": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "description": "Validation rules for the field",
+                        "properties": {
+                          "required": {
+                            "type": "string",
+                            "description": "Error message if the field is required and not filled"
+                          },
+                          "length": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "description": "Length validation messages",
+                            "properties": {
+                              "min": {
+                                "type": "string",
+                                "description": "Error message if the field is too short"
+                              },
+                              "max": {
+                                "type": "string",
+                                "description": "Error message if the field is too long"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "additionalProperties": false,
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "type": { "const": "column" }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "advanced": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "description": "Advanced configuration for column type fields",
+                        "properties": {
+                          "cols": {
+                            "type": "number",
+                            "description": "Number of columns in the column layout"
+                          }
+                        }
+                      },
+                      "fields": {
+                        "type": "array",
+                        "description": "An array of fields within the column",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": ["type"],
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "The type of the field"
+                            },
+                            "label": {
+                              "type": "string",
+                              "description": "The label of the field"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "The name of the field"
+                            },
+                            "placeholder": {
+                              "type": "string",
+                              "description": "The placeholder text for the field"
+                            },
+                            "description": {
+                              "type": "string",
+                              "description": "The description of the field"
+                            },
+                            "required": {
+                              "type": "boolean",
+                              "description": "Whether the field is required"
+                            },
+                            "order": {
+                              "type": "integer",
+                              "description": "The order of the field"
+                            },
+                            "advanced": {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "description": "Advanced configuration for the field",
+                              "properties": {
+                                "aria": {
+                                  "type": "object",
+                                  "description": "ARIA attributes for the field",
+                                  "additionalProperties": {
+                                    "type": "string"
+                                  }
+                                },
+                                "autocomplete": {
+                                  "type": "string",
+                                  "description": "Autocomplete attribute for the field"
+                                },
+                                "cols": {
+                                  "type": "number",
+                                  "description": "Number of columns the field spans in the layout"
+                                },
+                                "data": {
+                                  "type": "object",
+                                  "description": "Custom data attributes for the field",
+                                  "additionalProperties": {
+                                    "type": "string"
+                                  }
+                                },
+                                "length": {
+                                  "$ref": "#/definitions/length"
+                                }
+                              }
+                            },
+                            "validation": {
+                              "$ref": "#/definitions/validation"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "else": {
+                    "properties": {
+                      "label": {
+                        "type": "string",
+                        "description": "The label of the field"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the field"
+                      },
+                      "placeholder": {
+                        "type": "string",
+                        "description": "The placeholder text for the field"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "The description of the field"
+                      },
+                      "required": {
+                        "type": "boolean",
+                        "description": "Whether the field is required"
+                      },
+                      "advanced": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "description": "Advanced configuration for non-column type fields",
+                        "properties": {
+                          "aria": {
+                            "type": "object",
+                            "description": "ARIA attributes for the field",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
+                          "autocomplete": {
+                            "type": "string",
+                            "description": "Autocomplete attribute for the field"
+                          },
+                          "cols": {
+                            "type": "number",
+                            "description": "Number of columns the field spans in the layout"
+                          },
+                          "data": {
+                            "type": "object",
+                            "description": "Custom data attributes for the field",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
+                          "length": {
+                            "$ref": "#/definitions/length"
+                          }
+                        }
+                      },
+                      "validation": {
+                        "$ref": "#/definitions/validation"
+                      }
+                    }
+                  }
+                }
+              ]
             }
           },
           "separator": {
@@ -31,6 +382,65 @@
           "order": {
             "type": "integer",
             "description": "The order of the section in the form"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "length": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Length constraints for the field",
+      "properties": {
+        "min": {
+          "oneOf": [
+            {
+              "type": "number",
+              "description": "Minimum length"
+            },
+            {
+              "type": "string",
+              "description": "Minimum length (e.g., 'current' for current year)"
+            }
+          ]
+        },
+        "max": {
+          "oneOf": [
+            {
+              "type": "number",
+              "description": "Maximum length"
+            },
+            {
+              "type": "string",
+              "description": "Maximum length (e.g., 'current+6' for 6 years ahead)"
+            }
+          ]
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Validation rules for the field",
+      "properties": {
+        "required": {
+          "type": "string",
+          "description": "Error message if the field is required and not filled"
+        },
+        "length": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Length validation messages",
+          "properties": {
+            "min": {
+              "type": "string",
+              "description": "Error message if the field is too short"
+            },
+            "max": {
+              "type": "string",
+              "description": "Error message if the field is too long"
+            }
           }
         }
       }

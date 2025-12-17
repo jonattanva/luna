@@ -38,7 +38,7 @@
     "@types/react-dom": "19.2.3",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
-    "eslint-plugin-react-refresh": "0.4.25"
+    "eslint-plugin-react-refresh": "0.4.26"
   },
   "license": "Apache-2.0",
   "repository": {
