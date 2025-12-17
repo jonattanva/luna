@@ -96,8 +96,8 @@ importers:
         specifier: 19.2.3
         version: 19.2.3(react@19.2.3)
       react-luna-form:
-        specifier: 0.0.4
-        version: 0.0.4(jotai-family@1.0.1(jotai@2.16.0(@babel/core@7.28.5)(@babel/template@7.27.2)(@types/react@19.2.7)(react@19.2.3)))(jotai@2.16.0(@babel/core@7.28.5)(@babel/template@7.27.2)(@types/react@19.2.7)(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(swr@2.3.7(react@19.2.3))(tailwind-merge@3.4.0)(zod@4.2.0)
+        specifier: workspace:*
+        version: link:../../packages/luna-react
       tailwind-merge:
         specifier: 3.4.0
         version: 3.4.0
@@ -2477,17 +2477,6 @@ packages:
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-
-  react-luna-form@0.0.4:
-    resolution: {integrity: sha512-Ja2DBx4HeCMVpUIDHZ1o1oUCky3+jdYsYGmAZjj6QYDpOa21ewnkLPWeVAyPXWKzalnv59/pfbLuGx/DMOjgfQ==}
-    peerDependencies:
-      jotai: ^2.0.0
-      jotai-family: ^1.0.0
-      react: ^18.2.0 || ^19.0.0
-      react-dom: ^18.2.0 || ^19.0.0
-      swr: ^2.3.0
-      tailwind-merge: ^3.4.0
-      zod: ^4.0.0
 
   react@19.2.3:
     resolution: {integrity: sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA==}
@@ -5112,16 +5101,6 @@ snapshots:
       scheduler: 0.27.0
 
   react-is@16.13.1: {}
-
-  react-luna-form@0.0.4(jotai-family@1.0.1(jotai@2.16.0(@babel/core@7.28.5)(@babel/template@7.27.2)(@types/react@19.2.7)(react@19.2.3)))(jotai@2.16.0(@babel/core@7.28.5)(@babel/template@7.27.2)(@types/react@19.2.7)(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(swr@2.3.7(react@19.2.3))(tailwind-merge@3.4.0)(zod@4.2.0):
-    dependencies:
-      jotai: 2.16.0(@babel/core@7.28.5)(@babel/template@7.27.2)(@types/react@19.2.7)(react@19.2.3)
-      jotai-family: 1.0.1(jotai@2.16.0(@babel/core@7.28.5)(@babel/template@7.27.2)(@types/react@19.2.7)(react@19.2.3))
-      react: 19.2.3
-      react-dom: 19.2.3(react@19.2.3)
-      swr: 2.3.7(react@19.2.3)
-      tailwind-merge: 3.4.0
-      zod: 4.2.0
 
   react@19.2.3: {}
 
