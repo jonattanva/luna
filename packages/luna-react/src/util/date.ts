@@ -38,11 +38,12 @@ export function getConvert(value: string | number, current?: number): number {
   const trimmed = value.trim().toLowerCase()
 
   if (trimmed.startsWith('current')) {
-    const parts = trimmed.split('+')
-    if (parts.length === 2) {
-      const offset = parseInt(parts[1], 10)
+    const match = trimmed.match(/^current([+-])(\d+)$/)
+    if (match) {
+      const [, operator, offsetStr] = match
+      const offset = parseInt(offsetStr, 10)
       if (!isNaN(offset)) {
-        return now + offset
+        return operator === '+' ? now + offset : now - offset
       }
     }
     return now

@@ -3,7 +3,7 @@
 import { Button } from '../button'
 import { CopyIcon } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../tooltip'
-import { codeAtom } from '@/lib/code-store'
+import { codeAtom } from '@/lib/store'
 import { useAtomValue } from 'jotai'
 import { useState } from 'react'
 
@@ -31,6 +31,7 @@ export function CopyToClipboard() {
       <TooltipTrigger asChild>
         <Button size="icon-sm" variant="ghost" onClick={handleCopy}>
           <CopyIcon />
+          <span className="sr-only">Copy to clipboard</span>
         </Button>
       </TooltipTrigger>
       <TooltipContent>Copied!</TooltipContent>

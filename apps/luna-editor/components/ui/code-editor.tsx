@@ -2,7 +2,7 @@
 
 import MonacoEditor, { type Monaco, type OnMount } from '@monaco-editor/react'
 import schema from '@/public/schema.json'
-import { codeAtom } from '@/lib/code-store'
+import { codeAtom } from '@/lib/store'
 import { lunaDarkTheme } from '@/lib/monaco-theme'
 import { useAtom } from 'jotai'
 import { useRef } from 'react'

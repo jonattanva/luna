@@ -1,11 +1,10 @@
-import { Close } from './action/close'
-import { CodeEditor } from './code-editor'
-import { CopyToClipboard } from './action/copy'
-import { CodeXmlIcon } from 'lucide-react'
+import { Code } from './action/code'
+import { IAChat } from './ia-chat'
+import { Sparkles } from 'lucide-react'
 
-export function CodePanel(
+export function IAPanel(
   props: Readonly<{
-    onClose?: () => void
+    goToCode: () => void
   }>
 ) {
   return (
@@ -13,18 +12,17 @@ export function CodePanel(
       <div className="flex shrink-0 items-center justify-between border-b px-4 py-2">
         <div className="flex items-center gap-2">
           <div className="bg-primary/10 flex size-6 items-center justify-center rounded-md">
-            <CodeXmlIcon className="text-primary size-3.5" />
+            <Sparkles className="text-primary size-3.5" />
           </div>
           <span className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
-            Generated Code
+            AI Assistant
           </span>
         </div>
         <div className="flex gap-3">
-          <CopyToClipboard />
-          <Close onClick={props.onClose} />
+          <Code onClick={props.goToCode} />
         </div>
       </div>
-      <CodeEditor />
+      <IAChat />
     </div>
   )
 }
