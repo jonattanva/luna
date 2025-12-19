@@ -62,6 +62,7 @@ export type Column = {
 export type Field = CommonProps & {
   advanced?: {
     aria?: AriaAttributes
+    autocomplete?: string
     cols?: number
     data?: DataAttributes
   }
@@ -84,13 +85,13 @@ export type Length<T> = {
 
 export type Input = Field & {
   advanced?: {
-    autocomplete?: string
     length?: Length<number>
   }
 }
 
 export type Select = Field & {
   advanced?: {
+    autocomplete?: never
     length?: Length<number | string>
   }
 }
@@ -129,5 +130,10 @@ export type Config = {
   }
   style?: {
     compact?: boolean
+  }
+  validation: {
+    blur?: boolean
+    change?: boolean
+    submit?: boolean
   }
 }

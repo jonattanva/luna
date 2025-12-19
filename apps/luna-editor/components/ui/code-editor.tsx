@@ -5,7 +5,7 @@ import schema from '@/public/schema.json'
 import { codeAtom } from '@/lib/store'
 import { lunaDarkTheme } from '@/lib/monaco-theme'
 import { useAtom } from 'jotai'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTheme } from 'next-themes'
 
 export function CodeEditor(
@@ -17,6 +17,14 @@ export function CodeEditor(
   const [value, setValue] = useAtom(codeAtom)
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [])
 
   const handleLocalSchema = (monaco: Monaco) => {
     monaco.languages.json.jsonDefaults.setDiagnosticsOptions({

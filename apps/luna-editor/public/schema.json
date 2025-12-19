@@ -385,6 +385,67 @@
           }
         }
       }
+    },
+    "source": {
+      "type": "object",
+      "description": "Data source configuration for the form",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "API data source",
+            "required": ["url"],
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "The URL of the data source"
+              },
+              "body": {
+                "type": "object",
+                "description": "The body of the request"
+              },
+              "cache": {
+                "type": "string",
+                "description": "Cache mode for the request",
+                "enum": [
+                  "default",
+                  "no-store",
+                  "reload",
+                  "no-cache",
+                  "force-cache",
+                  "only-if-cached"
+                ]
+              },
+              "headers": {
+                "type": "object",
+                "description": "Headers to include in the request",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "method": {
+                "type": "string",
+                "description": "The HTTP method to use",
+                "default": "GET",
+                "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"]
+              },
+              "namespace": {
+                "type": "string",
+                "description": "Namespace for the data"
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "array",
+            "description": "Static options data source",
+            "items": {
+              "type": "object",
+              "description": "Any object representing an option"
+            }
+          }
+        ]
+      }
     }
   },
   "definitions": {

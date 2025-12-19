@@ -7,11 +7,23 @@ import type { Schemas } from '../../type'
 
 export function useFormAction(
   getSchema: () => Schemas,
-  action?: (formData: FormData) => Promise<void> | void
+  action?: (formData: FormData) => Promise<void> | void,
+  options?: {
+    enabled?: boolean
+  }
 ) {
+  const { enabled = true } = options ?? {}
+
   const setError = useSetAtom(reportErrorAtom)
 
   async function formAction(formData: FormData) {
+    if (enabled === false) {
+      if (action) {
+        await action(formData)
+      }
+      return
+    }
+
     const schemas = getSchema()
     const schema = buildSchema(schemas)
 

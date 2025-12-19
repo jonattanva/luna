@@ -18,7 +18,9 @@ export function Form(
 ) {
   const [schema, onMount, onUnmount] = useSchema()
 
-  const [action] = useFormAction(schema, props.action)
+  const [action] = useFormAction(schema, props.action, {
+    enabled: props.config.validation.submit,
+  })
 
   return (
     <Body

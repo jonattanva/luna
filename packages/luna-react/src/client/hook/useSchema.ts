@@ -1,22 +1,36 @@
 import { clearInputErrorAtom } from '../lib/error-store'
-import { useRef } from 'react'
+import { useCallback, useRef } from 'react'
 import { useSetAtom } from 'jotai'
 import type { Schema, Schemas } from '../../type'
 
 export function useSchema() {
-  const setError = useSetAtom(clearInputErrorAtom)
+  const clearErrors = useSetAtom(clearInputErrorAtom)
+
   const schemaRef = useRef<Schemas>({})
+  const pendingUnmounts = useRef<Set<string>>(new Set())
 
-  function onMount(name: string, schema: Schema) {
-    schemaRef.current[name] = schema
-  }
-
-  function onUnmount(name: string) {
-    if (schemaRef.current[name]) {
-      setError(name)
-      delete schemaRef.current[name]
+  const onMount = useCallback((name: string, schema: Schema) => {
+    if (!(name in schemaRef.current)) {
+      schemaRef.current[name] = schema
     }
-  }
+  }, [])
+
+  const onUnmount = useCallback(
+    (name: string) => {
+      if (schemaRef.current[name]) {
+        delete schemaRef.current[name]
+        pendingUnmounts.current.add(name)
+
+        queueMicrotask(() => {
+          if (pendingUnmounts.current.size > 0) {
+            clearErrors(Array.from(pendingUnmounts.current))
+            pendingUnmounts.current.clear()
+          }
+        })
+      }
+    },
+    [clearErrors]
+  )
 
   function getSchema() {
     return schemaRef.current

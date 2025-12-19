@@ -9,6 +9,11 @@ export function defineConfig<T extends React.ElementType>(
     style?: {
       compact?: boolean
     }
+    validation?: {
+      blur?: boolean
+      change?: boolean
+      submit?: boolean
+    }
   }>
 ): Config {
   const config = {
@@ -17,6 +22,12 @@ export function defineConfig<T extends React.ElementType>(
     inputs: {},
     style: options.style,
   } as Config
+
+  config.validation = options.validation ?? {
+    blur: true,
+    change: true,
+    submit: true,
+  }
 
   options.inputs.forEach(({ types, input }) => {
     const type = Array.isArray(types) ? types : [types]

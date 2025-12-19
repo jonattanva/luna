@@ -1,5 +1,5 @@
 import { getSchema } from '../../util/schema'
-import { useEffect, useEffectEvent } from 'react'
+import { useEffect, useEffectEvent, useMemo } from 'react'
 import type { Field, Schema } from '../../type'
 
 export function useInput(
@@ -7,7 +7,7 @@ export function useInput(
   onMount: (name: string, schema: Schema) => void,
   onUnmount: (name: string) => void
 ) {
-  const schema = getSchema(field)
+  const schema = useMemo(() => getSchema(field), [field])
 
   const onMountHandler = useEffectEvent((name: string) => {
     if (name) {

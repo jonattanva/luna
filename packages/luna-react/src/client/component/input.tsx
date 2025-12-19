@@ -48,13 +48,17 @@ export function Input(
   )
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const target = event.target.value
-    validated(target)
+    if (props.config.validation.change) {
+      const target = event.target.value
+      validated(target)
+    }
   }
 
   function onBlur(event: React.FocusEvent<HTMLInputElement>) {
-    const target = event.target.value
-    validated(target)
+    if (props.config.validation.blur) {
+      const target = event.target.value
+      validated(target)
+    }
   }
 
   function validated(value: string) {
