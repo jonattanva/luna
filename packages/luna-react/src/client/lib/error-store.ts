@@ -23,6 +23,15 @@ export const reportInputErrorAtom = atomFamily((name: string) =>
   )
 )
 
+export const clearInputErrorAtom = atom(null, (get, set, name: string) => {
+  const current = get(inputErrorAtom)
+  if (current[name]) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { [name]: _unused, ...rest } = current
+    set(inputErrorAtom, rest)
+  }
+})
+
 export const reportErrorAtom = atom(
   null,
   (get, set, error: Record<string, string[]>) => {

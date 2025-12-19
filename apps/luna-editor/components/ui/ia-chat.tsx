@@ -1,5 +1,7 @@
 import { ArrowUpIcon, Sparkles, Plus } from 'lucide-react'
 import { Button } from './button'
+import { IAProvider } from './ia-provider'
+import { Separator } from './separator'
 import {
   InputGroup,
   InputGroupAddon,
@@ -54,10 +56,12 @@ export function IAChat() {
               className="min-h-25 resize-none"
             />
             <InputGroupAddon align="block-end">
+              <IAProvider />
+              <Separator orientation="vertical" className="h-4!" />
               <InputGroupButton
-                variant="default"
                 className="cursor-pointer rounded-md"
                 size="icon-sm"
+                variant="default"
               >
                 <ArrowUpIcon />
                 <span className="sr-only">Send</span>

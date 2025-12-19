@@ -15,6 +15,7 @@ export function Form(
 ) {
   return (
     <Component
+      config={props.config}
       control={props.children}
       readOnly={props.readOnly}
       sections={props.sections}

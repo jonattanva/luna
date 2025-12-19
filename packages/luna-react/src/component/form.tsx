@@ -4,12 +4,13 @@ import { Fragment } from 'react'
 import { Group } from './group'
 import { Separator } from './separator'
 import { prepare } from '../util/prepare'
-import type { Sections, Slot } from '../type'
+import type { Config, Sections, Slot } from '../type'
 
 export function Form(
   props: Readonly<{
     action?: (formData: FormData) => void
     children: Slot
+    config: Config
     control?: React.ReactNode
     noValidate?: boolean
     readOnly?: boolean
@@ -24,7 +25,11 @@ export function Form(
         <Group>
           {sections.map((section, index) => (
             <Fragment key={index}>
-              <FieldSet description={section.description} title={section.title}>
+              <FieldSet
+                compact={props.config.style?.compact}
+                description={section.description}
+                title={section.title}
+              >
                 {props.children({
                   disabled: props.readOnly,
                   fields: section.fields,

@@ -23,6 +23,7 @@ export function Form(
   return (
     <Body
       action={action}
+      config={props.config}
       control={props.children}
       noValidate
       readOnly={props.readOnly}

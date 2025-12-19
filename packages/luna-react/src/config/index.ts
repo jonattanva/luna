@@ -6,12 +6,16 @@ export function defineConfig<T extends React.ElementType>(
     env?: Environment
     fetcher?: <T>(dataSource: DataSource) => Promise<T>
     inputs: Array<InputConfig<T>>
+    style?: {
+      compact?: boolean
+    }
   }>
 ): Config {
   const config = {
     env: options.env,
     fetcher,
     inputs: {},
+    style: options.style,
   } as Config
 
   options.inputs.forEach(({ types, input }) => {

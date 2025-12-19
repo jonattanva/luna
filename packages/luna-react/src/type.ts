@@ -123,8 +123,11 @@ export type InputConfig<T extends React.ElementType> = {
 
 export type Config = {
   env?: Environment
+  fetcher: <T>(dataSource: DataSource) => Promise<T>
   inputs: {
     [key: string]: React.ComponentProps<React.ElementType>
   }
-  fetcher: <T>(dataSource: DataSource) => Promise<T>
+  style?: {
+    compact?: boolean
+  }
 }
