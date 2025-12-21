@@ -1,9 +1,8 @@
-import { DATA_INVALID } from '../util/constant'
+import { DATA_INVALID, getSpan, type Field } from '@luna-form/core'
 import { InputBase } from './input/input-base'
 import { Label } from './label'
-import { getSpan } from '../util/column'
 import { twMerge } from 'tailwind-merge'
-import type { Children, Field } from '../type'
+import type { Children } from '../type'
 
 export type FieldProps = Readonly<{
   children: Children

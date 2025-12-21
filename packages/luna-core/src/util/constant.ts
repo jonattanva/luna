@@ -8,6 +8,8 @@ export const FIELDS = 'fields'
 export const RADIO = 'radio'
 export const VALUE = 'value'
 
+export const OPTIONS = 'options'
+
 export const SELECT = 'select'
 export const SELECT_MONTH = 'select/month'
 export const SELECT_YEAR = 'select/year'

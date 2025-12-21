@@ -1,6 +1,6 @@
-import { getSchema } from '../../util/schema'
+import { getSchema } from '@luna-form/core'
 import { useEffect, useEffectEvent, useMemo } from 'react'
-import type { Field, Schema } from '../../type'
+import type { Field, Schema } from '@luna-form/core'
 
 export function useInput(
   field: Field,

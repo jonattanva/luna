@@ -1,7 +1,7 @@
 import { clearInputErrorAtom } from '../lib/error-store'
 import { useCallback, useRef } from 'react'
 import { useSetAtom } from 'jotai'
-import type { Schema, Schemas } from '../../type'
+import type { Schema, Schemas } from '@luna-form/core'
 
 export function useSchema() {
   const clearErrors = useSetAtom(clearInputErrorAtom)

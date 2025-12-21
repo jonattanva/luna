@@ -13,7 +13,7 @@ function entry(entryPoints, callback) {
       external: dependencies,
       format: format,
       logLevel: 'info',
-      minify: true,
+      minify: false,
       outdir: outdir,
       splitting: format === 'esm',
     })

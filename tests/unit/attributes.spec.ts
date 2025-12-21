@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 import {
   getDataAttributes,
   getAriaAttributes,
-} from '@/packages/luna-react/src/util/attributes'
+} from '@/packages/luna-core/src/util/attributes'
 
 test.describe('Get aria and data attributes', { tag: ['@unit'] }, () => {
   test('should return empty object when no aria attributes are provided', () => {

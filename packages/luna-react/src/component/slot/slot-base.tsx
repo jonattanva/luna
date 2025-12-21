@@ -1,7 +1,6 @@
-import { prepare } from '../../util/prepare'
+import { isColumn, isField, prepare, type Fields } from '@luna-form/core'
 import { Fragment } from 'react'
-import { isColumn, isField } from '../../util/is-input'
-import type { Children, Fields } from '../../type'
+import type { Children } from '../../type'
 import type { ColumnProps } from '../column'
 import type { FieldProps } from '../field'
 

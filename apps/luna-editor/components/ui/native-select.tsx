@@ -3,13 +3,11 @@ import { ChevronDownIcon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
-type PropsType = Omit<React.ComponentProps<'select'>, 'size'> & {
-  options?: Array<{ value: string; label: string }>
-  placeholder?: string
-  size?: 'sm' | 'default'
-}
-
-function NativeSelect({ className, size = 'default', ...props }: PropsType) {
+function NativeSelect({
+  className,
+  size = 'default',
+  ...props
+}: Omit<React.ComponentProps<'select'>, 'size'> & { size?: 'sm' | 'default' }) {
   return (
     <div
       className="group/native-select relative w-fit has-[select:disabled]:opacity-50"
@@ -52,26 +50,4 @@ function NativeSelectOptGroup({
   )
 }
 
-function Select({ className, size = 'default', ...props }: PropsType) {
-  const {
-    options = [],
-    placeholder = 'Select an option',
-    ...selectProps
-  } = props
-
-  const optionsWithPlaceholder = placeholder
-    ? [{ value: '', label: placeholder }, ...options]
-    : options
-
-  return (
-    <NativeSelect className={className} {...selectProps} size={size}>
-      {optionsWithPlaceholder.map((option) => (
-        <NativeSelectOption key={option.value} value={option.value}>
-          {option.label}
-        </NativeSelectOption>
-      ))}
-    </NativeSelect>
-  )
-}
-
-export { NativeSelect, NativeSelectOptGroup, Select, NativeSelectOption }
+export { NativeSelect, NativeSelectOptGroup, NativeSelectOption }

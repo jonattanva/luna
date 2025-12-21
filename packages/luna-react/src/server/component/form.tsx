@@ -1,7 +1,8 @@
 import { Form as Component } from '../../component/form'
 import { Input } from './input'
 import { Slot } from '../../component/slot/slot'
-import type { Sections, Config, Source } from '../../type'
+import type { Config } from '../../type'
+import type { Sections, Source } from '@luna-form/core'
 
 export function Form(
   props: Readonly<{

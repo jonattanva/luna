@@ -5,7 +5,7 @@ import {
   getArray,
   getCurrentValue,
   getValue,
-} from '@/packages/luna-react/src/util/extract'
+} from '@/packages/luna-core/src/util/extract'
 
 test.describe('Extract', { tag: ['@unit'] }, () => {
   test('should extract values correctly', () => {

@@ -1,6 +1,10 @@
-import { ARIA_ERROR_MESSAGE, ARIA_INVALID } from '../../util/constant'
-import { getAriaAttributes, getDataAttributes } from '../../util/attributes'
-import type { Field } from '../../type'
+import {
+  ARIA_ERROR_MESSAGE,
+  ARIA_INVALID,
+  getAriaAttributes,
+  getDataAttributes,
+  type Field,
+} from '@luna-form/core'
 
 export function buildAriaAttributes(field: Field, errors?: string[]) {
   const ariaAttributes = getAriaAttributes(field.advanced?.aria)

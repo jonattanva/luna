@@ -14,7 +14,7 @@ import {
   TYPE_TEL,
   TYPE_TEXT,
 } from './constant'
-import type { Column, Field, Input, Select } from '../type'
+import type { Column, Field, Input, Select, Value } from '../type'
 
 export function isSelectMonth(field: Field): boolean {
   return field.type === SELECT_MONTH
@@ -66,4 +66,8 @@ function createTypeChecker<T extends Field>(
 ): (field: Field) => field is T {
   return (field): field is T =>
     field.type === type || field.type.startsWith(`${type}/`)
+}
+
+export function isValidValue(value?: Value): boolean {
+  return value !== undefined && value !== null && value !== ''
 }

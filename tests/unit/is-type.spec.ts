@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { isObject, isValue } from '@/packages/luna-react/src/util/is-type'
+import { isObject, isValue } from '@/packages/luna-core/src/util/is-type'
 
 test.describe('Is Type Utility', { tag: ['@unit'] }, () => {
   test('should identify objects correctly', () => {

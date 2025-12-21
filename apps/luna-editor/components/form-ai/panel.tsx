@@ -1,13 +1,6 @@
-import { ArrowUpIcon, Sparkles, Plus } from 'lucide-react'
-import { Button } from './button'
-import { IAProvider } from './ia-provider'
-import { Separator } from './separator'
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupTextarea,
-} from './input-group'
+import { Button } from '../ui/button'
+import { Sparkles, Plus } from 'lucide-react'
+import { Prompt } from './prompt'
 
 const SUGGESTED_PROMPTS = [
   'Create a login form with email and password',
@@ -15,7 +8,7 @@ const SUGGESTED_PROMPTS = [
   'Build a registration form for a fitness app',
 ]
 
-export function IAChat() {
+export function Panel() {
   return (
     <>
       <div className="relative h-full min-h-0 flex-1">
@@ -30,7 +23,6 @@ export function IAChat() {
             Describe the form you need in natural language, and I&apos;ll build
             it for you in seconds.
           </p>
-
           <div className="flex w-full max-w-md flex-col gap-2">
             <p className="text-muted-foreground mb-2 text-left text-xs font-medium tracking-wider uppercase">
               Suggested prompts
@@ -48,31 +40,7 @@ export function IAChat() {
           </div>
         </div>
       </div>
-      <div className="relative flex flex-col items-center gap-3 p-8 pt-0">
-        <form className="w-full rounded-md border bg-black transition">
-          <InputGroup className="border-none shadow-none dark:bg-transparent">
-            <InputGroupTextarea
-              placeholder="Describe your form with natural language..."
-              className="min-h-25 resize-none"
-            />
-            <InputGroupAddon align="block-end">
-              <IAProvider />
-              <Separator orientation="vertical" className="h-4!" />
-              <InputGroupButton
-                className="cursor-pointer rounded-md"
-                size="icon-sm"
-                variant="default"
-              >
-                <ArrowUpIcon />
-                <span className="sr-only">Send</span>
-              </InputGroupButton>
-            </InputGroupAddon>
-          </InputGroup>
-        </form>
-        <p className="text-muted-foreground text-center text-xs">
-          AI can make mistakes. Check important info.
-        </p>
-      </div>
+      <Prompt />
     </>
   )
 }

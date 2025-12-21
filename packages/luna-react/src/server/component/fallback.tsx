@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import { Form } from './form'
-import type { Config, Sections } from '../../type'
+import type { Config } from '../../type'
+import type { Sections } from '@luna-form/core'
 
 export function Fallback(
   props: Readonly<{

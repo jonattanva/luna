@@ -11,8 +11,8 @@ type SchemaGetter = (input: Input) => z.ZodType
 const approach: Array<[SchemaChecker, SchemaGetter]> = [
   [isNumber, getNumber],
   [isEmail, getEmail],
-  [isSelectYear, getYear],
-  [isSelectMonth, getMonth],
+  [isSelectYear, getYearSchema],
+  [isSelectMonth, getMonthSchema],
 ]
 
 export function buildSchema(schemas: Schemas) {
@@ -69,7 +69,7 @@ export function getNumber(input: Input) {
   return schema.nullable()
 }
 
-export function getYear(input: Input) {
+export function getYearSchema(input: Input) {
   if (input.required) {
     const schema = z.coerce
       .number({ message: input.validation?.required })
@@ -80,7 +80,7 @@ export function getYear(input: Input) {
   return z.coerce.number().int().nullable()
 }
 
-export function getMonth(input: Input) {
+export function getMonthSchema(input: Input) {
   const schema = z.coerce
     .number()
     .int()

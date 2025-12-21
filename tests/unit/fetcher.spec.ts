@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { fetcher } from '@/packages/luna-react/src/config/fetcher'
+import { fetcher } from '@/packages/luna-core/src/fetcher'
 
 const jsonResponse = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {

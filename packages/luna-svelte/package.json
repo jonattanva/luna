@@ -1,6 +1,6 @@
 {
   "name": "svelte-luna-form",
-  "version": "0.0.3",
+  "version": "0.0.1",
   "description": "A Svelte library for building forms based on JSON Schema",
   "type": "module",
   "sideEffects": false,
@@ -13,6 +13,9 @@
   "files": [
     "dist"
   ],
+  "dependencies": {
+    "@luna-form/core": "workspace:*"
+  },
   "peerDependencies": {
     "svelte": "^5.0.0",
     "tailwind-merge": "^3.4.0",

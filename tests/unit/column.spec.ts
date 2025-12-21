@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { getColumn, getSpan } from '@/packages/luna-react/src/util/column'
+import { getColumn, getSpan } from '@/packages/luna-core/src/util/column'
 
 test.describe('Column', { tag: ['@unit'] }, () => {
   test('should return the correct column class', () => {
@@ -13,9 +13,9 @@ test.describe('Column', { tag: ['@unit'] }, () => {
 
 test.describe('getSpan', { tag: ['@unit'] }, () => {
   test('should return the correct span class', () => {
-    expect(getSpan(1)).toBe('col-span-1')
-    expect(getSpan(2)).toBe('col-span-2')
-    expect(getSpan(3)).toBe('col-span-3')
+    expect(getSpan(1)).toBe('md:col-span-1')
+    expect(getSpan(2)).toBe('md:col-span-2')
+    expect(getSpan(3)).toBe('md:col-span-3')
   })
 
   test('should return undefined for invalid span values', () => {

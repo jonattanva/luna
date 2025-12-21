@@ -1,5 +1,5 @@
-import { fetcher } from './fetcher'
-import type { Config, DataSource, Environment, InputConfig } from '../type'
+import { fetcher, type DataSource, type Environment } from '@luna-form/core'
+import type { Config, InputConfig } from '../type'
 
 export function defineConfig<T extends React.ElementType>(
   options: Readonly<{
@@ -69,6 +69,16 @@ export function defineSelect<T extends React.ElementType>(
 ): InputConfig<T> {
   return {
     types: ['select', 'select/year', 'select/month'],
+    input,
+  }
+}
+
+export function defineCustomInput<T extends React.ElementType>(
+  types: string | string[],
+  input: React.ComponentProps<T>
+): InputConfig<T> {
+  return {
+    types,
     input,
   }
 }

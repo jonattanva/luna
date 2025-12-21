@@ -3,8 +3,8 @@ import { FieldSet } from './field-set'
 import { Fragment } from 'react'
 import { Group } from './group'
 import { Separator } from './separator'
-import { prepare } from '../util/prepare'
-import type { Config, Sections, Slot } from '../type'
+import { prepare, type Sections } from '@luna-form/core'
+import type { Config, Slot } from '../type'
 
 export function Form(
   props: Readonly<{

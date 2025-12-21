@@ -1,5 +1,5 @@
 import { Input } from './components/ui/input'
-import { Select } from './components/ui/native-select'
+import { Select } from './components/ui/luna/native-select'
 import { Textarea } from './components/ui/textarea'
 
 import {

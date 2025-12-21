@@ -3,7 +3,7 @@ import {
   buildOptions,
   buildSource,
   buildFormData,
-} from '@/packages/luna-react/src/util/build'
+} from '@/packages/luna-core/src/util/build'
 
 test.describe('Build', { tag: ['@unit'] }, () => {
   test('should build source for radio fields', () => {

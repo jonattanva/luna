@@ -3,7 +3,7 @@ import {
   isOptions,
   isSelectMonth,
   isSelectYear,
-} from '@/packages/luna-react/src/util/is-input'
+} from '@/packages/luna-core/src/util/is-input'
 
 test.describe('Is Input Utility', { tag: ['@unit'] }, () => {
   test('should identify select month inputs correctly', () => {

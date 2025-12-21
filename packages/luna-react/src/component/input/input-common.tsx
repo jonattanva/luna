@@ -1,14 +1,19 @@
-import { MAX, MAX_LENGTH, MIN, MIN_LENGTH } from '../../util/constant'
-import { buildOptionSelect } from './input-option-select'
-import { getType } from '../../util/extract'
 import {
+  MAX,
+  MAX_LENGTH,
+  MIN,
+  MIN_LENGTH,
+  getType,
   isInput,
   isNumber,
   isSelect,
   isText,
   isTextArea,
-} from '../../util/is-input'
-import type { CommonProps, Field, Input } from '../../type'
+  type CommonProps,
+  type Field,
+  type Input,
+} from '@luna-form/core'
+import { buildOptionSelect } from './input-option-select'
 
 export function buildCommon(
   field: Field,

@@ -1,6 +1,7 @@
 import { buildCommon } from './input-common'
 import { buildAriaAttributes, buildDataAttributes } from './input-attributes'
-import type { Children, Field } from '../../type'
+import type { Children } from '../../type'
+import type { Field } from '@luna-form/core'
 
 export function InputBase(
   props: Readonly<{

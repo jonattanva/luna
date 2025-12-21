@@ -5,9 +5,9 @@ const cols: Record<number, string> = {
 }
 
 const span: Record<number, string> = {
-  1: 'col-span-1',
-  2: 'col-span-2',
-  3: 'col-span-3',
+  1: 'md:col-span-1',
+  2: 'md:col-span-2',
+  3: 'md:col-span-3',
 }
 
 export function getColumn(value?: number, defaultCols = 2) {

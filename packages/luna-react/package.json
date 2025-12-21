@@ -24,6 +24,9 @@
   "files": [
     "dist"
   ],
+  "dependencies": {
+    "@luna-form/core": "workspace:*"
+  },
   "peerDependencies": {
     "jotai": "^2.0.0",
     "jotai-family": "^1.0.0",

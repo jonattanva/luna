@@ -1,17 +1,16 @@
 import { Description } from '../../component/description'
 import {
-  getValue,
-  mergeCommonProps,
+  getInputValue,
+  getPreselectedValue,
+  mergeOptionsProps,
   resolveSource,
-} from '../../util/helper/input'
-import type {
-  AriaAttributes,
-  CommonProps,
-  DataAttributes,
-  Field,
-  Config,
-  Source,
-} from '../../type'
+  type AriaAttributes,
+  type CommonProps,
+  type DataAttributes,
+  type Field,
+  type Source,
+} from '@luna-form/core'
+import type { Config } from '../../type'
 
 export function Input(
   props: Readonly<{
@@ -24,13 +23,19 @@ export function Input(
     value?: Record<string, unknown>
   }>
 ) {
-  const currentValue = getValue(props.field, props.value)
+  const currentValue = getInputValue(props.field, props.value)
   const source = resolveSource(props.field, props.value, props.source)
 
-  const commonPropsWithOptions = mergeCommonProps(
+  const commonPropsWithOptions = mergeOptionsProps(
     props.field,
     props.commonProps,
     source
+  )
+
+  const defaultValue = getPreselectedValue(
+    props.field,
+    commonPropsWithOptions,
+    currentValue
   )
 
   const Component = props.config.inputs[props.field.type]
@@ -44,7 +49,7 @@ export function Input(
         {...props.ariaAttributes}
         {...commonPropsWithOptions}
         {...props.dataAttributes}
-        defaultValue={currentValue}
+        defaultValue={defaultValue}
       />
       {props.field.description && (
         <Description>{props.field.description}</Description>

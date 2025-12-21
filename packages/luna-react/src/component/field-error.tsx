@@ -1,4 +1,4 @@
-import type { Nullable } from '../type'
+import type { Nullable } from '@luna-form/core'
 
 export function FieldError(
   props: Readonly<{

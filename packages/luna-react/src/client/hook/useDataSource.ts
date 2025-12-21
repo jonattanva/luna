@@ -1,6 +1,7 @@
 import useSWR from 'swr'
-import { getArray } from '../../util/extract'
-import type { Config, DataSource, Nullable } from '../../type'
+import { getArray } from '@luna-form/core'
+import type { DataSource, Nullable } from '@luna-form/core'
+import type { Config } from '../../type'
 
 export function useDataSource<T>(
   dataSource: Nullable<DataSource | T[]> = null,

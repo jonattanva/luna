@@ -5,19 +5,18 @@ import { useAtom } from 'jotai'
 import { useDataSource } from '../hook/useDataSource'
 import { useInput } from '../hook/useInput'
 import {
-  getValue,
-  mergeCommonProps,
+  getInputValue,
+  mergeOptionsProps,
+  getPreselectedValue,
   resolveSource,
-} from '../../util/helper/input'
-import type {
-  AriaAttributes,
-  CommonProps,
-  Config,
-  DataAttributes,
-  Field,
-  Schema,
-  Source,
-} from '../../type'
+  type AriaAttributes,
+  type CommonProps,
+  type DataAttributes,
+  type Field,
+  type Schema,
+  type Source,
+} from '@luna-form/core'
+import type { Config } from '../../type'
 
 export function Input(
   props: Readonly<{
@@ -33,7 +32,7 @@ export function Input(
     withinColumn?: boolean
   }>
 ) {
-  const currentValue = getValue(props.field, props.value)
+  const currentValue = getInputValue(props.field, props.value)
   const source = resolveSource(props.field, props.value, props.source)
 
   const [errors, setErrors] = useAtom(reportInputErrorAtom(props.field.name))
@@ -41,10 +40,16 @@ export function Input(
   const [schema] = useInput(props.field, props.onMount, props.onUnmount)
   const [options] = useDataSource(source, props.config, props.field.disabled)
 
-  const commonPropsWithOptions = mergeCommonProps(
+  const commonPropsWithOptions = mergeOptionsProps(
     props.field,
     props.commonProps,
     options
+  )
+
+  const defaultValue = getPreselectedValue(
+    props.field,
+    commonPropsWithOptions,
+    currentValue
   )
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -78,7 +83,7 @@ export function Input(
         {...props.ariaAttributes}
         {...commonPropsWithOptions}
         {...props.dataAttributes}
-        defaultValue={currentValue}
+        defaultValue={defaultValue}
         onBlur={onBlur}
         onChange={onChange}
       />

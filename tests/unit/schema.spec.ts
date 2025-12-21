@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test'
 import {
   getEmail,
-  getMonth,
+  getMonthSchema,
   getNumber,
   getSchema,
   getText,
-  getYear,
-} from '@/packages/luna-react/src/util/schema'
+  getYearSchema,
+} from '@/packages/luna-core/src/util/schema'
 
 test.describe('Schema Utility', { tag: ['@unit'] }, () => {
   test('should create an email schema with required validation', () => {
@@ -50,7 +50,7 @@ test.describe('Schema Utility', { tag: ['@unit'] }, () => {
       },
     }
 
-    const schema = getMonth(input)
+    const schema = getMonthSchema(input)
     expect(schema.safeParse(null).success).toBe(false)
     expect(schema.safeParse(0).success).toBe(false)
     expect(schema.safeParse(13).success).toBe(false)
@@ -67,7 +67,7 @@ test.describe('Schema Utility', { tag: ['@unit'] }, () => {
       },
     }
 
-    const schema = getMonth(input)
+    const schema = getMonthSchema(input)
     const validated = schema.safeParse('')
 
     expect(validated.success).toBe(false)
@@ -83,7 +83,7 @@ test.describe('Schema Utility', { tag: ['@unit'] }, () => {
       type: 'input/month',
     }
 
-    const schema = getMonth(input)
+    const schema = getMonthSchema(input)
     expect(schema.safeParse(null).success).toBe(true)
     expect(schema.safeParse(0).success).toBe(false)
     expect(schema.safeParse(13).success).toBe(false)
@@ -100,7 +100,7 @@ test.describe('Schema Utility', { tag: ['@unit'] }, () => {
       },
     }
 
-    const schema = getYear(input)
+    const schema = getYearSchema(input)
     const validated = schema.safeParse('')
 
     expect(validated.success).toBe(false)
@@ -119,7 +119,7 @@ test.describe('Schema Utility', { tag: ['@unit'] }, () => {
       },
     }
 
-    const schema = getYear(input)
+    const schema = getYearSchema(input)
     expect(schema.safeParse(null).success).toBe(false)
     expect(schema.safeParse(-2020).success).toBe(true)
     expect(schema.safeParse(2020).success).toBe(true)
@@ -132,7 +132,7 @@ test.describe('Schema Utility', { tag: ['@unit'] }, () => {
       type: 'input/year',
     }
 
-    const schema = getYear(input)
+    const schema = getYearSchema(input)
     expect(schema.safeParse(null).success).toBe(true)
     expect(schema.safeParse(2020).success).toBe(true)
     expect(schema.safeParse(-2020).success).toBe(true)

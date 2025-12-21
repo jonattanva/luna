@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { prepare } from '@/packages/luna-react/src/util/prepare'
+import { prepare } from '@/packages/luna-core/src/util/prepare'
 
 test.describe('Prepare Utility', { tag: ['@unit'] }, () => {
   test('should filter out hidden fields and sort by order', () => {

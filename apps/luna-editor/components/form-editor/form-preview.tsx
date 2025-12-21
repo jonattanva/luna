@@ -6,7 +6,7 @@ import { codeAtom } from '@/lib/store'
 import { convertCodeToForm } from '@/lib/convert-code'
 import { useAtomValue } from 'jotai'
 
-export function Preview() {
+export function FormPreview() {
   const code = useAtomValue(codeAtom)
   const form = convertCodeToForm(code)
 

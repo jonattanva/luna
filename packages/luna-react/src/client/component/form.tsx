@@ -3,7 +3,8 @@ import { Input } from './input'
 import { Slot } from './slot'
 import { useFormAction } from '../hook/useFormAction'
 import { useSchema } from '../hook/useSchema'
-import type { Sections, Config, Source } from '../../type'
+import type { Sections, Source } from '@luna-form/core'
+import type { Config } from '../../type'
 
 export function Form(
   props: Readonly<{

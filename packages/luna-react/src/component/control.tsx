@@ -4,7 +4,7 @@ export function Control(
   }>
 ) {
   return (
-    <div data-slot="field-control" className="flex w-full flex-row gap-4">
+    <div data-slot="field-control" className="w-full">
       {props.children}
     </div>
   )

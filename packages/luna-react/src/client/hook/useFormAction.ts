@@ -1,9 +1,8 @@
-import { buildFormData } from '../../util/build'
-import { buildSchema, flatten } from '../../util/schema'
+import { buildFormData, buildSchema, flatten } from '@luna-form/core'
 import { reportErrorAtom } from '../lib/error-store'
 import { startTransition } from 'react'
 import { useSetAtom } from 'jotai'
-import type { Schemas } from '../../type'
+import type { Schemas } from '@luna-form/core'
 
 export function useFormAction(
   getSchema: () => Schemas,

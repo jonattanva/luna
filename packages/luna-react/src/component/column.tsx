@@ -1,8 +1,6 @@
 import { FieldError } from './field-error'
-import { entries } from '../util/prepare'
-import { getColumn } from '../util/column'
+import { entries, getColumn, type Column } from '@luna-form/core'
 import { twMerge } from 'tailwind-merge'
-import type { Column } from '../type'
 
 export type ColumnProps = Readonly<{
   children?: React.ReactNode

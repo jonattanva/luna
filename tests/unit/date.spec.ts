@@ -3,7 +3,7 @@ import {
   getMonth,
   getYear,
   getConvert,
-} from '@/packages/luna-react/src/util/date'
+} from '@/packages/luna-core/src/util/date'
 
 test.describe('Date', { tag: ['@unit'] }, () => {
   test('should return the correct months', () => {

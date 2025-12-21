@@ -1,0 +1,30 @@
+{
+  "name": "@luna-form/core",
+  "description": "Core utilities and types for Luna Form",
+  "private": true,
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "pnpm run types",
+    "lint": "eslint . --cache",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "types": "tsc --project tsconfig.json --declaration --emitDeclarationOnly --declarationDir dist/types",
+    "typescript": "tsc --noEmit"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "zod": "^4.0.0"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonattanva/luna.git",
+    "directory": "packages/luna-core"
+  }
+}

@@ -1,4 +1,4 @@
-import type { DataSource } from '../type'
+import type { DataSource } from './type'
 
 export async function fetcher(dataSource: DataSource) {
   const [url, method] = buildRequest(dataSource)
