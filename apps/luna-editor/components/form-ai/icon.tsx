@@ -26,7 +26,7 @@ export const Google = () => (
         fill="#EA4335"
       ></path>
     </svg>
-    <span>Google</span>
+    <span>Gemini 3 Flash</span>
   </>
 )
 

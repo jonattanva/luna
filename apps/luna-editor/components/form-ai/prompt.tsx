@@ -12,7 +12,7 @@ import { Provider } from './provider'
 
 export function Prompt() {
   return (
-    <div className="relative flex flex-col items-center gap-3 p-8 pt-0">
+    <div className="relative flex flex-col items-center gap-3 p-4 pt-0 sm:p-8 sm:pt-0">
       <form className="w-full rounded-md border bg-black transition">
         <InputGroup className="border-none shadow-none dark:bg-transparent">
           <InputGroupTextarea
@@ -34,7 +34,7 @@ export function Prompt() {
         </InputGroup>
       </form>
       <p className="text-muted-foreground text-center text-xs">
-        AI can make mistakes. Check important info.
+        AI can make mistakes. Please review the generated form carefully.
       </p>
     </div>
   )
