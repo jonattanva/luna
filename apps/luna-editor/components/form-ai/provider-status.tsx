@@ -1,4 +1,4 @@
-import { Google, WithoutProvider } from './icon'
+import { Gemini3Flash, WithoutProvider } from './model-icon'
 
 export function ProviderStatus(props: {
   provider: {
@@ -8,7 +8,7 @@ export function ProviderStatus(props: {
 }) {
   if (props.provider) {
     if (props.provider.provider === 'google') {
-      return <Google />
+      return <Gemini3Flash />
     }
   }
   return <WithoutProvider />
