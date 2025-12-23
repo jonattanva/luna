@@ -3,7 +3,6 @@
   "description": "A monorepo for Luna, a form builder library based on JSON Schema.",
   "private": true,
   "workspaces": [
-    "apps/*",
     "packages/*"
   ],
   "scripts": {
@@ -19,8 +18,8 @@
     "@playwright/test": "1.57.0",
     "@types/eslint-plugin-jsx-a11y": "6.10.1",
     "@types/node": "25.0.3",
-    "@typescript-eslint/eslint-plugin": "8.50.0",
-    "@typescript-eslint/parser": "8.50.0",
+    "@typescript-eslint/eslint-plugin": "8.50.1",
+    "@typescript-eslint/parser": "8.50.1",
     "esbuild": "0.27.2",
     "eslint": "9.39.2",
     "eslint-plugin-jsx-a11y": "6.10.2",
@@ -32,7 +31,7 @@
     "prettier-plugin-tailwindcss": "0.7.2",
     "turbo": "2.7.1",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.50.0"
+    "typescript-eslint": "8.50.1"
   },
   "license": "Apache-2.0",
   "repository": {
